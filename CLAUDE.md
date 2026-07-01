@@ -10,7 +10,7 @@ Personal brand website for Muhammad Tayyab Ilyas (tayyabcheema.com). Single-page
 
 Files are served directly by Nginx from `/var/www/tayyabcheema.com/`. Any file edit is immediately live at `https://tayyabcheema.com/`. No build or restart needed.
 
-**Git remote:** `git@github.com:MuhammadTayyabIlyas/profile.git` (branch: `main`)
+**Git remote:** `https://github.com/MuhammadTayyabIlyas/profile.git` (branch: `main`). Pushes authenticate via the `gh` CLI credential helper; this server has no GitHub SSH key, so do not switch the remote back to SSH.
 
 ## Architecture
 
