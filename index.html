@@ -204,8 +204,8 @@
           <span class="stat-label">Published MCP Server</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">5+</span>
-          <span class="stat-label">AI/ML Projects Shipped</span>
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Self-Hosted Sites &amp; Services</span>
         </div>
         <div class="stat-item">
           <span class="stat-number">4</span>
@@ -249,9 +249,28 @@
   <section class="projects section" id="projects">
     <div class="container fade-in">
       <p class="section-label">Featured Projects</p>
-      <h2 class="section-title">What I've Built</h2>
+      <h2 class="section-title">Live Systems &amp; Projects</h2>
+      <p class="projects-intro">Most of what follows is running right now on infrastructure I operate myself. Where a demo is public, the card links straight to the live system.</p>
 
-      <!-- Highlighted Project -->
+      <!-- Highlighted Project: Paco -->
+      <div class="project-highlight">
+        <div class="project-highlight-badge">Deployed to Production</div>
+        <h3 class="project-highlight-title">Paco: WhatsApp Voice AI Assistant</h3>
+        <p class="project-highlight-desc">An AI assistant that answers WhatsApp voice calls and holds a real-time conversation. Paco checks email, calendar, weather and the web mid-call, and places outbound briefing calls through a simple HTTP API. Built from an empty folder to production in a single day.</p>
+        <div class="project-highlight-features">
+          <span class="project-feature">Inbound + Outbound Calls</span>
+          <span class="project-feature">OpenAI Realtime API</span>
+          <span class="project-feature">Live Data Mid-Call</span>
+          <span class="project-feature">Self-Hosted</span>
+        </div>
+        <p class="project-highlight-compat">Deployed on my own Ubuntu server behind Nginx, with a custom operations dashboard</p>
+        <div class="project-highlight-tech">Node.js &middot; Puppeteer &middot; WaVoIP &middot; OpenAI Realtime API &middot; PM2</div>
+        <div class="project-highlight-links">
+          <a href="/projects/paco.html" class="btn btn-primary">Read the case study</a>
+        </div>
+      </div>
+
+      <!-- Highlighted Project: MCP Server -->
       <div class="project-highlight">
         <div class="project-highlight-badge">Live on mcpservers.org</div>
         <h3 class="project-highlight-title">Cheema Text-to-Voice MCP Server</h3>
@@ -266,12 +285,42 @@
         <div class="project-highlight-tech">Python &middot; MCP Protocol &middot; NeuTTS &middot; espeak-ng &middot; MIT Licensed</div>
         <div class="project-highlight-links">
           <a href="https://mcpservers.org/servers/muhammadtayyabilyas/cheema-text-to-voice-mcp-server" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View on mcpservers.org</a>
+          <a href="/projects/cheema-tts-mcp.html" class="btn btn-outline">Case study</a>
           <a href="https://github.com/MuhammadTayyabIlyas/CHeema-Text-to-Voice-MCP-Server" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
 
-      <!-- Other Projects -->
+      <!-- Project Grid -->
       <div class="projects-grid">
+        <a href="https://tmux.tayyabcheema.com" class="project-card" target="_blank" rel="noopener noreferrer">
+          <img class="project-card-thumb" src="/assets/projects/webtmux.png" alt="webtmux terminal dashboard in the browser" width="1280" height="800" loading="lazy" />
+          <h3 class="project-card-name">webtmux</h3>
+          <p class="project-card-desc">Self-hosted workspace where AI coding agents plan, build, review and deploy projects, driven from a browser or a phone. Built on xterm.js over a tmux PTY bridge, with pane previews and push notifications. Live behind this link.</p>
+          <div class="project-card-tech">Node.js &middot; xterm.js &middot; tmux &middot; PWA &middot; systemd</div>
+        </a>
+        <a href="/projects/apkipa.html" class="project-card">
+          <img class="project-card-thumb" src="/assets/projects/snake-game.png" alt="Snake Game built with Flutter running on an iPhone" width="1284" height="2778" loading="lazy" />
+          <h3 class="project-card-name">APKIPA Build Pipeline</h3>
+          <p class="project-card-desc">Flutter build and distribution pipeline on a headless server: hot-reloading web previews behind TLS and signed Android release APKs. Plus a shipped cross-platform game.</p>
+          <div class="project-card-tech">Flutter &middot; Android SDK &middot; Nginx &middot; Ubuntu Server</div>
+        </a>
+        <a href="/reflib/" class="project-card" target="_blank" rel="noopener noreferrer">
+          <img class="project-card-thumb" src="/assets/projects/reflib.png" alt="RefLib reference library interface" width="1280" height="800" loading="lazy" />
+          <h3 class="project-card-name">RefLib</h3>
+          <p class="project-card-desc">Reference manager for my PhD thesis: 590+ sources with client-side semantic search over embedded vectors and exports for citation tools. Live demo.</p>
+          <div class="project-card-tech">JavaScript &middot; Embeddings &middot; Vector Search</div>
+        </a>
+        <a href="https://video.tayyabcheema.com" class="project-card" target="_blank" rel="noopener noreferrer">
+          <img class="project-card-thumb" src="/assets/projects/reelroom.png" alt="Reel Room AI video studio" width="1280" height="800" loading="lazy" />
+          <h3 class="project-card-name">Reel Room</h3>
+          <p class="project-card-desc">Transcript-based video editor: upload an interview, strike a line, and the seconds leave the cut. A hosted, mobile-first studio that never opens a timeline. Live behind this link.</p>
+          <div class="project-card-tech">JavaScript &middot; AI Transcription &middot; Nginx</div>
+        </a>
+        <div class="project-card">
+          <h3 class="project-card-name">PakEdX WhatsApp Node for n8n</h3>
+          <p class="project-card-desc">Custom n8n node connecting WhatsApp to automation workflows, running in a self-hosted Docker n8n stack alongside AI pipelines.</p>
+          <div class="project-card-tech">TypeScript &middot; n8n &middot; Docker &middot; WhatsApp</div>
+        </div>
         <a href="https://github.com/MuhammadTayyabIlyas/MultiLLMChat" class="project-card" target="_blank" rel="noopener noreferrer">
           <h3 class="project-card-name">MultiLLMChat</h3>
           <p class="project-card-desc">Orchestration system routing across Claude, GPT, Gemini, DeepSeek with context-aware model switching and intelligent task delegation.</p>
@@ -292,6 +341,39 @@
           <p class="project-card-desc">Python desktop app for qualitative data analysis for PhD researchers.</p>
           <div class="project-card-tech">Python &middot; Pandas &middot; PyQt</div>
         </a>
+      </div>
+
+      <!-- Infrastructure Strip -->
+      <div class="infra-strip">
+        <h3 class="infra-strip-title">Everything here runs on infrastructure I operate</h3>
+        <p class="infra-strip-text">This site and its sister services are self-hosted on an Ubuntu server I administer: Nginx terminates TLS for more than a dozen subdomains, Node services run under PM2 and systemd, and n8n runs in Docker. The portfolio is the proof.</p>
+        <svg class="infra-diagram" viewBox="0 0 860 250" role="img" aria-label="Infrastructure diagram: HTTPS traffic reaches Nginx, which routes to static sites, Node services and Docker containers on one self-managed Ubuntu server">
+          <defs>
+            <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0L10 5L0 10z" fill="#1A6B5A"/>
+            </marker>
+          </defs>
+          <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" text-anchor="middle">
+            <rect x="355" y="15" width="150" height="50" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+            <text x="430" y="45" fill="#1A1A1A" font-weight="600">Internet &middot; HTTPS</text>
+            <rect x="330" y="100" width="200" height="60" rx="10" fill="#1A6B5A"/>
+            <text x="430" y="126" fill="#FFFFFF" font-weight="600">Nginx</text>
+            <text x="430" y="146" fill="rgba(255,255,255,0.85)" font-size="12">TLS via Let's Encrypt</text>
+            <rect x="60" y="190" width="210" height="52" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+            <text x="165" y="212" fill="#1A1A1A" font-weight="600">Static sites</text>
+            <text x="165" y="230" fill="#8A8578" font-size="12">portfolio &middot; Reel Room &middot; RefLib</text>
+            <rect x="325" y="190" width="210" height="52" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+            <text x="430" y="212" fill="#1A1A1A" font-weight="600">Node services</text>
+            <text x="430" y="230" fill="#8A8578" font-size="12">Paco &middot; webtmux &middot; dashboard</text>
+            <rect x="590" y="190" width="210" height="52" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+            <text x="695" y="212" fill="#1A1A1A" font-weight="600">Docker</text>
+            <text x="695" y="230" fill="#8A8578" font-size="12">n8n + custom nodes</text>
+            <line x1="430" y1="65" x2="430" y2="93" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr2)"/>
+            <line x1="380" y1="160" x2="185" y2="184" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr2)"/>
+            <line x1="430" y1="160" x2="430" y2="184" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr2)"/>
+            <line x1="480" y1="160" x2="675" y2="184" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr2)"/>
+          </g>
+        </svg>
       </div>
     </div>
   </section>
@@ -351,6 +433,10 @@
       <div class="timeline">
         <h3 class="timeline-title">Experience Timeline</h3>
         <div class="timeline-items">
+          <div class="timeline-item">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-text">Production voice AI (Paco) &middot; Flutter build pipeline &middot; Self-hosted fleet of live services</span>
+          </div>
           <div class="timeline-item">
             <span class="timeline-year">2025</span>
             <span class="timeline-text">Published MCP Server Developer (mcpservers.org) &middot; Open Source Contributor, OpenClaw</span>
