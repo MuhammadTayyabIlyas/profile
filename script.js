@@ -3,12 +3,20 @@
 
   // --- Navbar scroll detection ---
   const navbar = document.querySelector('.navbar');
+  const floatingCta = document.querySelector('.floating-bar');
   let ticking = false;
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
-        navbar.classList.toggle('scrolled', window.scrollY > 10);
+        const scrollY = window.scrollY;
+        navbar.classList.toggle('scrolled', scrollY > 10);
+
+        // Show floating CTA after scrolling past hero
+        if (floatingCta) {
+          floatingCta.classList.toggle('visible', scrollY > 600);
+        }
+
         ticking = false;
       });
       ticking = true;
@@ -53,29 +61,4 @@
     });
   }
 
-  // --- Newsletter form handling ---
-  document.querySelectorAll('.newsletter-form, .footer-newsletter-form').forEach((form) => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const input = form.querySelector('input[type="email"]');
-      const email = input.value.trim();
-
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        input.setCustomValidity('Please enter a valid email address.');
-        input.reportValidity();
-        return;
-      }
-
-      // Replace form with success message
-      const wrapper = form.parentElement;
-      form.remove();
-      const trust = wrapper.querySelector('.newsletter-trust');
-      if (trust) trust.remove();
-
-      const success = document.createElement('div');
-      success.className = 'newsletter-success';
-      success.textContent = '\u2713 Check your inbox!';
-      wrapper.appendChild(success);
-    });
-  });
 })();

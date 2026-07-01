@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal brand website for Muhammad Tayyab Ilyas (tayyabcheema.com). Single-page, newsletter-first design. Vanilla HTML/CSS/JS — no framework, no build step, no bundler.
+Personal brand website for Muhammad Tayyab Ilyas (tayyabcheema.com). Single-page portfolio focused on AI Agent Engineering and PhD research. Vanilla HTML/CSS/JS — no framework, no build step, no bundler.
 
 ## Deployment
 
@@ -14,9 +14,9 @@ Files are served directly by Nginx from `/var/www/tayyabcheema.com/`. Any file e
 
 ## Architecture
 
-- `index.html` — Complete single-page site. Sections (in order): Navbar, Hero, Newsletter, About, Featured Work, Ventures, Research, Connect, Footer. Includes JSON-LD structured data, Open Graph, and Twitter Card meta tags.
+- `index.html` — Complete single-page site. Sections (in order): Navbar, Hero, About (with role cards), Featured Projects (highlighted MCP server + project grid), Skills (tech stack + timeline + languages), Research, Connect, Footer. Includes JSON-LD structured data, Open Graph, and Twitter Card meta tags.
 - `styles.css` — Design system using CSS custom properties in `:root`. All component styles, animations, and responsive breakpoints (640px, 768px, 1024px) in one file.
-- `script.js` — Single IIFE. Navbar scroll detection (RAF-throttled `.scrolled` class), IntersectionObserver fade-ins (`.fade-in` → `.visible`), mobile nav toggle (`.nav-links.open`), newsletter form client-side handling.
+- `script.js` — Single IIFE. Navbar scroll detection (RAF-throttled `.scrolled` class), IntersectionObserver fade-ins (`.fade-in` → `.visible`), mobile nav toggle (`.nav-links.open`).
 
 ## Design System
 
@@ -30,12 +30,13 @@ Files are served directly by Nginx from `/var/www/tayyabcheema.com/`. Any file e
 
 - **Button links:** Use `a.btn-primary` selector (not just `.btn-primary`) to override the base `a { color: var(--accent) }` rule. This specificity fix is required for white text on teal buttons.
 - **Scroll animations:** Add `.fade-in` class to any section's container `<div>` — JS automatically observes and adds `.visible` on scroll.
-- **Alternating backgrounds:** Sections alternate between `--bg-primary` and `--bg-secondary` via explicit class (`.newsletter`, `.ventures`, `.connect` use secondary).
-- **Newsletter forms:** Both header and footer forms use client-side-only handling (`action="#"`). No backend integration yet — ready for Buttondown/ConvertKit.
+- **Alternating backgrounds:** Sections alternate between `--bg-primary` and `--bg-secondary` via explicit class (`.projects`, `.connect` use secondary).
+- **Project highlight:** The Cheema Text-to-Voice MCP Server has a special highlighted card with accent border, badge, and feature pills.
+- **Project cards as links:** Project cards that have URLs use `<a class="project-card">` wrapping the entire card for clickable areas.
 
-## Placeholder Links
+## Content Style
 
-These still use `#` and need real URLs when available:
-- CRIEDO Research Group profile (research section)
-- Featured Work item URLs (papers, PDFs)
-- Venture card URLs (PakEdX, QualCoder Pro, CAITA, PrectAI)
+- UK English spelling (colour, recognise, personalised, etc.)
+- No em dashes
+- Active voice throughout
+- Emphasis on "ideation to production" and "Published MCP Server"
