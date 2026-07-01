@@ -896,6 +896,7 @@ a.btn-whatsapp {
 /* --- Project Card Thumbnails --- */
 .project-card-thumb {
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: top;
