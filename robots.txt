@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /docs/
 
 Sitemap: https://tayyabcheema.com/sitemap.xml
