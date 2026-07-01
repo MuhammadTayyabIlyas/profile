@@ -893,6 +893,154 @@ a.btn-whatsapp {
   transform: translateY(0);
 }
 
+/* --- Project Card Thumbnails --- */
+.project-card-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-bottom: var(--space-md);
+  background: var(--bg-secondary);
+}
+
+.projects-intro {
+  font-size: var(--fs-lg);
+  color: var(--text-body);
+  max-width: 680px;
+  margin-top: calc(-1 * var(--space-md));
+  margin-bottom: var(--space-2xl);
+  line-height: 1.7;
+}
+
+/* --- Infrastructure Strip --- */
+.infra-strip {
+  margin-top: var(--space-2xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+}
+
+.infra-strip-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.infra-strip-text {
+  font-size: var(--fs-base);
+  color: var(--text-body);
+  max-width: 640px;
+  margin: 0 auto var(--space-xl);
+  line-height: 1.75;
+}
+
+.infra-diagram {
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* --- Case Study Pages --- */
+.case-hero {
+  padding-top: calc(var(--nav-height) + var(--space-3xl));
+  padding-bottom: var(--space-2xl);
+}
+
+.case-hero-title {
+  font-size: var(--fs-3xl);
+  max-width: 800px;
+  margin-bottom: var(--space-md);
+}
+
+.case-hero-lede {
+  font-size: var(--fs-lg);
+  color: var(--text-body);
+  max-width: 680px;
+  line-height: 1.75;
+  margin-top: var(--space-lg);
+}
+
+.case-section {
+  padding: var(--space-2xl) 0;
+}
+
+.case-section .section-title {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-lg);
+}
+
+.case-alt {
+  background-color: var(--bg-secondary);
+}
+
+.case-body {
+  max-width: 680px;
+}
+
+.case-body p + p {
+  margin-top: var(--space-md);
+}
+
+.case-body ul {
+  padding-left: 1.25rem;
+  margin-top: var(--space-md);
+}
+
+.case-body li + li {
+  margin-top: var(--space-xs);
+}
+
+.arch-diagram {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-top: var(--space-lg);
+  overflow-x: auto;
+}
+
+.arch-diagram svg {
+  width: 100%;
+  min-width: 560px;
+  height: auto;
+}
+
+.case-shots {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.case-shot {
+  margin: 0;
+}
+
+.case-shot img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.case-shot figcaption {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+.case-cta {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-top: var(--space-xl);
+}
+
 /* --- Mobile Nav Toggle --- */
 .nav-toggle {
   display: none;
@@ -928,6 +1076,10 @@ a.btn-whatsapp {
 
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .case-shots {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
