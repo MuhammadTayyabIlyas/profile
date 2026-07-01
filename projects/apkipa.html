@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>APKIPA: Flutter Build Pipeline on a Headless Server | Case Study | Tayyab Ilyas</title>
+  <meta name="description" content="Case study: a headless Ubuntu server that builds Flutter apps, serves hot-reloading web previews behind TLS, and produces signed Android release APKs." />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/projects/apkipa.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="APKIPA: Flutter Build Pipeline on a Headless Server | Case Study" />
+  <meta property="og:description" content="A headless Ubuntu server that builds Flutter apps, serves live web previews behind TLS, and produces signed Android release APKs." />
+  <meta property="og:url" content="https://tayyabcheema.com/projects/apkipa.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/projects/snake-game.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="APKIPA: Flutter Build Pipeline | Case Study" />
+  <meta name="twitter:description" content="A headless Ubuntu server that builds Flutter apps, serves live web previews behind TLS, and produces signed Android release APKs." />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "APKIPA Flutter Build Pipeline",
+    "author": { "@type": "Person", "name": "Muhammad Tayyab Ilyas" },
+    "url": "https://tayyabcheema.com/projects/apkipa.html",
+    "description": "A headless Ubuntu build server for Flutter apps: hot-reloading web previews behind TLS and signed Android release APKs."
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#research">Research</a></li>
+        <li><a href="mailto:ceo@pakedx.com" class="btn btn-primary">Hire Me</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label">Case Study</p>
+        <h1 class="case-hero-title">APKIPA: a Flutter factory on a headless server</h1>
+        <div class="hero-taglines">
+          <span class="hero-tag">Signed release APKs</span>
+          <span class="hero-tag">Live web previews</span>
+          <span class="hero-tag">Headless Ubuntu</span>
+        </div>
+        <p class="case-hero-lede">APKIPA turns a headless Ubuntu server into a Flutter build machine: edit code, and a TLS-protected web preview rebuilds itself; run one command, and out comes a signed Android release APK. No laptop toolchain, no CI vendor.</p>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">The problem</h2>
+        <div class="case-body">
+          <p>Building mobile apps normally chains you to a workstation with the full toolchain, or to a paid CI service. I wanted the whole loop on a server I already run: write Flutter code from anywhere, see it live in a browser, and ship an installable, signed APK from the same box.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">What runs on the server</h2>
+        <div class="case-body">
+          <ul>
+            <li>Flutter 3.44 with JDK 17 and the Android SDK (API 36, build-tools 36.0.0), installed and licensed on headless Ubuntu</li>
+            <li>A web preview at apkipa.tayyabcheema.com behind Nginx TLS and basic auth, rebuilt automatically on save by an inotify watch loop</li>
+            <li>Release signing with a managed keystore: <code>flutter build apk --release</code> produces a 42MB APK that passes apksigner verification</li>
+            <li>A config toggle between the live preview and a static release build</li>
+          </ul>
+          <p>Getting hot reload to work behind an HTTPS reverse proxy was the hard part: Flutter's debug web server cannot initialise its debug channel through the proxy, a documented limitation. I root-caused it, switched the always-on preview to static release builds, and added the inotify auto-rebuild loop so saving a file still updates the preview.</p>
+        </div>
+        <div class="arch-diagram">
+          <svg viewBox="0 0 860 210" role="img" aria-label="APKIPA architecture: Flutter source flows into a headless build server which produces both a TLS-protected live web preview and a signed release APK">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#1A6B5A"/>
+              </marker>
+            </defs>
+            <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" text-anchor="middle">
+              <rect x="15" y="75" width="160" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="95" y="102" fill="#1A1A1A" font-weight="600">Flutter source</text>
+              <text x="95" y="122" fill="#8A8578" font-size="12">edit and save</text>
+              <rect x="285" y="75" width="200" height="64" rx="10" fill="#1A6B5A"/>
+              <text x="385" y="102" fill="#FFFFFF" font-weight="600">Headless build server</text>
+              <text x="385" y="122" fill="rgba(255,255,255,0.85)" font-size="12">Flutter 3.44 &middot; JDK 17 &middot; API 36</text>
+              <rect x="600" y="20" width="200" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="700" y="47" fill="#1A1A1A" font-weight="600">Live web preview</text>
+              <text x="700" y="67" fill="#8A8578" font-size="12">Nginx TLS + basic auth</text>
+              <rect x="600" y="130" width="200" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="700" y="157" fill="#1A1A1A" font-weight="600">Signed release APK</text>
+              <text x="700" y="177" fill="#8A8578" font-size="12">apksigner verified</text>
+              <line x1="175" y1="107" x2="278" y2="107" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <text x="228" y="97" fill="#8A8578" font-size="12">inotify rebuild</text>
+              <line x1="485" y1="95" x2="593" y2="58" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="485" y1="120" x2="593" y2="156" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Shipping for real: Snake Game</h2>
+        <div class="case-body">
+          <p>Infrastructure is only interesting if apps ship. Alongside the pipeline I built a cross-platform Snake Game in Flutter with guest play, email and Google sign-in, and a leaderboard that keeps your high score across devices, together with the store-ready support and privacy pages every published app needs.</p>
+        </div>
+        <div class="case-shots">
+          <figure class="case-shot">
+            <img src="/assets/projects/snake-game.png" alt="Snake Game gameplay on an iPhone" loading="lazy" />
+            <figcaption>Gameplay: Flutter rendering the game loop on iPhone.</figcaption>
+          </figure>
+          <figure class="case-shot">
+            <img src="/assets/projects/snake-signin.png" alt="Snake Game sign-in screen with email and Google options" loading="lazy" />
+            <figcaption>Accounts: guest play, email or Google sign-in, cross-device high scores.</figcaption>
+          </figure>
+        </div>
+        <div class="project-highlight-features" style="margin-top: var(--space-xl);">
+          <span class="project-feature">Flutter</span>
+          <span class="project-feature">Dart</span>
+          <span class="project-feature">Android SDK</span>
+          <span class="project-feature">Nginx</span>
+          <span class="project-feature">Ubuntu Server</span>
+          <span class="project-feature">inotify</span>
+        </div>
+        <div class="case-cta">
+          <a href="/#projects" class="btn btn-outline">Back to all projects</a>
+          <a href="mailto:ceo@pakedx.com" class="btn btn-primary">Discuss a project like this</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        AI Agent Engineer &middot; PhD Researcher @ UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
