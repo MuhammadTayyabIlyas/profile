@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Paco: WhatsApp Voice AI Assistant | Case Study | Tayyab Ilyas</title>
+  <meta name="description" content="Case study: how I built Paco, an AI assistant that answers WhatsApp voice calls in real time with the OpenAI Realtime API, and took it from an empty folder to production in one day." />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/projects/paco.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Paco: WhatsApp Voice AI Assistant | Case Study" />
+  <meta property="og:description" content="An AI assistant that answers WhatsApp voice calls in real time. From empty folder to production in one day." />
+  <meta property="og:url" content="https://tayyabcheema.com/projects/paco.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/photo.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="Paco: WhatsApp Voice AI Assistant | Case Study" />
+  <meta name="twitter:description" content="An AI assistant that answers WhatsApp voice calls in real time. From empty folder to production in one day." />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Paco WhatsApp Voice AI Assistant",
+    "author": { "@type": "Person", "name": "Muhammad Tayyab Ilyas" },
+    "url": "https://tayyabcheema.com/projects/paco.html",
+    "applicationCategory": "CommunicationApplication",
+    "operatingSystem": "Linux",
+    "description": "Self-hosted AI assistant that answers WhatsApp voice calls in real time using the OpenAI Realtime API, checks live data mid-call, and places outbound briefing calls."
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#research">Research</a></li>
+        <li><a href="mailto:ceo@pakedx.com" class="btn btn-primary">Hire Me</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label">Case Study</p>
+        <h1 class="case-hero-title">Paco: a voice AI that answers WhatsApp calls</h1>
+        <div class="hero-taglines">
+          <span class="hero-tag">Deployed to production</span>
+          <span class="hero-tag">Built in one day</span>
+          <span class="hero-tag">Self-hosted</span>
+        </div>
+        <p class="case-hero-lede">Paco answers a normal WhatsApp voice call and holds a real-time conversation. It checks email, calendar, weather and the web while you talk, and it can call you back with a spoken briefing. I built it from an empty folder to a production deployment in a single day.</p>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">The problem</h2>
+        <div class="case-body">
+          <p>I wanted to talk to my assistant the way you talk to a person: by calling it. Not a chat window, not push-to-talk voice notes. A real WhatsApp voice call that gets answered, understood, and responded to with natural latency.</p>
+          <p>WhatsApp has no public API for answering voice calls, so the interesting engineering problem was building a reliable bridge between a WhatsApp call and a real-time speech model.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Architecture</h2>
+        <div class="case-body">
+          <p>An inbound WhatsApp call reaches the WaVoIP SDK running inside headless Chrome under Puppeteer. A Node.js bridge captures the call audio, resamples it between the 16 kHz telephony rate and the 24 kHz the model expects, and streams it to the OpenAI Realtime API over WebSocket. The model's spoken reply streams straight back to the caller.</p>
+          <p>Outbound works too: a POST to the bridge's HTTP API starts a WhatsApp call to my number and delivers a spoken briefing built from live data.</p>
+        </div>
+        <div class="arch-diagram">
+          <svg viewBox="0 0 860 200" role="img" aria-label="Paco architecture: a WhatsApp call flows through the WaVoIP SDK in headless Chrome to a Node.js bridge and the OpenAI Realtime API, and audio streams back to the caller">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#1A6B5A"/>
+              </marker>
+            </defs>
+            <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" text-anchor="middle">
+              <rect x="15" y="60" width="150" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="90" y="87" fill="#1A1A1A" font-weight="600">WhatsApp</text>
+              <text x="90" y="107" fill="#8A8578" font-size="12">voice call</text>
+              <rect x="235" y="60" width="170" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="320" y="87" fill="#1A1A1A" font-weight="600">WaVoIP SDK</text>
+              <text x="320" y="107" fill="#8A8578" font-size="12">headless Chrome</text>
+              <rect x="475" y="60" width="170" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="560" y="87" fill="#1A1A1A" font-weight="600">Node.js bridge</text>
+              <text x="560" y="107" fill="#8A8578" font-size="12">16 kHz to 24 kHz audio</text>
+              <rect x="695" y="60" width="150" height="64" rx="10" fill="#1A6B5A"/>
+              <text x="770" y="87" fill="#FFFFFF" font-weight="600">OpenAI</text>
+              <text x="770" y="107" fill="rgba(255,255,255,0.85)" font-size="12">Realtime API</text>
+              <line x1="165" y1="92" x2="228" y2="92" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="405" y1="92" x2="468" y2="92" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="645" y1="92" x2="688" y2="92" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <path d="M770 124 v40 H90 v-26" fill="none" stroke="#1A6B5A" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+              <text x="430" y="180" fill="#8A8578" font-size="12">audio response streams back to the caller</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">The build, hour by hour</h2>
+        <div class="case-body">
+          <p>The whole system went from nothing to production on 1 March 2026. The timeline comes straight from the project log:</p>
+        </div>
+        <div class="timeline" style="margin-top: var(--space-lg);">
+          <div class="timeline-items">
+            <div class="timeline-item">
+              <span class="timeline-year">10:00</span>
+              <span class="timeline-text">Research: how to bridge a WhatsApp call into a controllable audio stream</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">14:08</span>
+              <span class="timeline-text">First successful call answered by the AI</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">16:15</span>
+              <span class="timeline-text">Production v2 deployed</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">18:26</span>
+              <span class="timeline-text">Clear audio: resampling pipeline fixed for both directions</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">18:52</span>
+              <span class="timeline-text">Outbound calling live: Paco can ring me with a briefing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Running it for real</h2>
+        <div class="case-body">
+          <p>Paco runs as a daemon on my own Ubuntu server behind Nginx, deployed with PM2 and monitored through a custom operations dashboard. Mid-call, the model calls out to tools for email, calendar, weather and web search, so answers reflect live data rather than training data.</p>
+        </div>
+        <div class="project-highlight-features" style="margin-top: var(--space-xl);">
+          <span class="project-feature">Node.js</span>
+          <span class="project-feature">Puppeteer</span>
+          <span class="project-feature">WaVoIP</span>
+          <span class="project-feature">OpenAI Realtime API</span>
+          <span class="project-feature">PM2</span>
+          <span class="project-feature">Nginx</span>
+          <span class="project-feature">Ubuntu Server</span>
+        </div>
+        <div class="case-cta">
+          <a href="/#projects" class="btn btn-outline">Back to all projects</a>
+          <a href="mailto:ceo@pakedx.com" class="btn btn-primary">Discuss a project like this</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        AI Agent Engineer &middot; PhD Researcher @ UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
