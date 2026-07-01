@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cheema Text-to-Voice MCP Server | Case Study | Tayyab Ilyas</title>
+  <meta name="description" content="Case study: a free, open-source MCP server that gives AI assistants local text-to-speech and voice cloning. No API keys, no cloud. Listed on mcpservers.org." />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/projects/cheema-tts-mcp.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Cheema Text-to-Voice MCP Server | Case Study" />
+  <meta property="og:description" content="A free, open-source MCP server giving AI assistants local text-to-speech and voice cloning. No API keys, no cloud." />
+  <meta property="og:url" content="https://tayyabcheema.com/projects/cheema-tts-mcp.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/photo.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="Cheema Text-to-Voice MCP Server | Case Study" />
+  <meta name="twitter:description" content="A free, open-source MCP server giving AI assistants local text-to-speech and voice cloning." />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Cheema Text-to-Voice MCP Server",
+    "author": { "@type": "Person", "name": "Muhammad Tayyab Ilyas" },
+    "url": "https://tayyabcheema.com/projects/cheema-tts-mcp.html",
+    "sameAs": "https://mcpservers.org/servers/muhammadtayyabilyas/cheema-text-to-voice-mcp-server",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform",
+    "license": "https://opensource.org/licenses/MIT",
+    "programmingLanguage": "Python",
+    "description": "Free, open-source MCP server providing local text-to-speech and voice cloning to AI assistants."
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#research">Research</a></li>
+        <li><a href="mailto:ceo@pakedx.com" class="btn btn-primary">Hire Me</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label">Case Study</p>
+        <h1 class="case-hero-title">Giving AI assistants a voice, locally</h1>
+        <div class="hero-taglines">
+          <span class="hero-tag">Live on mcpservers.org</span>
+          <span class="hero-tag">Open source, MIT</span>
+          <span class="hero-tag">No cloud required</span>
+        </div>
+        <p class="case-hero-lede">The Cheema Text-to-Voice MCP Server lets any MCP-capable assistant speak: five built-in voices, four languages, and voice cloning, all running on your own machine. No API keys, no cloud, no per-character billing.</p>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Why build it</h2>
+        <div class="case-body">
+          <p>Agents increasingly need audio output: reading results aloud, voice notifications, accessibility. The existing options meant cloud TTS with API keys, cost per character, and shipping your text to a third party.</p>
+          <p>The Model Context Protocol gives assistants a standard way to call tools, so I built the missing tool: a TTS server any MCP client can use, with inference running entirely locally.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">How it works</h2>
+        <div class="case-body">
+          <p>The server is written in Python and exposes speech tools over three transports, so it plugs into whatever the client supports: stdio for desktop clients, SSE and HTTP for networked ones. Speech synthesis runs on NeuTTS with espeak-ng, including cloning a voice from a short reference sample.</p>
+          <ul>
+            <li>Five built-in voices across four languages</li>
+            <li>Voice cloning from a reference recording</li>
+            <li>stdio, SSE and HTTP transports</li>
+            <li>Works with Claude Desktop, Claude Code, n8n, and any MCP client</li>
+            <li>MIT licensed, listed on mcpservers.org</li>
+          </ul>
+        </div>
+        <div class="arch-diagram">
+          <svg viewBox="0 0 860 150" role="img" aria-label="MCP server architecture: an MCP client connects over stdio, SSE or HTTP to the server, which synthesises speech locally with NeuTTS and espeak-ng">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#1A6B5A"/>
+              </marker>
+            </defs>
+            <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" text-anchor="middle">
+              <rect x="15" y="40" width="180" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="105" y="67" fill="#1A1A1A" font-weight="600">MCP client</text>
+              <text x="105" y="87" fill="#8A8578" font-size="12">Claude Desktop / Code / n8n</text>
+              <rect x="255" y="40" width="160" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="335" y="67" fill="#1A1A1A" font-weight="600">Transport</text>
+              <text x="335" y="87" fill="#8A8578" font-size="12">stdio / SSE / HTTP</text>
+              <rect x="475" y="40" width="180" height="64" rx="10" fill="#1A6B5A"/>
+              <text x="565" y="67" fill="#FFFFFF" font-weight="600">MCP server</text>
+              <text x="565" y="87" fill="rgba(255,255,255,0.85)" font-size="12">Python</text>
+              <rect x="695" y="40" width="150" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="770" y="67" fill="#1A1A1A" font-weight="600">Local TTS</text>
+              <text x="770" y="87" fill="#8A8578" font-size="12">NeuTTS + espeak-ng</text>
+              <line x1="195" y1="72" x2="248" y2="72" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="415" y1="72" x2="468" y2="72" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="655" y1="72" x2="688" y2="72" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Where it lives</h2>
+        <div class="case-body">
+          <p>The server is published and listed on mcpservers.org, with source on GitHub under the MIT licence. Anyone can install it and give their assistant a voice in minutes.</p>
+        </div>
+        <div class="case-cta">
+          <a href="https://mcpservers.org/servers/muhammadtayyabilyas/cheema-text-to-voice-mcp-server" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View on mcpservers.org</a>
+          <a href="https://github.com/MuhammadTayyabIlyas/CHeema-Text-to-Voice-MCP-Server" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="/#projects" class="btn btn-outline">Back to all projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        AI Agent Engineer &middot; PhD Researcher @ UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
