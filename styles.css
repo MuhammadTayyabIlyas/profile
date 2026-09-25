@@ -185,7 +185,7 @@ h1, h2, h3, h4 {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   list-style: none;
 }
 
@@ -1140,6 +1140,40 @@ a.btn-whatsapp {
   margin-top: var(--space-xl);
 }
 
+.case-body h3 {
+  font-size: var(--fs-lg);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xs);
+}
+
+.case-body h3:first-child {
+  margin-top: 0;
+}
+
+.case-body h3 + p,
+.case-body h3 + ul {
+  margin-top: 0;
+}
+
+.case-tools {
+  list-style: none;
+  padding-left: 0;
+}
+
+.case-body ul + p {
+  margin-top: var(--space-md);
+}
+
+.case-tools li + li {
+  margin-top: var(--space-sm);
+}
+
+.case-tools code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
 /* --- Mobile Nav Toggle --- */
 .nav-toggle {
   display: none;
@@ -1229,8 +1263,8 @@ a.btn-whatsapp {
   }
 }
 
-/* Mobile: <=768px nav */
-@media (max-width: 767px) {
+/* Mobile / small-laptop nav: 8-item menu collapses to a toggle below 960px */
+@media (max-width: 959px) {
   .nav-toggle {
     display: block;
   }
@@ -1272,4 +1306,317 @@ a.btn-whatsapp {
     width: 20px;
     height: 20px;
   }
+}
+
+/* ==========================================================================
+   Reposition 2026-07 — Applied AI & Solutions Engineer
+   ========================================================================== */
+
+/* --- Skip link (a11y) --- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.65rem 1.1rem;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+.skip-link:focus {
+  left: 0;
+  outline: 3px solid var(--teal-glow);
+  outline-offset: 2px;
+}
+
+/* --- Visible focus for keyboard users (site-wide) --- */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* --- Hero reposition --- */
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  color: var(--accent);
+  line-height: 1.2;
+  margin-bottom: var(--space-xs);
+}
+
+.hero-spec {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  margin-bottom: var(--space-lg);
+}
+
+.hero-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-sm);
+  margin-bottom: var(--space-md);
+  justify-content: center;
+}
+
+.tech-chip {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-body);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.7rem;
+  border-radius: 100px;
+}
+
+.hero-availability {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.hero-founder {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-md);
+}
+.hero-founder a { font-weight: 600; }
+
+/* --- Value proposition / EdTech shared grid --- */
+.valueprop { background-color: var(--bg-secondary); }
+
+.capability-lead {
+  font-size: var(--fs-lg);
+  color: var(--text-body);
+  max-width: 720px;
+  line-height: 1.7;
+  margin-bottom: var(--space-xl);
+}
+
+.vp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.vp-item {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.vp-item svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  margin-top: 3px;
+}
+
+.vp-item p {
+  font-size: var(--fs-base);
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+.vp-item strong { color: var(--text-primary); font-weight: 600; }
+
+/* --- Technical Capabilities (reuses .skills / .skill-group) --- */
+.capabilities { background-color: var(--bg-primary); }
+
+.dev-note {
+  margin-top: var(--space-xl);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md) var(--space-lg);
+  line-height: 1.65;
+  max-width: 760px;
+}
+.dev-note strong { color: var(--accent); font-weight: 700; }
+
+/* --- Experience --- */
+.experience { background-color: var(--bg-secondary); }
+
+.exp-group-title {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin: var(--space-xl) 0 var(--space-md);
+}
+.exp-group-title:first-of-type { margin-top: var(--space-md); }
+
+.exp-list { display: grid; gap: var(--space-md); }
+
+.exp-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.exp-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-md);
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.exp-role {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  color: var(--text-primary);
+}
+
+.exp-period {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.exp-org {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-xs);
+}
+.exp-org a { color: var(--accent); }
+
+.exp-points { padding-left: 1.1rem; margin-top: var(--space-sm); }
+.exp-points li { font-size: var(--fs-sm); color: var(--text-body); line-height: 1.6; }
+.exp-points li + li { margin-top: 4px; }
+
+/* --- EdTech specialization --- */
+.edtech { background-color: var(--bg-primary); }
+
+/* --- Credibility strip --- */
+.credibility { background-color: var(--bg-secondary); }
+
+.cred-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.cred-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.cred-label {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  color: var(--accent);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.cred-detail {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.cred-detail a { font-weight: 600; }
+
+/* --- Licenses & Certifications --- */
+.certs { background-color: var(--bg-primary); }
+
+.cert-list { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
+
+.cert-item {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.cert-logo {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cert-logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+.cert-logo svg { width: 34px; height: 34px; color: var(--accent); }
+
+.cert-body { min-width: 0; }
+.cert-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+.cert-issuer { font-size: var(--fs-sm); font-weight: 600; color: var(--accent); }
+.cert-meta { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 2px; }
+
+/* --- Research: publications list --- */
+.pub-list { list-style: none; display: grid; gap: var(--space-md); margin-top: var(--space-lg); }
+.pub-item { padding-left: var(--space-lg); border-left: 2px solid var(--accent); }
+.pub-title { font-weight: 600; color: var(--text-primary); font-size: var(--fs-base); line-height: 1.5; }
+.pub-meta { font-size: var(--fs-sm); color: var(--text-muted); margin-top: 2px; }
+.pub-meta a { font-weight: 600; }
+
+/* --- Writing --- */
+.writing { background-color: var(--bg-secondary); }
+.writing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  max-width: 760px;
+}
+.writing-card p { font-size: var(--fs-base); color: var(--text-body); line-height: 1.7; margin-bottom: var(--space-md); }
+.writing-card strong { color: var(--text-primary); font-weight: 600; }
+
+/* ==========================================================================
+   Reposition — responsive
+   ========================================================================== */
+@media (min-width: 640px) {
+  .vp-grid { grid-template-columns: 1fr 1fr; }
+  .cred-grid { grid-template-columns: 1fr 1fr; }
+  .cert-list { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 768px) {
+  .hero-tech { justify-content: flex-start; }
+  .vp-grid { grid-template-columns: repeat(3, 1fr); }
+  .cred-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .capabilities .skills-grid { grid-template-columns: repeat(3, 1fr); }
 }

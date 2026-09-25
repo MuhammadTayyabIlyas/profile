@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LoopCodeLab: Multi-Agent Software Delivery | Case Study | Tayyab Ilyas</title>
+  <meta name="description" content="Case study: how I built LoopCodeLab, a self-hosted multi-agent platform where planner, worker and reviewer agents turn a plain-language requirement into planned stories, parallel implementation, code review and deployable software." />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/projects/loopcodelab.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="LoopCodeLab: Multi-Agent Software Delivery | Case Study" />
+  <meta property="og:description" content="A self-hosted platform where planner, worker and reviewer agents plan, build, review and ship software from a single prompt." />
+  <meta property="og:url" content="https://tayyabcheema.com/projects/loopcodelab.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="LoopCodeLab: Multi-Agent Software Delivery | Case Study" />
+  <meta name="twitter:description" content="A self-hosted platform where planner, worker and reviewer agents plan, build, review and ship software from a single prompt." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026092502" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LoopCodeLab",
+    "author": { "@type": "Person", "name": "Muhammad Tayyab Ilyas" },
+    "url": "https://loopcodelab.com",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web, Android, iOS, Windows",
+    "description": "A self-hosted multi-agent software delivery platform where planner, worker and reviewer agents plan, build, review and ship applications from a single prompt."
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#research">Research</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label">Case Study</p>
+        <h1 class="case-hero-title">LoopCodeLab: multi-agent software delivery</h1>
+        <div class="hero-taglines">
+          <span class="hero-tag">Live at loopcodelab.com</span>
+          <span class="hero-tag">Multi-agent orchestration</span>
+          <span class="hero-tag">Self-hosted</span>
+        </div>
+        <p class="case-hero-lede">LoopCodeLab turns a plain-language requirement into working software. A planner agent breaks the request into stories, worker agents implement them in parallel on isolated git worktrees, and a reviewer agent checks and merges each change. One idea can ship to web, mobile and the app stores. You bring your own AI keys and own every line of the output.</p>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Problem and context</h2>
+        <div class="case-body">
+          <p>Single-agent coding tools stall on anything larger than a snippet. They lose track of a multi-step plan, they work one file at a time, and there is no independent check on what they produce before it lands. Getting from an idea to something deployable still means a person stitching the steps together by hand.</p>
+          <p>I wanted a system that treats software delivery as a pipeline of specialised roles, the way a small team actually works: someone plans, several people build in parallel, someone reviews, and the result gets merged and shipped. The hard parts are isolation, so parallel work does not collide, and control, so a human can watch and steer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Users and use cases</h2>
+        <div class="case-body">
+          <p>LoopCodeLab is for developers and technical founders who want to move from a requirement to a running application without babysitting every step. Typical uses:</p>
+          <ul>
+            <li>Turn a product brief into a planned set of stories and a first working build.</li>
+            <li>Run several implementation tasks in parallel and have each one reviewed before it merges.</li>
+            <li>Take one idea and deliver it to web, mobile and the app stores from a single workspace.</li>
+          </ul>
+          <p>Because it is self-hosted and uses your own AI keys, it also suits people who need their code and prompts to stay on infrastructure they control.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">My role</h2>
+        <div class="case-body">
+          <p>I designed and built the whole system: the agent roles and how they hand work to each other, the isolation model over git worktrees, the review-and-merge step, the web and phone workspace, and the self-hosted infrastructure it runs on. I also published <a href="https://www.npmjs.com/package/@tayyabcheema777/smart-name" class="link-underline" target="_blank" rel="noopener noreferrer">smart-name</a>, the zero-dependency npm package LoopCodeLab uses to turn an idea into a clean, DNS-safe project name.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Architecture</h2>
+        <div class="case-body">
+          <p>A requirement enters as plain language. The planner agent decomposes it into stories. Worker agents pick up stories and implement them in parallel, each on its own isolated git worktree so their changes never collide. A reviewer agent checks each change and merges it into the main line. The merged result is built and delivered to its targets.</p>
+        </div>
+        <div class="arch-diagram">
+          <svg viewBox="0 0 900 300" role="img" aria-label="LoopCodeLab architecture: a requirement is decomposed by a planner agent into stories that worker agents implement in parallel on isolated git worktrees, a reviewer agent merges each change, and the result is deployed to web, mobile and the app stores">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#1A6B5A"/>
+              </marker>
+            </defs>
+            <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" text-anchor="middle">
+              <rect x="15" y="120" width="140" height="60" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="85" y="146" fill="#1A1A1A" font-weight="600">Requirement</text>
+              <text x="85" y="164" fill="#8A8578" font-size="12">plain language</text>
+
+              <rect x="200" y="120" width="150" height="60" rx="10" fill="#1A6B5A"/>
+              <text x="275" y="146" fill="#FFFFFF" font-weight="600">Planner agent</text>
+              <text x="275" y="164" fill="rgba(255,255,255,0.85)" font-size="12">splits into stories</text>
+
+              <rect x="390" y="36" width="180" height="48" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="480" y="65" fill="#1A1A1A" font-weight="600">Worker agent A</text>
+              <rect x="390" y="126" width="180" height="48" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="480" y="155" fill="#1A1A1A" font-weight="600">Worker agent B</text>
+              <rect x="390" y="216" width="180" height="48" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="480" y="245" fill="#1A1A1A" font-weight="600">Worker agent C</text>
+
+              <rect x="610" y="120" width="140" height="60" rx="10" fill="#1A6B5A"/>
+              <text x="680" y="146" fill="#FFFFFF" font-weight="600">Reviewer</text>
+              <text x="680" y="164" fill="rgba(255,255,255,0.85)" font-size="12">reviews + merges</text>
+
+              <rect x="775" y="120" width="115" height="60" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="832" y="146" fill="#1A1A1A" font-weight="600">Deliver</text>
+              <text x="832" y="164" fill="#8A8578" font-size="11">web / mobile / stores</text>
+
+              <line x1="155" y1="150" x2="196" y2="150" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="350" y1="150" x2="386" y2="60" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="350" y1="150" x2="386" y2="150" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="350" y1="150" x2="386" y2="240" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="570" y1="60" x2="606" y2="150" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="570" y1="150" x2="606" y2="150" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="570" y1="240" x2="606" y2="150" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="750" y1="150" x2="771" y2="150" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#arr)"/>
+              <text x="480" y="285" fill="#8A8578" font-size="12">workers build in parallel on isolated git worktrees</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">How a build flows</h2>
+        <div class="case-body">
+          <ul>
+            <li><strong>Plan.</strong> The planner turns the requirement into a set of discrete, buildable stories.</li>
+            <li><strong>Branch.</strong> Each story is assigned to a worker on its own git worktree, so parallel work is fully isolated.</li>
+            <li><strong>Build.</strong> Workers implement their stories concurrently, driven by AI CLIs over a tmux session bridge.</li>
+            <li><strong>Review.</strong> The reviewer agent checks each change against the story and merges it into the main line.</li>
+            <li><strong>Deliver.</strong> The merged build is compiled and delivered to its targets: web, mobile, and the app stores.</li>
+          </ul>
+          <p>Every session is observable from a browser or a phone, so a human can watch progress and step in at any point.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Technology choices and trade-offs</h2>
+        <div class="case-body">
+          <p>The engine is <a href="https://tmux.tayyabcheema.com" class="link-underline" target="_blank" rel="noopener noreferrer">webtmux</a>: a Node.js service that bridges browser terminals to real tmux sessions over xterm.js and a PTY, exposed as an installable PWA and run under systemd. Git worktrees give cheap, first-class isolation without spinning up a container per task. Model routing lets each agent use an appropriate model, with bounded retries so a failing step does not loop forever.</p>
+          <ul>
+            <li><strong>Git worktrees over containers</strong> for isolation: lighter and faster to create, at the cost of sharing the host environment.</li>
+            <li><strong>tmux as the execution substrate:</strong> real, inspectable sessions that a human can attach to, rather than a hidden subprocess.</li>
+            <li><strong>Bring-your-own keys:</strong> the user controls cost and data, and no keys live in the platform.</li>
+            <li><strong>Bounded retries and model routing</strong> to keep runs predictable and costs in check.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Deployment, reliability and security</h2>
+        <div class="case-body">
+          <p>LoopCodeLab runs on an Ubuntu server I administer. Nginx terminates TLS, the Node services run under systemd, and the workspace is reachable as a PWA from a browser or phone. Because agents drive real tmux sessions, a stuck or crashed run can be attached to and inspected rather than lost.</p>
+          <p><strong>Reliability:</strong> parallel work is isolated per worktree, so one failing story does not corrupt another, and the reviewer step gives every change an independent check before it merges. <strong>Security:</strong> the platform is self-hosted and uses the operator's own AI keys, so prompts, code and credentials stay on infrastructure the user controls.</p>
+        </div>
+        <div class="project-highlight-features" style="margin-top: var(--space-xl);">
+          <span class="project-feature">Node.js</span>
+          <span class="project-feature">tmux</span>
+          <span class="project-feature">Git worktrees</span>
+          <span class="project-feature">xterm.js</span>
+          <span class="project-feature">Flutter</span>
+          <span class="project-feature">React</span>
+          <span class="project-feature">systemd</span>
+          <span class="project-feature">Nginx</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">What I would improve next</h2>
+        <div class="case-body">
+          <ul>
+            <li>Richer observability: structured logs and metrics per agent session, not just an attachable terminal.</li>
+            <li>A formal evaluation harness to score generated changes before the reviewer, reducing review load.</li>
+            <li>Tighter per-worker sandboxing to move from process isolation towards full environment isolation.</li>
+          </ul>
+        </div>
+        <div class="case-cta">
+          <a href="/#case-studies" class="btn btn-outline">Back to case studies</a>
+          <a href="https://loopcodelab.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit loopcodelab.com</a>
+          <a href="/#contact" class="btn btn-outline">Discuss a project like this</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026092502" defer></script>
+</body>
+</html>

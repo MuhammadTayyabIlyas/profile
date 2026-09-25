@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TillBridge: AI Catalogue for a Legacy POS | Case Study | Tayyab Ilyas</title>
+  <meta name="description" content="Case study: an MCP server that lets grocery staff manage a product catalogue in plain language and sync approved products to a legacy Spanish TPV. Human confirmation before every write, EAN lookup through Open Food Facts, automatic IVA rates." />
+  <meta name="keywords" content="MCP server retail, AI POS integration, legacy TPV integration, product catalogue automation, conversational inventory management, Model Context Protocol case study, AI for small retail, human in the loop AI, EAN barcode lookup, Open Food Facts integration, Spanish IVA automation, retail AI Spain" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/projects/tillbridge.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="TillBridge: AI Catalogue for a Legacy POS | Case Study" />
+  <meta property="og:description" content="An MCP server that lets shop staff manage a product catalogue by conversation, then syncs approved products to a legacy Spanish TPV. The till stays the system of record." />
+  <meta property="og:url" content="https://tayyabcheema.com/projects/tillbridge.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="TillBridge: AI Catalogue for a Legacy POS | Case Study" />
+  <meta name="twitter:description" content="An MCP server that lets shop staff manage a product catalogue by conversation, then syncs approved products to a legacy Spanish TPV." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026092502" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TillBridge",
+    "alternateName": "TillBridge MCP catalogue server",
+    "author": { "@type": "Person", "name": "Muhammad Tayyab Ilyas", "url": "https://tayyabcheema.com" },
+    "url": "https://tayyabcheema.com/projects/tillbridge.html",
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "Retail product catalogue management",
+    "operatingSystem": "Linux server, any MCP client",
+    "description": "An MCP server that exposes a retail product catalogue as conversational tools, so shop staff can create, search and price products in plain language and sync approved entries to a legacy point-of-sale terminal.",
+    "featureList": [
+      "Product search by name, category or exact EAN barcode",
+      "EAN lookup against Open Food Facts for suggested names and images",
+      "Single and batch product creation",
+      "Partial field updates for prices and attributes",
+      "Automatic Spanish IVA rate assignment",
+      "Expiry and out-of-stock alerts",
+      "Sync queue to a legacy TPV with status checking",
+      "Human confirmation before every write"
+    ],
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Small and mid-sized retailers running legacy point-of-sale systems"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tayyabcheema.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://tayyabcheema.com/#case-studies" },
+      { "@type": "ListItem", "position": 3, "name": "TillBridge", "item": "https://tayyabcheema.com/projects/tillbridge.html" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is TillBridge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TillBridge is an MCP server that turns a retail product catalogue into a set of conversational tools. Shop staff scan a barcode and describe what they want in plain language, and an AI assistant drafts the entry, applies the right tax rate and queues the approved product for the shop's existing till."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can an AI assistant update a legacy point-of-sale system?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, through a staging layer rather than direct access. TillBridge keeps the catalogue in a separate database, then pushes approved products to the point-of-sale terminal through a sync queue. The terminal stays the system of record for sales, so the integration adds capability without putting trading at risk."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is an MCP server and why use one in retail?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Model Context Protocol is an open standard for exposing data and actions to AI assistants as named tools. In retail it lets an assistant search and edit a catalogue through nine defined operations instead of raw database access, which keeps the failure modes small and easy to explain to a shop owner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the AI change prices without approval?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Every write waits for a human. The assistant may search freely and propose anything, but creating a product, changing a price and sending an entry to the till each require a member of staff to confirm a plain-language summary of exactly what will change."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the system handle Spanish IVA rates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The assistant applies 4 per cent to basic foodstuffs such as bread, milk, eggs, fruit, vegetables and flour, and 10 per cent to most processed, packaged, frozen and prepared goods. The rate appears in the proposal before confirmation, so a person checks it rather than discovering it later."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if the till is offline when a product is sent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The product stays in the sync queue as pendiente. If it is still pending after about two minutes, the usual cause is a terminal that is switched off rather than bad data. Staff check the till, then re-queue the product. The catalogue entry is already safe on the server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this pattern work with other POS systems?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The architecture separates the catalogue from the till, so the parts that change between retailers are the vocabulary, the tax rules and the sync target. A pharmacy, a hardware shop or a wholesaler with a legacy ERP can use the same shape of solution."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#research">Research</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label">Case Study</p>
+        <h1 class="case-hero-title">Managing a shop's catalogue by conversation, without replacing the till</h1>
+        <div class="hero-taglines">
+          <span class="hero-tag">Deployed in a Spanish grocery</span>
+          <span class="hero-tag">MCP server + legacy TPV</span>
+          <span class="hero-tag">Human confirmation before every write</span>
+        </div>
+        <p class="case-hero-lede">TillBridge is an MCP server that exposes a retail product catalogue as nine conversational tools. Staff at Fruter&iacute;a Valenciana scan a barcode, describe what they want in plain language, and an AI assistant drafts the entry, applies the correct IVA rate and queues the approved product for the shop's existing point-of-sale terminal. The till stays the system of record. TillBridge only feeds it.</p>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">The problem with feeding a legacy TPV</h2>
+        <div class="case-body">
+          <p>Fruter&iacute;a Valenciana runs a traditional TPV as its system of record. The terminal sells reliably, which is the job it was designed for. Adding products to it is another matter. A new line means working through a fixed sequence of screens, typing a name into a narrow field, choosing a category, entering a price and selecting the tax rate by hand.</p>
+          <p>Nothing looks the product up for you, so the name has to be invented on the spot and typed without error. The work happens at the till, which is also where customers queue, so catalogue maintenance drifts towards closing time. Names drift with it. The same product can enter twice under two spellings, and nobody notices until a shelf label disagrees with a receipt.</p>
+          <p>Some lines arrive with a printed EAN barcode. Loose fresh produce arrives with none, and needs an internal code and a shelf label instead. Both kinds have to exist in the till before anyone can sell them, and a supplier delivery means repeating that slow sequence dozens of times over.</p>
+          <p>Replacing a working till costs money and carries real risk for a shop this size. The practical question was never how to buy a better system. It was how to make the existing one easier to feed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">How TillBridge works</h2>
+        <div class="case-body">
+          <p>TillBridge treats the TPV as the system of record and places a system of engagement in front of it. Catalogue work happens in a separate database on a server I manage, where editing is cheap and mistakes are easy to undo. An MCP server wraps that database in a defined set of tools, and Claude connects to those tools through an ordinary chat window.</p>
+          <p>A staff member scans an EAN and says the shop has started selling it. The assistant searches the catalogue, finds nothing, then queries Open Food Facts for a suggested name and photograph. That suggestion is a starting point rather than an answer, because manufacturers name products differently from the way a shop labels a shelf. The assistant rewrites the name in the house style, picks a category already in use, applies the correct IVA rate and presents the finished entry.</p>
+          <p>Only after a person confirms does anything get written. The assistant creates the product, queues it for the till by its internal identifier, then checks the queue accepted it.</p>
+        </div>
+        <div class="arch-diagram">
+          <svg viewBox="0 0 860 270" role="img" aria-label="TillBridge architecture: a staff member talks to Claude, which calls an MCP server; the server reads and writes a product database, looks up barcodes in Open Food Facts, and queues approved products in a sync queue that feeds the legacy TPV till">
+            <defs>
+              <marker id="tb-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#1A6B5A"/>
+              </marker>
+            </defs>
+            <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" text-anchor="middle">
+
+              <rect x="400" y="8" width="170" height="52" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="485" y="30" fill="#1A1A1A" font-weight="600">Open Food Facts</text>
+              <text x="485" y="48" fill="#8A8578" font-size="12">name and image by EAN</text>
+
+              <rect x="10" y="100" width="150" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="85" y="127" fill="#1A1A1A" font-weight="600">Staff member</text>
+              <text x="85" y="147" fill="#8A8578" font-size="12">scans an EAN</text>
+
+              <rect x="200" y="100" width="160" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="280" y="127" fill="#1A1A1A" font-weight="600">Claude</text>
+              <text x="280" y="147" fill="#8A8578" font-size="12">chat client</text>
+
+              <rect x="400" y="100" width="170" height="64" rx="10" fill="#1A6B5A"/>
+              <text x="485" y="127" fill="#FFFFFF" font-weight="600">MCP server</text>
+              <text x="485" y="147" fill="rgba(255,255,255,0.85)" font-size="12">9 defined tools</text>
+
+              <rect x="620" y="100" width="170" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="705" y="127" fill="#1A1A1A" font-weight="600">Product database</text>
+              <text x="705" y="147" fill="#8A8578" font-size="12">UUID, EAN, IVA, stock</text>
+
+              <rect x="400" y="204" width="170" height="56" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="485" y="228" fill="#1A1A1A" font-weight="600">Sync queue</text>
+              <text x="485" y="246" fill="#8A8578" font-size="12">pendiente until sent</text>
+
+              <rect x="620" y="204" width="170" height="56" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="705" y="228" fill="#1A1A1A" font-weight="600">Legacy TPV</text>
+              <text x="705" y="246" fill="#8A8578" font-size="12">system of record</text>
+
+              <line x1="160" y1="132" x2="195" y2="132" stroke="#1A6B5A" stroke-width="1.5" marker-start="url(#tb-arr)" marker-end="url(#tb-arr)"/>
+              <text x="177" y="92" fill="#8A8578" font-size="11">confirm</text>
+
+              <line x1="360" y1="132" x2="395" y2="132" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#tb-arr)"/>
+              <line x1="570" y1="132" x2="615" y2="132" stroke="#1A6B5A" stroke-width="1.5" marker-start="url(#tb-arr)" marker-end="url(#tb-arr)"/>
+
+              <line x1="485" y1="96" x2="485" y2="66" stroke="#1A6B5A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#tb-arr)"/>
+              <line x1="485" y1="168" x2="485" y2="200" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#tb-arr)"/>
+              <line x1="570" y1="232" x2="615" y2="232" stroke="#1A6B5A" stroke-width="1.5" marker-end="url(#tb-arr)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">The nine tools</h2>
+        <div class="case-body">
+          <p>The tool surface is deliberately narrow. Nine operations cover the whole job, and each does one thing with named arguments. Four only read, three write to the catalogue, one raises alerts and one dispatches to the till.</p>
+          <ul class="case-tools">
+            <li><code>buscar_producto</code>. Searches by name, category or exact EAN, which is what prevents duplicates.</li>
+            <li><code>buscar_en_off</code>. Looks an EAN up in Open Food Facts for a suggested name and photograph.</li>
+            <li><code>crear_producto</code>. Creates a single product.</li>
+            <li><code>crear_productos_lote</code>. Creates or updates many products in one batch, which makes a supplier delivery tractable.</li>
+            <li><code>actualizar_producto</code>. Updates only the fields supplied, so a price change never disturbs a name or a category.</li>
+            <li><code>recientes</code>. Lists the most recently added products, so staff can review their own work.</li>
+            <li><code>alertas_almacen</code>. Flags products expiring within three days or already out of stock.</li>
+            <li><code>enviar_a_tpv</code>. Queues a product for the till by internal identifier, with an EAN required.</li>
+            <li><code>estado_tpv</code>. Reports the sync queue status for a given set of products.</li>
+          </ul>
+          <p>What the set leaves out matters as much as what it includes. It exposes no delete operation, so nothing disappears from the catalogue through conversation. It exposes no raw query either, so the assistant cannot reach past the defined operations into the database itself.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Design decisions</h2>
+        <div class="case-body">
+          <p><strong>Augment the legacy system, never replace it.</strong> Migration projects fail small retailers more often than they help them, because the till is the one piece of equipment a shop cannot afford to lose on a Saturday morning. TillBridge holds no sales data, no payment logic and no responsibility for the day's takings. If the server goes down, the shop keeps trading exactly as before.</p>
+          <p><strong>Human confirmation before every write.</strong> Staff read a short summary, in their own language, of precisely what will change. That keeps the model in the role it handles well, which is drafting and checking, and leaves the decision with the person who knows the shop. A misunderstanding surfaces as a rejected proposal rather than a wrong price on a shelf.</p>
+          <p><strong>UUID as identity, EAN as a second key.</strong> Barcodes go missing on loose produce, manufacturers reuse them over time, and they occasionally arrive mistyped. A stable internal identifier turns a barcode correction into a field update instead of a duplicate product.</p>
+          <p><strong>Error messages in the language of the shop.</strong> A product still showing as pendiente after about two minutes almost always means the till is switched off, not that the data is wrong. Teaching staff that one rule did more good than any retry logic, because the catalogue entry is already safe and re-queuing costs nothing.</p>
+          <p><strong>Products, not people.</strong> The catalogue holds stock rather than customers, so no personal data sits on the server and the data protection surface stays small. Sales and payment information never leaves the TPV.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Common questions</h2>
+        <div class="case-body">
+          <h3>What is TillBridge?</h3>
+          <p>TillBridge is an MCP server that turns a retail product catalogue into a set of conversational tools. Shop staff scan a barcode and describe what they want in plain language, and an AI assistant drafts the entry, applies the right tax rate and queues the approved product for the shop's existing till.</p>
+
+          <h3>Can an AI assistant update a legacy point-of-sale system?</h3>
+          <p>Yes, through a staging layer rather than direct access. TillBridge keeps the catalogue in a separate database, then pushes approved products to the terminal through a sync queue. The terminal stays the system of record for sales, so the integration adds capability without putting trading at risk.</p>
+
+          <h3>What is an MCP server and why use one in retail?</h3>
+          <p>Model Context Protocol is an open standard for exposing data and actions to AI assistants as named tools. In retail it lets an assistant search and edit a catalogue through nine defined operations instead of raw database access, which keeps the failure modes small and easy to explain to a shop owner.</p>
+
+          <h3>Does the AI change prices without approval?</h3>
+          <p>No. Every write waits for a human. The assistant may search freely and propose anything, but creating a product, changing a price and sending an entry to the till each require a member of staff to confirm a plain-language summary of exactly what will change.</p>
+
+          <h3>How does the system handle Spanish IVA rates?</h3>
+          <p>The assistant applies 4 per cent to basic foodstuffs such as bread, milk, eggs, fruit, vegetables and flour, and 10 per cent to most processed, packaged, frozen and prepared goods. The rate appears in the proposal before confirmation, so a person checks it rather than discovering it later.</p>
+
+          <h3>What happens if the till is offline when a product is sent?</h3>
+          <p>The product stays in the sync queue as pendiente. If it is still pending after about two minutes, the usual cause is a terminal that is switched off rather than bad data. Staff check the till, then re-queue the product. The catalogue entry is already safe on the server.</p>
+
+          <h3>Can this pattern work with other POS systems?</h3>
+          <p>Yes. The architecture separates the catalogue from the till, so the parts that change between retailers are the vocabulary, the tax rules and the sync target. A pharmacy, a hardware shop or a wholesaler with a legacy ERP can use the same shape of solution.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Limitations and what comes next</h2>
+        <div class="case-body">
+          <p>The flow runs in one direction. TillBridge feeds the TPV, and edits made directly on the terminal do not travel back, so two records of the same product can drift apart. Open Food Facts covers international brands well and local Spanish lines unevenly, and when a barcode returns nothing the assistant falls back to asking for a name. Non-barcoded produce stays partly manual for the same reason, because no public database knows what the loose apples on your own shelf should be called.</p>
+          <p>The roadmap follows from those gaps. A WhatsApp channel through n8n and the Evolution API would move the conversation to an app staff already keep open. A voice and vision shelf assistant on an ESP32-P4 device would move it into the aisle, so someone can hold up a product and ask about it instead of walking back to a screen. Camera-based identification of loose produce would bring fresh fruit and vegetables onto the same fast path as packaged goods. Multi-store rollout is the commercial step, and the architecture already separates catalogue from till, so that becomes a question of tenancy and access control rather than new concepts.</p>
+        </div>
+        <div class="case-cta">
+          <a href="/#contact" class="btn btn-primary">Discuss a similar integration</a>
+          <a href="/#case-studies" class="btn btn-outline">Back to case studies</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026092502" defer></script>
+</body>
+</html>

@@ -2,18 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tayyabcheema.com/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-09-25</lastmod>
+  </url>
+  <url>
+    <loc>https://tayyabcheema.com/projects/tillbridge.html</loc>
+    <lastmod>2026-09-25</lastmod>
+  </url>
+  <url>
+    <loc>https://tayyabcheema.com/projects/loopcodelab.html</loc>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://tayyabcheema.com/projects/paco.html</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://tayyabcheema.com/projects/cheema-tts-mcp.html</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://tayyabcheema.com/projects/apkipa.html</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-07-23</lastmod>
   </url>
 </urlset>
