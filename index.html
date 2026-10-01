@@ -504,6 +504,16 @@
           <div class="project-card-tech">Node.js &middot; Multi-agent systems &middot; Self-hosted</div>
         </a>
         <div class="project-card reveal-item">
+          <h3 class="project-card-name">Grok Agent Computer Connector for Claude</h3>
+          <p class="project-card-desc">A remote MCP server that lets Claude operate the cloud computer shared by a team of Grok agents: shell and files, image and video generation, each agent's activity and a task inbox, and the desktop. It reaches the machine only through a reverse SSH tunnel, behind Google sign-in, with a pinned host key, a per-command identity check and an audit log of every call.</p>
+          <div class="project-card-tech">Python &middot; FastMCP &middot; SSH &middot; Google OAuth &middot; Nginx &middot; systemd</div>
+        </div>
+        <div class="project-card reveal-item">
+          <h3 class="project-card-name">Proxmox AI Sandboxes</h3>
+          <p class="project-card-desc">A Proxmox virtualisation host with MCP connectors that give Claude a Debian desktop, a Windows machine and disposable sandbox VMs cloned from a golden image with Claude Code, Codex and Gemini preinstalled. Sandboxes sit on a walled network behind an allow-list proxy and are destroyed automatically when their lifetime ends.</p>
+          <div class="project-card-tech">Proxmox VE &middot; Python &middot; FastMCP &middot; Cloudflare Tunnel &middot; Tailscale</div>
+        </div>
+        <div class="project-card reveal-item">
           <h3 class="project-card-name">AI_Teacher</h3>
           <p class="project-card-desc">AI application that generates, manages and grades mathematics problems with personalised student feedback.</p>
           <div class="project-card-tech">Python &middot; Flask &middot; scikit-learn &middot; NLP</div>
@@ -513,7 +523,7 @@
       <!-- Infrastructure Strip -->
       <div class="infra-strip">
         <h3 class="infra-strip-title">Everything here runs on infrastructure I operate</h3>
-        <p class="infra-strip-text">This site and its sister services are self-hosted on an Ubuntu server I administer: Nginx terminates TLS for more than a dozen subdomains, Node services run under PM2 and systemd, and n8n runs in Docker. The portfolio is the proof.</p>
+        <p class="infra-strip-text">This site and its sister services are self-hosted on an Ubuntu server I administer: Nginx terminates TLS for more than a dozen subdomains, Node services run under PM2 and systemd, and n8n runs in Docker. A second, Proxmox-based host runs isolated virtual machines for AI agent sandboxes. The portfolio is the proof.</p>
         <svg class="infra-diagram" viewBox="0 0 860 250" role="img" aria-label="Infrastructure diagram: HTTPS traffic reaches Nginx, which routes to static sites, Node services and Docker containers on one self-managed Ubuntu server">
           <defs>
             <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -572,6 +582,7 @@
             <span class="skill-tag">Gmail &amp; Calendar</span>
             <span class="skill-tag">n8n</span>
             <span class="skill-tag">Webhooks</span>
+            <span class="skill-tag">OAuth 2.0</span>
           </div>
         </div>
         <div class="skill-group">
@@ -596,6 +607,8 @@
             <span class="skill-tag">systemd</span>
             <span class="skill-tag">PM2</span>
             <span class="skill-tag">Cloudflare</span>
+            <span class="skill-tag">Proxmox VE</span>
+            <span class="skill-tag">SSH tunnelling</span>
             <span class="skill-tag">Self-hosted deployment</span>
           </div>
         </div>
