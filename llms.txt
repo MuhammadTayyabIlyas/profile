@@ -1,0 +1,25 @@
+# Muhammad Tayyab Ilyas
+
+> Applied AI & Solutions Engineer in Barcelona. Builds and operates MCP servers (Model Context Protocol connectors for Claude), multi-agent software delivery systems and self-hosted AI infrastructure. PhD researcher at Universitat Autonoma de Barcelona. Contact: tayyabcheema777@gmail.com
+
+## Case studies
+
+- [Claude to Grok Agent Bridge](https://tayyabcheema.com/projects/grok-agent-bridge.html): a remote MCP server that lets Claude watch, task and unblock a team of xAI Grok Bots on their shared cloud computer.
+- [LoopCodeLab](https://tayyabcheema.com/projects/loopcodelab.html): multi-agent software delivery; planner, worker and reviewer agents ship one idea to web, mobile and app stores.
+- [TillBridge](https://tayyabcheema.com/projects/tillbridge.html): an MCP server that lets grocery staff manage a catalogue by conversation and feeds a legacy Spanish TPV.
+- [Paco](https://tayyabcheema.com/projects/paco.html): a WhatsApp voice AI assistant with live tool calls mid-call.
+- [Cheema Text-to-Voice MCP Server](https://tayyabcheema.com/projects/cheema-tts-mcp.html): open-source local text-to-speech and voice cloning for MCP clients.
+
+## Blog
+
+- [MCP connectors are the App Store moment for AI](https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html): An MCP connector is to an AI assistant what an app was to the 2008 iPhone: a standard way for anyone to add a capability to a platform people already use every day. The Model Context Protocol gives every assistant the same socket, directories now list thousands of connectors, and one builder can ship a working integration in a day. The difference is that the user of a connector is increasingly another AI, which changes what good software looks like.
+- [How to give a Grok Bot tasks when there is no API](https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html): You cannot message a Grok Bot programmatically, because xAI documents no API for it; Bots are steered only from the Grok desktop and mobile apps. What you can do is use the computer the Bots share. Give each Bot an inbox, outbox and done folder, paste one standing instruction telling it to check the inbox every few minutes, and have your automation write task files there and read results from the outbox.
+- [Claude custom connector with Google sign-in: fixing redirect_uri_mismatch](https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html): A claude.ai custom connector with Google sign-in involves two different redirect URIs. Google must have your server's own callback, such as https://your-server/auth/callback, registered on the exact OAuth client your server uses. Claude's callback, https://claude.ai/api/mcp/auth_callback, is never registered at Google; your server allows it as a client redirect. Error 400 redirect_uri_mismatch means Google received a callback that is not on that client's list.
+- [Claude, Grok and Codex on one build: one plans, one writes, one reviews](https://tayyabcheema.com/blog/three-ais-one-connector.html): Splitting one build across three vendors worked better than asking which single tool is best. Claude wrote the design and a task-by-task plan, the Grok CLI implemented each task with tests first, and the Codex CLI reviewed every task and the whole branch. Codex caught real defects before anything shipped, including an option injection that could turn a directory listing into a delete. The price is supervision: an implementer running with auto-approve once edited files outside its task.
+- [Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini](https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html): The strongest sandbox for an AI coding agent is a whole virtual machine it cannot escape, on a network it cannot leave. I run these on a Proxmox host: Claude asks an MCP connector for a sandbox, the connector clones a golden image with Claude Code, Codex and Gemini preinstalled onto a walled network that reaches only allowed domains through a proxy, and a timer destroys every sandbox when its lifetime ends.
+- [An SSH MCP server for AI agents: reverse tunnels and the three ways they break](https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html): An SSH MCP server lets an assistant such as Claude run commands on a remote machine, and a reverse tunnel opened by that machine means it needs no open port. It breaks in three quiet ways: the tunnel gets started on the wrong machine and loops back, the remote machine regenerates its host key on restart, and OpenSSH's PerSourcePenalties locks out a connector that probes the port. Check the remote identity on every command, keep the host key somewhere persistent, and never probe by connecting.
+
+## Optional
+
+- [Home and full profile](https://tayyabcheema.com/)
+- [RSS feed](https://tayyabcheema.com/feed.xml)

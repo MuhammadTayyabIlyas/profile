@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Claude to Grok Agent Bridge: One AI Supervising Another's Agent Team | Case Study | Tayyab Ilyas</title>
+  <meta name="description" content="Case study: a remote MCP server that lets Claude watch, task and unblock a team of xAI Grok Bots on the cloud computer they share. Shell, files, Grok Imagine, agent transcripts, a task inbox and desktop control, over a reverse SSH tunnel behind Google sign-in." />
+  <meta name="keywords" content="Grok Bot, Claude MCP connector, cross-vendor AI agents, multi-agent supervision, remote MCP server, FastMCP, reverse SSH tunnel, agent observability, AI agent orchestration, Grok Imagine, Model Context Protocol case study" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/projects/grok-agent-bridge.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Claude to Grok Agent Bridge | Case Study" />
+  <meta property="og:description" content="One vendor's AI supervising another vendor's agent team: Claude watches, tasks and unblocks xAI Grok Bots on their shared cloud computer." />
+  <meta property="og:url" content="https://tayyabcheema.com/projects/grok-agent-bridge.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="Claude to Grok Agent Bridge | Case Study" />
+  <meta name="twitter:description" content="One vendor's AI supervising another vendor's agent team: Claude watches, tasks and unblocks xAI Grok Bots on their shared cloud computer." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Claude to Grok Agent Bridge",
+    "alternateName": "grok-mcp",
+    "author": { "@type": "Person", "name": "Muhammad Tayyab Ilyas", "url": "https://tayyabcheema.com" },
+    "url": "https://tayyabcheema.com/projects/grok-agent-bridge.html",
+    "applicationCategory": "DeveloperApplication",
+    "applicationSubCategory": "AI agent supervision and orchestration",
+    "operatingSystem": "Linux server, Claude as MCP client",
+    "description": "A remote MCP server that lets Claude operate the cloud computer shared by a team of xAI Grok Bots: run commands and edit files there, generate images and video with Grok Imagine, read each agent's activity and conversation, hand agents tasks through an inbox, and click on the desktop when an agent is stuck.",
+    "featureList": [
+      "18 MCP tools across shell, files, Grok, agents and desktop",
+      "Per-agent activity and transcript views",
+      "Task inbox and outbox for agents that expose no API",
+      "Desktop screenshot, click, type and key input",
+      "Grok Imagine image and video generation",
+      "Reverse SSH tunnel, no inbound port on the agents' computer",
+      "Google sign-in with a single allowed account",
+      "Pinned host key and a fail-closed identity check on every command",
+      "Audit log of every tool call"
+    ],
+    "dateCreated": "2026-10-01"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tayyabcheema.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://tayyabcheema.com/#case-studies" },
+      { "@type": "ListItem", "position": 3, "name": "Claude to Grok Agent Bridge", "item": "https://tayyabcheema.com/projects/grok-agent-bridge.html" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can Claude control xAI Grok Bots?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not directly, because xAI documents no API for messaging a Grok Bot. This bridge works through the cloud computer the Bots share: Claude reads their activity logs and transcripts there, leaves tasks in a per-agent inbox that each Bot has been told to check, and can see and click the desktop where the Bots run their browser." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does a task reach a Grok Bot without an API?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Through files. Each Bot gets an inbox, an outbox and a done folder on its computer. The owner pastes one standing instruction to each Bot in the Grok app, telling it to check its inbox every few minutes, do the task, write the result to the outbox and move the task to done. Claude writes tasks atomically and reads results later. Delivery is not instant, and it depends on the Bot following the instruction." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to give an AI a shell on another machine?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is a deliberate full-control design, so the safety comes from the edges: only one Google account can sign in, the machine is reached only through a tunnel it opens itself, the connector trusts one pinned host key, every command first proves it is running on the right machine, and every call is written to an audit log. Claude is instructed never to solve captchas or type passwords and two-factor codes." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens when the agents' computer restarts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The computer resets its system folders on restart and keeps only the home folder, so a small keeper script stored there starts the SSH server with a persistent host key and reopens the tunnel, retrying every ten seconds. The connector's status tool tells Claude exactly what is down and which command fixes it." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label">Case Study</p>
+        <h1 class="case-hero-title">One AI supervising another vendor's agent team</h1>
+        <div class="hero-taglines">
+          <span class="hero-tag">Claude &rarr; xAI Grok Bots</span>
+          <span class="hero-tag">18 MCP tools</span>
+          <span class="hero-tag">Live since 1 October 2026</span>
+        </div>
+        <p class="case-hero-lede">xAI's Grok Bots are always-on agents that share a cloud computer: a browser, a terminal and a file system they work on around the clock. They are steered only by messaging them in the Grok app. I built a bridge that lets Claude, from any chat on the web or a phone, watch what each Bot is doing, hand them tasks, unblock them when they get stuck on a click, generate images and video with Grok Imagine, and run commands on the computer they share.</p>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">The problem: a team of agents you cannot see into</h2>
+        <div class="case-body">
+          <p>I run eleven Grok Bots with distinct jobs, from operations and career research to a studio Bot and one that looks after my servers. Each has its own conversation in the Grok app, and together they had logged around eleven hundred actions on their shared computer. The only way to know what any of them was doing was to open the app and scroll through one conversation at a time.</p>
+          <p>Three things were missing. There was no overview: which Bot is active, what it did last and when. There was no way for another system to give a Bot work, because xAI documents no API for messaging a Grok Bot, only the desktop and mobile apps. And when a Bot stalled on something a person would fix in two seconds, such as a cookie banner or a confirmation dialog in its browser, it simply waited.</p>
+          <p>Meanwhile most of my day already runs through Claude. The question became whether Claude could act as a supervisor for a team of agents built by a different company, on infrastructure neither vendor controls.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">What is new about it</h2>
+        <div class="case-body">
+          <p><strong>Cross-vendor supervision.</strong> Agent platforms usually orchestrate their own agents. Here an Anthropic model observes, tasks and assists agents built by xAI, through the one surface both can touch: the computer the agents work on. Neither product was changed to make this possible.</p>
+          <p><strong>Tasks without an API.</strong> Because a Grok Bot cannot be messaged programmatically, tasks travel through an inbox and outbox convention on the shared file system. One standing instruction, pasted once to each Bot, turns any always-on agent into something another AI can delegate to. The same pattern works for any agent that can read files.</p>
+          <p><strong>Observability built from what the platform already writes.</strong> The Bots keep an audit log of every shell command, browser page and tool call, plus full transcripts. The bridge reads these in place, from the end of the file backwards, so Claude can follow an agent's last steps in under a second without copying gigabytes of history.</p>
+          <p><strong>A human-in-the-loop for clicks.</strong> When a Bot is stuck in its browser, Claude takes a screenshot of the agents' desktop, clicks or types, and checks the result. Captchas, passwords and two-factor codes are explicitly left to me.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">How it works</h2>
+        <div class="case-body">
+          <p>The connector is a remote MCP server written in Python with FastMCP. It runs on my own server behind Nginx and Google sign-in, and it reaches the agents' computer only over SSH, through a reverse tunnel that the agents' computer opens itself. Nothing on that computer listens on the internet. Every tool turns into one shell command sent over that tunnel, which keeps the server small and the behaviour easy to test locally against the same commands.</p>
+          <p>Claude connects as a custom connector in claude.ai, so the whole system is usable from a phone. Every call is written to an audit log with the account, the tool, its arguments and how long it took.</p>
+        </div>
+        <div class="arch-diagram">
+          <svg viewBox="0 0 860 300" role="img" aria-label="Architecture: Claude on web or phone calls the MCP server over HTTPS with Google sign-in; the server writes an audit log and reaches the agents' cloud computer through a reverse SSH tunnel; on that computer are the shell and files, the Grok CLI and Imagine, the agents' logs and transcripts, the task inbox and outbox, and the desktop where the agents' browser runs">
+            <defs>
+              <marker id="ga-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#1A6B5A"/>
+              </marker>
+            </defs>
+            <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" text-anchor="middle">
+              <rect x="10" y="118" width="150" height="64" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="85" y="145" fill="#1A1A1A" font-weight="600">Claude</text>
+              <text x="85" y="165" fill="#8A8578" font-size="12">web or phone</text>
+
+              <rect x="210" y="118" width="170" height="64" rx="10" fill="#1A6B5A"/>
+              <text x="295" y="145" fill="#FFFFFF" font-weight="600">MCP server</text>
+              <text x="295" y="165" fill="rgba(255,255,255,0.85)" font-size="12">18 tools, Google sign-in</text>
+
+              <rect x="210" y="230" width="170" height="52" rx="10" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="295" y="252" fill="#1A1A1A" font-weight="600">Audit log</text>
+              <text x="295" y="270" fill="#8A8578" font-size="12">every call</text>
+
+              <rect x="440" y="20" width="410" height="262" rx="12" fill="none" stroke="#1A6B5A" stroke-width="1.5"/>
+              <text x="645" y="44" fill="#1A1A1A" font-weight="600">Grok Bots' shared cloud computer</text>
+
+              <rect x="460" y="62" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.2"/>
+              <text x="550" y="84" fill="#1A1A1A" font-weight="600">Shell and files</text>
+              <text x="550" y="101" fill="#8A8578" font-size="12">commands, read, write</text>
+
+              <rect x="650" y="62" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.2"/>
+              <text x="740" y="84" fill="#1A1A1A" font-weight="600">Grok CLI + Imagine</text>
+              <text x="740" y="101" fill="#8A8578" font-size="12">answers, images, video</text>
+
+              <rect x="460" y="128" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.2"/>
+              <text x="550" y="150" fill="#1A1A1A" font-weight="600">Agent logs</text>
+              <text x="550" y="167" fill="#8A8578" font-size="12">activity, transcripts</text>
+
+              <rect x="650" y="128" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.2"/>
+              <text x="740" y="150" fill="#1A1A1A" font-weight="600">Task mail</text>
+              <text x="740" y="167" fill="#8A8578" font-size="12">inbox, outbox, done</text>
+
+              <rect x="460" y="194" width="370" height="50" rx="8" fill="#FFFFFF" stroke="#1A6B5A" stroke-width="1.2"/>
+              <text x="645" y="216" fill="#1A1A1A" font-weight="600">Desktop and browser</text>
+              <text x="645" y="233" fill="#8A8578" font-size="12">where the Bots work; screenshot, click, type</text>
+
+              <text x="645" y="268" fill="#8A8578" font-size="12">Bots run here, steered from the Grok app</text>
+
+              <line x1="160" y1="150" x2="205" y2="150" stroke="#1A6B5A" stroke-width="1.5" marker-start="url(#ga-arr)" marker-end="url(#ga-arr)"/>
+              <text x="182" y="108" fill="#8A8578" font-size="11">HTTPS</text>
+              <line x1="380" y1="150" x2="436" y2="150" stroke="#1A6B5A" stroke-width="1.5" marker-start="url(#ga-arr)" marker-end="url(#ga-arr)"/>
+              <text x="408" y="140" fill="#8A8578" font-size="11">SSH</text>
+              <text x="408" y="172" fill="#8A8578" font-size="11">tunnel</text>
+              <line x1="295" y1="186" x2="295" y2="226" stroke="#1A6B5A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ga-arr)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Use cases</h2>
+        <div class="case-body">
+          <p><strong>A morning overview of the whole team.</strong> "Which Bots worked overnight and what did they do?" Claude lists every Bot with its last action and time, then reads the latest steps of the busy ones and summarises them in a few lines.</p>
+          <p><strong>Delegating from a phone.</strong> During a meeting I ask Claude to give the operations Bot a task. Claude drops it in that Bot's inbox, and later reads the result from its outbox and tells me whether it is done, still pending or answered with a question.</p>
+          <p><strong>Unsticking a Bot.</strong> A Bot's browser is waiting on a consent dialog. Claude takes a screenshot, clicks the right button, takes another screenshot to confirm, and tells the Bot to carry on.</p>
+          <p><strong>Creative work on the same login.</strong> Grok Imagine runs on the Bots' computer with the same grok.com account, so Claude can generate or edit an image and show it in the chat, or start a video clip and report where the file landed.</p>
+          <p><strong>Operations on the agents' machine.</strong> Disk space, a stuck process or a file a Bot produced: Claude runs the command or reads the file directly, without opening a terminal.</p>
+          <p><strong>Health checks after a restart.</strong> If the computer restarts, the status tool reports whether the tunnel, the SSH server and the Grok CLI are back, and gives the exact command to fix whichever is not.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">The eighteen tools</h2>
+        <div class="case-body">
+          <ul class="case-tools">
+            <li><code>run_command</code>, <code>read_file</code>, <code>write_file</code>, <code>list_dir</code>. The computer itself, with time limits and output caps.</li>
+            <li><code>ask_grok</code>, <code>grok_image</code>, <code>grok_video</code>. The Grok CLI and Grok Imagine, signed in with the owner's account.</li>
+            <li><code>list_agents</code>, <code>agent_activity</code>, <code>agent_transcript</code>. Who the Bots are, what they did and what they said.</li>
+            <li><code>send_task</code>, <code>agent_replies</code>, <code>agent_mail_setup</code>. Delegation through the inbox and outbox.</li>
+            <li><code>desktop_screenshot</code>, <code>desktop_click</code>, <code>desktop_type</code>, <code>desktop_key</code>. Hands on the Bots' desktop.</li>
+            <li><code>status</code>. What is up, what is down and how to fix it.</li>
+          </ul>
+          <p>Every tool tells claude.ai whether it only reads or can change something, so viewing tools run without a confirmation and anything that acts asks first.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Design decisions</h2>
+        <div class="case-body">
+          <p><strong>The agents' computer opens the tunnel, not the other way round.</strong> No port is exposed on the machine the Bots use. The key it uses to reach my server is restricted so that it can hold that one tunnel and do nothing else.</p>
+          <p><strong>Every command proves where it is running.</strong> During setup the tunnel was once started on the wrong machine, so the connector briefly talked to my own server while believing it was the agents' computer. Now every command begins with a check of the remote machine's identity, and refuses to run if it cannot read it or if it is the wrong one. A random token marks the end of each command, so the output of a command can never be mistaken for the connector's own signals.</p>
+          <p><strong>Survive a platform that resets itself.</strong> The agents' computer wipes its system folders on restart and keeps the home folder. The SSH host key therefore lives in the home folder, and a keeper script there restores the SSH server and the tunnel automatically. Without this, every restart would have looked like an impostor.</p>
+          <p><strong>Never probe in a way the platform punishes.</strong> Modern OpenSSH penalises repeated connections that never sign in, and every tunnelled connection arrives from the same local address. A naive "is the port open" check would have locked the connector out of the agents' computer, so the check reads the local socket table instead of connecting.</p>
+          <p><strong>Read logs from the end.</strong> One Bot's transcript alone holds about seventeen hundred entries. The helper that runs on the agents' computer reads files backwards in blocks, so the last twenty entries cost the same whatever the history.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">How it was built</h2>
+        <div class="case-body">
+          <p>The build was itself a multi-agent exercise across three vendors. Claude wrote the design and a task-by-task plan; the Grok CLI implemented each task with tests first; the Codex CLI reviewed every task and the whole branch, including a security scan. Codex's reviews caught real defects before anything went live, among them a directory listing that a crafted folder name could have turned into a delete, and the lockout risk described above. The agent and desktop tools were then built directly, and everything ships with 126 automated tests, several of which run against a private SSH server. The <a href="/blog/three-ais-one-connector.html">full story is on the blog</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <h2 class="section-title">Common questions</h2>
+        <div class="case-body">
+          <h3>Can Claude control xAI Grok Bots?</h3>
+          <p>Not directly, because xAI documents no API for messaging a Grok Bot. This bridge works through the cloud computer the Bots share: Claude reads their activity logs and transcripts there, leaves tasks in a per-agent inbox that each Bot has been told to check, and can see and click the desktop where the Bots run their browser.</p>
+
+          <h3>How does a task reach a Grok Bot without an API?</h3>
+          <p>Through files. Each Bot gets an inbox, an outbox and a done folder on its computer. The owner pastes one standing instruction to each Bot in the Grok app, telling it to check its inbox every few minutes, do the task, write the result to the outbox and move the task to done. Claude writes tasks atomically and reads results later. Delivery is not instant, and it depends on the Bot following the instruction.</p>
+
+          <h3>Is it safe to give an AI a shell on another machine?</h3>
+          <p>It is a deliberate full-control design, so the safety comes from the edges: only one Google account can sign in, the machine is reached only through a tunnel it opens itself, the connector trusts one pinned host key, every command first proves it is running on the right machine, and every call is written to an audit log. Claude is instructed never to solve captchas or type passwords and two-factor codes.</p>
+
+          <h3>What happens when the agents' computer restarts?</h3>
+          <p>The computer resets its system folders on restart and keeps only the home folder, so a small keeper script stored there starts the SSH server with a persistent host key and reopens the tunnel, retrying every ten seconds. The connector's status tool tells Claude exactly what is down and which command fixes it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Limitations and what comes next</h2>
+        <div class="case-body">
+          <p>Task delivery is only as prompt as each Bot's inbox check, and it relies on the Bot honouring its standing instruction, so it suits delegation rather than conversation. Approvals that a Bot requests inside the Grok app happen in xAI's cloud and cannot be clicked from the agents' computer. Transcripts reach the computer by synchronisation, so the very latest message can lag.</p>
+          <p>The next steps follow from that: a live progress view for long Grok jobs using the CLI's streaming output, notifications when a Bot replies, and a health view across all the AI tools I run, so one question to Claude answers what every agent, local or cloud, is doing right now.</p>
+        </div>
+        <div class="case-cta">
+          <a href="/#contact" class="btn btn-primary">Discuss an agent integration</a>
+          <a href="/#case-studies" class="btn btn-outline">Back to case studies</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026100102" defer></script>
+</body>
+</html>

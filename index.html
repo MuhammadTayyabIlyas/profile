@@ -41,7 +41,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/styles.css?v=2026092502" />
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
 
   <!-- Structured Data: Person -->
   <script type="application/ld+json">
@@ -238,7 +238,7 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#research">Research</a></li>
-        <li><a href="#writing">Writing</a></li>
+        <li><a href="/blog/">Blog</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact" class="btn btn-primary">Contact</a></li>
       </ul>
@@ -361,7 +361,7 @@
     <div class="container fade-in">
       <p class="section-label">Featured Case Studies</p>
       <h2 class="section-title">Systems I have built and deployed</h2>
-      <p class="projects-intro">Four production systems that show the full arc: problem, architecture, integration, deployment and operation. Most run right now on infrastructure I manage myself.</p>
+      <p class="projects-intro">Five production systems that show the full arc: problem, architecture, integration, deployment and operation. Most run right now on infrastructure I manage myself.</p>
 
       <!-- LoopCodeLab -->
       <div class="project-highlight">
@@ -384,6 +384,24 @@
       </div>
 
       <!-- TillBridge -->
+      <div class="project-highlight">
+        <div class="project-highlight-badge">Live since October 2026</div>
+        <h3 class="project-highlight-title">Claude to Grok Agent Bridge: One AI Supervising Another's Agents</h3>
+        <p class="project-highlight-desc">A remote MCP server that lets Claude watch, task and unblock a team of xAI Grok Bots on the cloud computer they share. Grok Bots have no API, so Claude reads each agent's activity and transcript in place, delegates through a per-agent inbox and outbox, clicks on the agents' desktop when one is stuck, and generates images and video with Grok Imagine. Designed by Claude, written by the Grok CLI and reviewed by the Codex CLI.</p>
+        <div class="project-highlight-features">
+          <span class="project-feature">18 MCP Tools</span>
+          <span class="project-feature">Cross-Vendor Agents</span>
+          <span class="project-feature">Reverse SSH Tunnel</span>
+          <span class="project-feature">Audit Log</span>
+        </div>
+        <p class="project-highlight-compat">Usable from claude.ai on the web or a phone, behind Google sign-in with a single allowed account</p>
+        <div class="project-highlight-tech">Python &middot; FastMCP &middot; SSH &middot; Google OAuth &middot; Grok CLI &middot; xdotool</div>
+        <div class="project-highlight-links">
+          <a href="/projects/grok-agent-bridge.html" class="btn btn-primary">Read the case study</a>
+          <a href="/blog/three-ais-one-connector.html" class="btn btn-outline">How it was built</a>
+        </div>
+      </div>
+
       <div class="project-highlight">
         <div class="project-highlight-badge">Deployed for a Retail Client</div>
         <h3 class="project-highlight-title">TillBridge: AI Catalogue for a Legacy POS</h3>
@@ -839,6 +857,8 @@
         <p>Alongside engineering, I write a regular <strong>Urdu column</strong> at Daily Urdu Columns, with 15 published pieces on life, learning and society.</p>
         <p>Writing keeps my core professional edge sharp: explaining complex ideas simply. That is exactly what turns an AI concept into something a non-technical team will understand, trust and adopt.</p>
         <a href="https://dailyurducolumns.com/muhammad-tayyab-ilyas/1" class="link-underline" target="_blank" rel="noopener noreferrer">Read the columns &rarr;</a>
+        <p>I also keep an <strong>engineering blog</strong> on MCP connectors, multi-agent systems and the infrastructure under them, written from systems that run in production.</p>
+        <a href="/blog/" class="link-underline">Read the blog &rarr;</a>
       </div>
     </div>
   </section>
@@ -920,6 +940,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="/script.js?v=2026092502" defer></script>
+  <script src="/script.js?v=2026100102" defer></script>
 </body>
 </html>

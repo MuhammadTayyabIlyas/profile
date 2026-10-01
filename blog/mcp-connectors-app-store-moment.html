@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MCP connectors are the App Store moment for AI | Tayyab Ilyas</title>
+  <meta name="description" content="Why MCP connectors for Claude and other assistants look like the 2008 App Store: a standard socket, a directory, and builders shipping capabilities into an AI that millions already use. Lessons from shipping six connectors." />
+  <meta name="keywords" content="MCP connectors, Claude connectors, MCP app store, MCP marketplace, MCP vs API, Model Context Protocol, remote MCP server, AI agent integrations" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html" />
+  <link rel="alternate" type="application/rss+xml" title="Tayyab Ilyas: Engineering notes" href="https://tayyabcheema.com/feed.xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="MCP connectors are the App Store moment for AI | Tayyab Ilyas" />
+  <meta property="og:description" content="Why MCP connectors for Claude and other assistants look like the 2008 App Store: a standard socket, a directory, and builders shipping capabilities into an AI that millions already use. Lessons from shipping six connectors." />
+  <meta property="og:url" content="https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="MCP connectors are the App Store moment for AI | Tayyab Ilyas" />
+  <meta name="twitter:description" content="Why MCP connectors for Claude and other assistants look like the 2008 App Store: a standard socket, a directory, and builders shipping capabilities into an AI that millions already use. Lessons from shipping six connectors." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MCP connectors are the App Store moment for AI",
+  "description": "Why MCP connectors for Claude and other assistants look like the 2008 App Store: a standard socket, a directory, and builders shipping capabilities into an AI that millions already use. Lessons from shipping six connectors.",
+  "url": "https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html",
+  "mainEntityOfPage": "https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html",
+  "datePublished": "2026-10-01",
+  "dateModified": "2026-10-01",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "inLanguage": "en-GB",
+  "image": "https://tayyabcheema.com/assets/brand/og-image.png",
+  "keywords": "MCP connectors, Claude connectors, MCP app store, MCP marketplace, MCP vs API, Model Context Protocol, remote MCP server, AI agent integrations",
+  "about": [
+    "Model Context Protocol",
+    "Claude connectors",
+    "AI app ecosystems"
+  ],
+  "wordCount": 736
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tayyabcheema.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tayyabcheema.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "MCP connectors are the App Store moment for AI",
+      "item": "https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an MCP connector?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A remote MCP server that publishes named tools to an AI assistant such as Claude. The assistant discovers the tools, asks before running anything that changes data, and calls them over HTTPS with OAuth sign-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is MCP replacing APIs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. MCP usually sits on top of an API, a database or a command line. It repackages capabilities for a model that chooses tools at run time, so the design favours a few narrow, self-describing tools over a large flexible surface."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an app store for MCP servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not a single one. In 2026 there is the official MCP registry, vendor catalogues such as Claude's connectors directory, and community hubs. Discovery and quality control are still the unsolved part."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to build a Claude connector?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A focused connector with a handful of tools can work in a day. Sign-in, confirmation rules, logging and failure handling are what take the time, and they matter most."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label"><a href="/blog/">Blog</a> &middot; Opinion</p>
+        <h1 class="case-hero-title">MCP connectors are the App Store moment for AI</h1>
+        <p class="post-meta">By <a href="/#about">Muhammad Tayyab Ilyas</a> &middot; <time datetime="2026-10-01">1 October 2026</time> &middot; 7 min read</p>
+        <div class="answer-box">
+          <div class="answer-box-label">The short answer</div>
+          <p>An MCP connector is to an AI assistant what an app was to the 2008 iPhone: a standard way for anyone to add a capability to a platform people already use every day. The Model Context Protocol gives every assistant the same socket, directories now list thousands of connectors, and one builder can ship a working integration in a day. The difference is that the user of a connector is increasingly another AI, which changes what good software looks like.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+
+          <h2>Why does this feel like 2008?</h2>
+          <p>When the App Store opened, the phone stopped being a product and became a platform. The phone's maker no longer had to build every feature; anyone could ship one, and users installed what they needed. The Model Context Protocol does the same for AI assistants. A connector exposes a set of named tools, Claude or another client discovers them, and from then on the assistant can act in a system it was never built for.</p>
+          <p>The numbers moved fast in 2026. The public MCP registry passed roughly 17,000 to 20,000 indexed servers by August, and a community index of Anthropic's own catalogue counted 3,044 Claude integrations across its web directory and in-app catalogue by late September, up from a directory of a few hundred entries in June (sources below). Search interest followed: Semrush shows US searches for &ldquo;claude connectors&rdquo; at about 1,900 a month in September 2026, roughly triple what they were three months earlier.</p>
+
+          <h2>What exactly is an MCP connector?</h2>
+          <p>A connector is a remote MCP server: a small web service that publishes tools with names, typed arguments and a description of what each does. A client such as claude.ai lists the tools, asks the user before running anything that changes data, and calls them over HTTPS with OAuth sign-in. Nothing about the AI model changes. The capability lives in the connector.</p>
+
+          <h2>MCP or a plain API: what is the difference?</h2>
+          <p>An API is written for programmers who read documentation and write client code. An MCP server is written for a model that reads tool descriptions at run time and decides which to call. That shifts the design work. A good API is complete and flexible; a good connector is narrow, explains itself in plain language and makes the dangerous operations obvious. My retail connector, TillBridge, exposes nine tools and deliberately no delete and no raw query, because the model only needs the nine.</p>
+
+          <h2>What did shipping six connectors teach me?</h2>
+          <p>In the past few months I have built and run six MCP servers: a catalogue connector for a grocery's legacy till, a gateway for coding assistants, the connector for my multi-agent platform LoopCodeLab, one that drives a Debian desktop and a Windows machine, one that creates disposable sandbox VMs, and one that lets Claude supervise a team of xAI Grok Bots. Four lessons repeated across all of them.</p>
+          <ul>
+            <li><strong>Distribution is solved, trust is not.</strong> Adding a connector to claude.ai takes one URL. Deciding what it may do takes most of the design: who can sign in, which tools need confirmation, what gets logged.</li>
+            <li><strong>Tool annotations are product decisions.</strong> Marking a tool read-only lets the assistant run it without asking. Marking a shell read-only by mistake would let it run unconfirmed. I pin the exact read-only set in tests.</li>
+            <li><strong>OAuth is where builders get stuck.</strong> Most of the support questions around custom connectors are about sign-in, not tools. I wrote up <a href="/blog/claude-connector-google-oauth-redirect-uri-mismatch.html">the redirect URI mistake that costs people hours</a>.</li>
+            <li><strong>The most valuable connectors bridge things that have no API.</strong> A legacy till, a desktop, and a team of agents that can only be messaged in an app. That is where an assistant gains abilities nobody else offers.</li>
+          </ul>
+
+          <h2>Where does the analogy break?</h2>
+          <p>The App Store had one gatekeeper, one payment system and one kind of user. MCP has none of those. Directories are fragmented across the official registry, vendor catalogues and community hubs, many listed servers are abandoned, and quality varies enormously. And the user is changing: when Claude supervises Grok agents through my bridge, one AI is consuming a connector on behalf of another. Software built for that reader needs smaller, sharper tools and very clear error messages, because the reader acts on them immediately.</p>
+
+          <h2>What should a builder do now?</h2>
+          <p>Pick one system your users already live in and that their assistant cannot reach. Expose the smallest set of tools that does the job, put sign-in and an audit log in from day one, and publish it where people look. The window is the same one early app developers had: the platform has users, the catalogue is still young, and a well-made niche connector stands out.</p>
+
+          <h3>Sources</h3>
+          <ul>
+            <li><a href="https://github.com/rdmgator12/awesome-claude-connectors" rel="noopener">awesome-claude-connectors</a> (Claude catalogue count, September 2026)</li>
+            <li><a href="https://www.dirjournal.com/blogs/claude-connectors-list" rel="noopener">Claude Connectors: the complete list</a> (directory size, June 2026)</li>
+            <li><a href="https://www.agensi.io/learn/mcp-marketplace-ai-agents" rel="noopener">MCP Marketplace: why AI agents need an app store</a></li>
+            <li><a href="https://truthifi.com/education/state-of-mcp-2026-ai-agents-custom-connectors" rel="noopener">MCP in 2026: which AI agents support custom connectors</a></li>
+            <li>Semrush keyword data, US database, September 2026</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Questions people ask</h2>
+        <div class="case-body">
+          <h3>What is an MCP connector?</h3>
+          <p>A remote MCP server that publishes named tools to an AI assistant such as Claude. The assistant discovers the tools, asks before running anything that changes data, and calls them over HTTPS with OAuth sign-in.</p>
+          <h3>Is MCP replacing APIs?</h3>
+          <p>No. MCP usually sits on top of an API, a database or a command line. It repackages capabilities for a model that chooses tools at run time, so the design favours a few narrow, self-describing tools over a large flexible surface.</p>
+          <h3>Is there an app store for MCP servers?</h3>
+          <p>Not a single one. In 2026 there is the official MCP registry, vendor catalogues such as Claude's connectors directory, and community hubs. Discovery and quality control are still the unsolved part.</p>
+          <h3>How long does it take to build a Claude connector?</h3>
+          <p>A focused connector with a handful of tools can work in a day. Sign-in, confirmation rules, logging and failure handling are what take the time, and they matter most.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+          <p><strong>About the author.</strong> Muhammad Tayyab Ilyas is an Applied AI &amp; Solutions Engineer in Barcelona who builds and operates MCP servers, multi-agent systems and the infrastructure under them. He has shipped six MCP connectors, from retail to multi-agent supervision.</p>
+        </div>
+        <div class="case-cta">
+          <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+          <a href="/blog/" class="btn btn-outline">More posts</a>
+        </div>
+      </div>
+    </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026100102" defer></script>
+</body>
+</html>

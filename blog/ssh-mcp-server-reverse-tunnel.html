@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>An SSH MCP server for AI agents: reverse tunnels and the three ways they break | Tayyab Ilyas</title>
+  <meta name="description" content="Giving Claude a shell on a remote machine through an SSH MCP server and a reverse tunnel. Three failure modes that cost me real time: a tunnel that loops back to itself, host keys that change on every restart, and an OpenSSH penalty that locks the connector out." />
+  <meta name="keywords" content="SSH MCP server, reverse SSH tunnel, MCP server SSH, AI agent remote shell, PerSourcePenalties, OpenSSH lockout, ssh host key changed, ControlMaster" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html" />
+  <link rel="alternate" type="application/rss+xml" title="Tayyab Ilyas: Engineering notes" href="https://tayyabcheema.com/feed.xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="An SSH MCP server for AI agents: reverse tunnels and the three ways they break | Tayyab Ilyas" />
+  <meta property="og:description" content="Giving Claude a shell on a remote machine through an SSH MCP server and a reverse tunnel. Three failure modes that cost me real time: a tunnel that loops back to itself, host keys that change on every restart, and an OpenSSH penalty that locks the connector out." />
+  <meta property="og:url" content="https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="An SSH MCP server for AI agents: reverse tunnels and the three ways they break | Tayyab Ilyas" />
+  <meta name="twitter:description" content="Giving Claude a shell on a remote machine through an SSH MCP server and a reverse tunnel. Three failure modes that cost me real time: a tunnel that loops back to itself, host keys that change on every restart, and an OpenSSH penalty that locks the connector out." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "An SSH MCP server for AI agents: reverse tunnels and the three ways they break",
+  "description": "Giving Claude a shell on a remote machine through an SSH MCP server and a reverse tunnel. Three failure modes that cost me real time: a tunnel that loops back to itself, host keys that change on every restart, and an OpenSSH penalty that locks the connector out.",
+  "url": "https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html",
+  "mainEntityOfPage": "https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html",
+  "datePublished": "2026-10-01",
+  "dateModified": "2026-10-01",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "inLanguage": "en-GB",
+  "image": "https://tayyabcheema.com/assets/brand/og-image.png",
+  "keywords": "SSH MCP server, reverse SSH tunnel, MCP server SSH, AI agent remote shell, PerSourcePenalties, OpenSSH lockout, ssh host key changed, ControlMaster",
+  "about": [
+    "SSH",
+    "Model Context Protocol",
+    "OpenSSH",
+    "AI agents"
+  ],
+  "wordCount": 527
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tayyabcheema.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tayyabcheema.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "An SSH MCP server for AI agents: reverse tunnels and the three ways they break",
+      "item": "https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an SSH MCP server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An MCP server whose tools run commands and read or write files on a remote machine over SSH, so an assistant such as Claude can operate that machine through named tools with confirmation and logging."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why use a reverse SSH tunnel for an AI agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The remote machine opens the connection outward, so it needs no open inbound port. The connector reaches it through a local port on the server, and the tunnel key can be restricted to that single forward."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does SSH suddenly refuse connections from localhost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OpenSSH 9.8+ PerSourcePenalties may be penalising the address. Through a reverse tunnel every connection arrives from the same local address, so repeated connections that never log in, such as port probes, trigger it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I stop host key warnings after a machine restarts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If the platform resets /etc, store the SSH host key in a persistent directory and start sshd with -h pointing at it, then pin that key on the client."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label"><a href="/blog/">Blog</a> &middot; SSH and MCP</p>
+        <h1 class="case-hero-title">An SSH MCP server for AI agents: reverse tunnels and the three ways they break</h1>
+        <p class="post-meta">By <a href="/#about">Muhammad Tayyab Ilyas</a> &middot; <time datetime="2026-10-01">1 October 2026</time> &middot; 7 min read</p>
+        <div class="answer-box">
+          <div class="answer-box-label">The short answer</div>
+          <p>An SSH MCP server lets an assistant such as Claude run commands on a remote machine, and a reverse tunnel opened by that machine means it needs no open port. It breaks in three quiet ways: the tunnel gets started on the wrong machine and loops back, the remote machine regenerates its host key on restart, and OpenSSH's PerSourcePenalties locks out a connector that probes the port. Check the remote identity on every command, keep the host key somewhere persistent, and never probe by connecting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+
+          <h2>Why a reverse tunnel?</h2>
+          <p>My MCP connector runs on my own server; the machine Claude operates is a cloud computer I do not fully control. Rather than open a port on it, that machine runs <code>ssh -N -R localhost:2222:localhost:22</code> to my server. The connector then reaches it at <code>localhost:2222</code>. Nothing on the remote machine listens on the internet, and on my side the key it uses is restricted so it can hold that one tunnel and nothing else:</p>
+<pre><code>restrict,port-forwarding,permitlisten="localhost:2222",command="/bin/false" ssh-ed25519 AAAA... remote</code></pre>
+          <p>Every tool becomes one command over SSH with ControlMaster multiplexing, so after the first call there is no new handshake.</p>
+
+          <h2>Failure 1: the tunnel that loops back</h2>
+          <p>The tunnel script was once run on my server instead of the remote machine. Port 2222 then forwarded my server to itself. Logins worked, commands ran, and every check looked healthy, on the wrong computer. Only comparing <code>/etc/machine-id</code> at both ends showed it.</p>
+          <p>The fix is a preamble on every command that reads the remote machine's id and refuses to run if it is unreadable or equals the local one. Checking once per connection is not enough; a reconnect can slip past it. The command's real exit status comes back with an end marker that carries a per-call random token, so output from the command itself can never pass for the connector's signals.</p>
+
+          <h2>Failure 2: host keys that change on restart</h2>
+          <p>The connector pins the remote host key, as it should. Then the remote machine restarted and came back with a new key. It turned out the platform resets <code>/etc</code> on every restart and keeps only the home directory, so the SSH server generated fresh keys each time. With pinning, every restart would have looked like an impostor.</p>
+          <p>The fix is to keep the host key in the persistent home directory and start <code>sshd -h ~/.ssh/host_key</code> from a small keeper script, which also reopens the tunnel in a loop. A restart now changes nothing the connector can see.</p>
+
+          <h2>Failure 3: locked out by your own health check</h2>
+          <p>OpenSSH 9.8 and later include PerSourcePenalties, which penalise a source address that connects repeatedly without completing a login. A health check that opens a TCP connection to the tunnel port and closes it is exactly that. Through a reverse tunnel, every connection reaches the remote SSH server from the same local address, so a few probes would lock the connector out of the machine entirely. The implementer of my SSH layer hit this in testing; it shows up as connections being refused for no obvious reason.</p>
+          <p>The fix: check that the tunnel port is listening by reading the local socket table instead of connecting. On Linux that is <code>/proc/net/tcp</code>, state <code>0A</code>.</p>
+
+          <h2>Two settings that make tunnels self-healing</h2>
+          <ul>
+            <li>On the tunnel client: <code>ServerAliveInterval 30</code>, <code>ExitOnForwardFailure yes</code> and a loop that retries after ten seconds.</li>
+            <li>On the server: <code>ClientAliveInterval 30</code> with <code>ClientAliveCountMax 3</code>, so a dead tunnel frees its port in about 90 seconds and the client can reclaim it.</li>
+          </ul>
+          <p>With those in place my connector survives restarts and network drops without anyone touching it, and when something is down its status tool says which part and the exact command that fixes it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Questions people ask</h2>
+        <div class="case-body">
+          <h3>What is an SSH MCP server?</h3>
+          <p>An MCP server whose tools run commands and read or write files on a remote machine over SSH, so an assistant such as Claude can operate that machine through named tools with confirmation and logging.</p>
+          <h3>Why use a reverse SSH tunnel for an AI agent?</h3>
+          <p>The remote machine opens the connection outward, so it needs no open inbound port. The connector reaches it through a local port on the server, and the tunnel key can be restricted to that single forward.</p>
+          <h3>Why does SSH suddenly refuse connections from localhost?</h3>
+          <p>OpenSSH 9.8+ PerSourcePenalties may be penalising the address. Through a reverse tunnel every connection arrives from the same local address, so repeated connections that never log in, such as port probes, trigger it.</p>
+          <h3>How do I stop host key warnings after a machine restarts?</h3>
+          <p>If the platform resets /etc, store the SSH host key in a persistent directory and start sshd with -h pointing at it, then pin that key on the client.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+          <p><strong>About the author.</strong> Muhammad Tayyab Ilyas is an Applied AI &amp; Solutions Engineer in Barcelona who builds and operates MCP servers, multi-agent systems and the infrastructure under them. His SSH-based connector lets Claude supervise a team of Grok Bots.</p>
+        </div>
+        <div class="case-cta">
+          <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+          <a href="/blog/" class="btn btn-outline">More posts</a>
+        </div>
+      </div>
+    </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026100102" defer></script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Claude custom connector with Google sign-in: fixing redirect_uri_mismatch | Tayyab Ilyas</title>
+  <meta name="description" content="Building a remote MCP server for claude.ai with Google OAuth and FastMCP? The redirect_uri_mismatch error almost always means the wrong callback was registered, or on the wrong Google client. The two redirect URIs explained, with working code and checks." />
+  <meta name="keywords" content="claude custom connector, redirect_uri_mismatch, MCP server OAuth, FastMCP Google OAuth, remote MCP server, claude.ai connector Google sign-in, how to create claude mcp server" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html" />
+  <link rel="alternate" type="application/rss+xml" title="Tayyab Ilyas: Engineering notes" href="https://tayyabcheema.com/feed.xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Claude custom connector with Google sign-in: fixing redirect_uri_mismatch | Tayyab Ilyas" />
+  <meta property="og:description" content="Building a remote MCP server for claude.ai with Google OAuth and FastMCP? The redirect_uri_mismatch error almost always means the wrong callback was registered, or on the wrong Google client. The two redirect URIs explained, with working code and checks." />
+  <meta property="og:url" content="https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="Claude custom connector with Google sign-in: fixing redirect_uri_mismatch | Tayyab Ilyas" />
+  <meta name="twitter:description" content="Building a remote MCP server for claude.ai with Google OAuth and FastMCP? The redirect_uri_mismatch error almost always means the wrong callback was registered, or on the wrong Google client. The two redirect URIs explained, with working code and checks." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Claude custom connector with Google sign-in: fixing redirect_uri_mismatch",
+  "description": "Building a remote MCP server for claude.ai with Google OAuth and FastMCP? The redirect_uri_mismatch error almost always means the wrong callback was registered, or on the wrong Google client. The two redirect URIs explained, with working code and checks.",
+  "url": "https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html",
+  "mainEntityOfPage": "https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html",
+  "datePublished": "2026-10-01",
+  "dateModified": "2026-10-01",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "inLanguage": "en-GB",
+  "image": "https://tayyabcheema.com/assets/brand/og-image.png",
+  "keywords": "claude custom connector, redirect_uri_mismatch, MCP server OAuth, FastMCP Google OAuth, remote MCP server, claude.ai connector Google sign-in, how to create claude mcp server",
+  "about": [
+    "OAuth 2.0",
+    "Model Context Protocol",
+    "Claude custom connectors",
+    "FastMCP"
+  ],
+  "wordCount": 435
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tayyabcheema.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tayyabcheema.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Claude custom connector with Google sign-in: fixing redirect_uri_mismatch",
+      "item": "https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which redirect URI goes in Google Cloud Console for a Claude connector?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your own server's callback, for example https://your-server/auth/callback, on the exact OAuth client your server is configured with. Not Claude's callback."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does https://claude.ai/api/mcp/auth_callback go?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In your MCP server's allowed client redirect URIs. It is the address claude.ai uses to receive codes from your server, so your server must accept it, but Google never sees it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I still get redirect_uri_mismatch after adding the URI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually because the URI was added to a different Google OAuth client from the one in your server's settings, or because the change has not propagated yet. Compare the client IDs and wait a few minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I restrict a Claude connector to one Google account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Add an email allow-list in your MCP server's middleware and refuse every request whose verified email is not on it, even after a successful Google sign-in."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label"><a href="/blog/">Blog</a> &middot; MCP tutorial</p>
+        <h1 class="case-hero-title">Claude custom connector with Google sign-in: fixing redirect_uri_mismatch</h1>
+        <p class="post-meta">By <a href="/#about">Muhammad Tayyab Ilyas</a> &middot; <time datetime="2026-10-01">1 October 2026</time> &middot; 7 min read</p>
+        <div class="answer-box">
+          <div class="answer-box-label">The short answer</div>
+          <p>A claude.ai custom connector with Google sign-in involves two different redirect URIs. Google must have your server's own callback, such as https://your-server/auth/callback, registered on the exact OAuth client your server uses. Claude's callback, https://claude.ai/api/mcp/auth_callback, is never registered at Google; your server allows it as a client redirect. Error 400 redirect_uri_mismatch means Google received a callback that is not on that client's list.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+
+          <h2>Why are there two redirect URIs?</h2>
+          <p>With FastMCP's Google provider your MCP server is an OAuth proxy. claude.ai signs in to <em>your server</em>, and your server signs in to <em>Google</em>. Each leg has its own redirect:</p>
+          <table>
+            <tr><th>Leg</th><th>Redirect URI</th><th>Registered where</th></tr>
+            <tr><td>claude.ai to your server</td><td><code>https://claude.ai/api/mcp/auth_callback</code></td><td>Allowed by your server (code below)</td></tr>
+            <tr><td>Your server to Google</td><td><code>https://your-server/auth/callback</code></td><td>Google Cloud Console, on the client your server uses</td></tr>
+          </table>
+          <p>Mixing them up is the most common mistake in public bug reports: people register Claude's callback at Google, then wonder why Google rejects their own.</p>
+
+          <h2>What caused my redirect_uri_mismatch?</h2>
+          <p>I hit this today on a new connector. The server log showed claude.ai reaching the consent page and the server redirecting to Google, and Google answering with the mismatch. The callback was correct; the client was not. The connector had been configured with one Google OAuth client while the redirect URI had been added to another one in the console. Pointing the server at the client that actually carried the URI fixed it in one restart. So check the client ID in your server's settings against the one you edited, character by character, before anything else.</p>
+
+          <h2>The server side, in FastMCP</h2>
+<pre><code>from fastmcp.server.auth.providers.google import GoogleProvider
+
+CLAUDE_REDIRECT_URIS = [
+    "https://claude.ai/api/mcp/auth_callback",
+    "https://claude.com/api/mcp/auth_callback",
+]
+
+auth = GoogleProvider(
+    client_id=env["GOOGLE_CLIENT_ID"],          # the client that carries your callback
+    client_secret=env["GOOGLE_CLIENT_SECRET"],
+    base_url="https://your-server",             # Google returns to base_url + /auth/callback
+    required_scopes=["openid", "https://www.googleapis.com/auth/userinfo.email"],
+    jwt_signing_key=env["JWT_SIGNING_KEY"],
+    allowed_client_redirect_uris=CLAUDE_REDIRECT_URIS,  # only Claude may receive codes
+)</code></pre>
+          <p>The last line matters for security as much as for function. Without an allow-list, a phishing client could register itself through dynamic client registration and receive an authorisation code for your account. Add an email allow-list on top, so a valid Google sign-in from anyone else is still refused.</p>
+
+          <h2>Does the reverse proxy need anything special?</h2>
+          <p>Yes. The OAuth flow uses more paths than <code>/mcp</code>: <code>/authorize</code>, <code>/token</code>, <code>/register</code>, <code>/auth/callback</code>, <code>/consent</code> and the <code>/.well-known/</code> metadata. If your Nginx only forwards <code>/mcp</code>, claude.ai fails before Google is even involved. I forward the whole host to the MCP server and let it return 404 for anything it does not serve.</p>
+
+          <h2>A checklist that finds the fault in minutes</h2>
+          <ol>
+            <li>Unauthenticated <code>POST /mcp</code> returns <code>401</code>. If you get 404 or 502, the proxy is wrong.</li>
+            <li><code>GET /.well-known/oauth-authorization-server</code> returns <code>200</code> with your public base URL in it.</li>
+            <li>The Google client in your server's settings is the one you edited in the console.</li>
+            <li>That client's authorised redirect URIs contain exactly <code>https://your-server/auth/callback</code>, scheme and host included.</li>
+            <li>You waited a few minutes after saving; Google applies changes with a short delay.</li>
+            <li>Your server log shows <code>/authorize</code>, then <code>/consent</code>, then a 302. That proves the claude.ai side works and the fault is at Google.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Questions people ask</h2>
+        <div class="case-body">
+          <h3>Which redirect URI goes in Google Cloud Console for a Claude connector?</h3>
+          <p>Your own server's callback, for example https://your-server/auth/callback, on the exact OAuth client your server is configured with. Not Claude's callback.</p>
+          <h3>Where does https://claude.ai/api/mcp/auth_callback go?</h3>
+          <p>In your MCP server's allowed client redirect URIs. It is the address claude.ai uses to receive codes from your server, so your server must accept it, but Google never sees it.</p>
+          <h3>Why do I still get redirect_uri_mismatch after adding the URI?</h3>
+          <p>Usually because the URI was added to a different Google OAuth client from the one in your server's settings, or because the change has not propagated yet. Compare the client IDs and wait a few minutes.</p>
+          <h3>Can I restrict a Claude connector to one Google account?</h3>
+          <p>Yes. Add an email allow-list in your MCP server's middleware and refuse every request whose verified email is not on it, even after a successful Google sign-in.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+          <p><strong>About the author.</strong> Muhammad Tayyab Ilyas is an Applied AI &amp; Solutions Engineer in Barcelona who builds and operates MCP servers, multi-agent systems and the infrastructure under them. His connectors run behind Google sign-in with a single allowed account.</p>
+        </div>
+        <div class="case-cta">
+          <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+          <a href="/blog/" class="btn btn-outline">More posts</a>
+        </div>
+      </div>
+    </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026100102" defer></script>
+</body>
+</html>

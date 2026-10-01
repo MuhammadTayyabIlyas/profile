@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini | Tayyab Ilyas</title>
+  <meta name="description" content="A sandbox for AI coding agents that is a whole virtual machine: cloned from a golden image in seconds, on a walled network behind an allow-list proxy, created by Claude through an MCP connector and destroyed automatically when its time runs out." />
+  <meta name="keywords" content="Claude Code sandbox, AI agent sandbox, sandbox for AI agents, Proxmox AI, isolated VM for coding agents, MCP sandbox, Codex sandbox, network isolation for AI agents" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html" />
+  <link rel="alternate" type="application/rss+xml" title="Tayyab Ilyas: Engineering notes" href="https://tayyabcheema.com/feed.xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini | Tayyab Ilyas" />
+  <meta property="og:description" content="A sandbox for AI coding agents that is a whole virtual machine: cloned from a golden image in seconds, on a walled network behind an allow-list proxy, created by Claude through an MCP connector and destroyed automatically when its time runs out." />
+  <meta property="og:url" content="https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini | Tayyab Ilyas" />
+  <meta name="twitter:description" content="A sandbox for AI coding agents that is a whole virtual machine: cloned from a golden image in seconds, on a walled network behind an allow-list proxy, created by Claude through an MCP connector and destroyed automatically when its time runs out." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini",
+  "description": "A sandbox for AI coding agents that is a whole virtual machine: cloned from a golden image in seconds, on a walled network behind an allow-list proxy, created by Claude through an MCP connector and destroyed automatically when its time runs out.",
+  "url": "https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html",
+  "mainEntityOfPage": "https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html",
+  "datePublished": "2026-10-01",
+  "dateModified": "2026-10-01",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "inLanguage": "en-GB",
+  "image": "https://tayyabcheema.com/assets/brand/og-image.png",
+  "keywords": "Claude Code sandbox, AI agent sandbox, sandbox for AI agents, Proxmox AI, isolated VM for coding agents, MCP sandbox, Codex sandbox, network isolation for AI agents",
+  "about": [
+    "Proxmox VE",
+    "AI agent sandboxing",
+    "Claude Code",
+    "Model Context Protocol"
+  ],
+  "wordCount": 511
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tayyabcheema.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tayyabcheema.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini",
+      "item": "https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the safest sandbox for Claude Code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A dedicated virtual machine on a network that can only reach allowed domains, created fresh for the task and destroyed afterwards. It isolates both the filesystem and the network."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Claude create its own sandbox VMs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, through an MCP connector that calls the Proxmox API with a token limited to a sandbox pool. Claude asks for a size and lifetime, and the connector clones a golden image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you stop AI agents reaching the internet freely?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Put their machines on a separate bridge whose only route out is a proxy with an allow-list of domains, and block traffic between that bridge and every other network on the host."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How fast can a sandbox VM be created?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With linked clones of a prepared golden image, in my setup about 18 seconds including first boot configuration."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label"><a href="/blog/">Blog</a> &middot; AI agent sandbox</p>
+        <h1 class="case-hero-title">Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini</h1>
+        <p class="post-meta">By <a href="/#about">Muhammad Tayyab Ilyas</a> &middot; <time datetime="2026-10-01">1 October 2026</time> &middot; 7 min read</p>
+        <div class="answer-box">
+          <div class="answer-box-label">The short answer</div>
+          <p>The strongest sandbox for an AI coding agent is a whole virtual machine it cannot escape, on a network it cannot leave. I run these on a Proxmox host: Claude asks an MCP connector for a sandbox, the connector clones a golden image with Claude Code, Codex and Gemini preinstalled onto a walled network that reaches only allowed domains through a proxy, and a timer destroys every sandbox when its lifetime ends.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+
+          <h2>Why not just use the built-in sandbox?</h2>
+          <p>Container and process sandboxes are good defaults, and Claude Code's own sandbox is a sensible first layer. For untrusted repositories, though, the guidance from Anthropic and from security writers is the same: use a dedicated VM. Filesystem isolation without network isolation lets a compromised agent send your files out; network isolation without filesystem isolation lets it reach things it should not. A VM on a walled network gives you both, and it gives you a reset button.</p>
+
+          <h2>What does the setup look like?</h2>
+          <ul>
+            <li><strong>A golden image.</strong> One Ubuntu 24.04 VM with Node, Claude Code, Codex and Gemini installed and the proxy configured. Never started, only cloned.</li>
+            <li><strong>Linked clones.</strong> Each sandbox is a linked clone in its own Proxmox pool, so creating one takes seconds of disk work. In testing, a sandbox was ready, including its first boot configuration, in about 18 seconds.</li>
+            <li><strong>A walled network.</strong> Sandboxes sit on a separate bridge whose only way out is a proxy with an allow-list of domains. The host's firewall stops them reaching each other, the owner's machines or the management network. The walls passed a 36-point test.</li>
+            <li><strong>A guard.</strong> A hook refuses to start a machine that breaks the limits: at most 4 cores and 8 GB for one sandbox, and 20 GB for all of them together, so a fifth medium sandbox is refused with the reason.</li>
+          </ul>
+
+          <h2>How does Claude create one?</h2>
+          <p>Through an MCP connector with seven tools: <code>create_server</code>, <code>list_servers</code>, <code>run_command</code>, <code>read_file</code>, <code>write_file</code>, <code>extend_server</code> and <code>destroy_server</code>. Creating takes a name, a size (small is 2 cores and 4 GB, medium is 4 cores and 8 GB) and a lifetime between 1 and 24 hours, four by default.</p>
+          <p>The connector never reaches a sandbox over the network. It talks to the Proxmox API with a token that can only touch the sandbox pool, and runs commands through the QEMU guest agent, a virtual serial channel. A compromised sandbox therefore has no network path back to the connector, and the connector's token cannot touch any other machine on the host.</p>
+
+          <h2>How do sandboxes die?</h2>
+          <p>Every sandbox carries its owner, creation time and end of life in its own Proxmox description, so there is one source of truth and nothing to drift. A timer runs every five minutes and destroys whatever is past its end of life. Forgotten machines cannot hold memory for days, and &ldquo;start from clean&rdquo; is one call.</p>
+
+          <h2>What about API keys?</h2>
+          <p>Model keys never pass through the chat. They live in one file on the connector's machine and are copied into each new sandbox's environment at creation, readable only by root inside it. When the sandbox is destroyed, the copy goes with it.</p>
+
+          <h2>When is this overkill?</h2>
+          <p>For a trusted repository on your own laptop, the built-in sandbox is enough. A VM pays off when agents run unattended, when the code is not yours, when several customers' agents share one host, or when you want Claude in a chat on your phone to spin up a clean machine, try something, and throw it away.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Questions people ask</h2>
+        <div class="case-body">
+          <h3>What is the safest sandbox for Claude Code?</h3>
+          <p>A dedicated virtual machine on a network that can only reach allowed domains, created fresh for the task and destroyed afterwards. It isolates both the filesystem and the network.</p>
+          <h3>Can Claude create its own sandbox VMs?</h3>
+          <p>Yes, through an MCP connector that calls the Proxmox API with a token limited to a sandbox pool. Claude asks for a size and lifetime, and the connector clones a golden image.</p>
+          <h3>How do you stop AI agents reaching the internet freely?</h3>
+          <p>Put their machines on a separate bridge whose only route out is a proxy with an allow-list of domains, and block traffic between that bridge and every other network on the host.</p>
+          <h3>How fast can a sandbox VM be created?</h3>
+          <p>With linked clones of a prepared golden image, in my setup about 18 seconds including first boot configuration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+          <p><strong>About the author.</strong> Muhammad Tayyab Ilyas is an Applied AI &amp; Solutions Engineer in Barcelona who builds and operates MCP servers, multi-agent systems and the infrastructure under them. He runs this sandbox host alongside his MCP connectors.</p>
+        </div>
+        <div class="case-cta">
+          <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+          <a href="/blog/" class="btn btn-outline">More posts</a>
+        </div>
+      </div>
+    </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026100102" defer></script>
+</body>
+</html>

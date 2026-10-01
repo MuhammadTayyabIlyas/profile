@@ -1620,3 +1620,110 @@ button:focus-visible,
 @media (min-width: 1024px) {
   .capabilities .skills-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* --- Blog (2026-10-01) --- */
+.post-meta {
+  margin-top: var(--space-md);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.answer-box {
+  max-width: 680px;
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-md);
+}
+
+.answer-box-label {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.answer-box p {
+  margin-top: var(--space-xs);
+  color: var(--text-primary);
+}
+
+.case-body h3 {
+  margin-top: var(--space-lg);
+}
+
+.case-body pre {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  overflow-x: auto;
+  background: #16201D;
+  color: #E6EFEC;
+  border-radius: var(--radius-md);
+  font-size: 0.85em;
+  line-height: 1.55;
+}
+
+.case-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+}
+
+.case-body p code,
+.case-body li code {
+  color: var(--accent);
+}
+
+.case-body table {
+  width: 100%;
+  margin-top: var(--space-md);
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.case-body th,
+.case-body td {
+  padding: var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.post-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 760px;
+}
+
+.post-list li {
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-list h2 {
+  font-size: var(--fs-xl);
+}
+
+.post-list p {
+  margin-top: var(--space-xs);
+}
+
+.case-body h2 {
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-sm);
+}
+
+.case-body h2:first-child {
+  margin-top: 0;
+}
+
+.case-body ol {
+  padding-left: 1.25rem;
+  margin-top: var(--space-md);
+}
+
+.case-body ol li + li {
+  margin-top: var(--space-xs);
+}

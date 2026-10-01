@@ -17,6 +17,10 @@ Nginx serves this directory (`/var/www/tayyabcheema.com/`) directly. **Every fil
 
 **Git remote:** `https://github.com/MuhammadTayyabIlyas/profile.git` (branch `main`). Pushes authenticate via the `gh` CLI credential helper; this server has no GitHub SSH key, so do not switch the remote to SSH.
 
+## Blog (`/blog/`, added 2026-10-01)
+
+Posts are data, not hand-written pages: edit `docs/blog/posts.py` (one dict per post: slug, date, title, description, keywords, `answer` = the direct answer shown in the "short answer" box and used by AI answer engines, `body` HTML, `faq` pairs) and run `python3 docs/blog/build_blog.py`. It regenerates `/blog/*.html`, `/blog/index.html`, `/feed.xml` and `/llms.txt`, adds new URLs to `sitemap.xml`, and reads the current `?v=` asset versions from `index.html` (so bump versions there and in `projects/*.html` first). Each post carries BlogPosting, BreadcrumbList and FAQPage JSON-LD; the builder refuses em dashes. Keyword targets came from Semrush (US, Sept 2026); keep posts to facts from real builds.
+
 ## Structure
 
 - `index.html` — the homepage, a long single page. Section order (each an `id` used by the 8-item anchor nav): hero → value (What I do) → about → **case-studies** (4 flagship `.project-highlight` cards) → projects (`.project-card` grid) → capabilities (5 skill groups) → experience (AI track + Education track) → edtech → research (dissertation + publications) → certifications → credibility → writing → contact → footer. Carries JSON-LD (Person, ProfilePage, three SoftwareApplication, ScholarlyArticle), Open Graph and Twitter Card meta.

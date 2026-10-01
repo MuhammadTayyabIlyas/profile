@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Claude, Grok and Codex on one build: one plans, one writes, one reviews | Tayyab Ilyas</title>
+  <meta name="description" content="A real build where Claude designed and planned, the Grok CLI wrote the code test-first, and the Codex CLI reviewed every task. What the reviewer caught, the incident that changed my rules, and when this beats Claude Code vs Codex comparisons." />
+  <meta name="keywords" content="Claude Code vs Codex, Grok CLI, multi-agent code review, AI code review, Claude Grok Codex workflow, AI pair programming, cross-vendor AI agents" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/blog/three-ais-one-connector.html" />
+  <link rel="alternate" type="application/rss+xml" title="Tayyab Ilyas: Engineering notes" href="https://tayyabcheema.com/feed.xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Claude, Grok and Codex on one build: one plans, one writes, one reviews | Tayyab Ilyas" />
+  <meta property="og:description" content="A real build where Claude designed and planned, the Grok CLI wrote the code test-first, and the Codex CLI reviewed every task. What the reviewer caught, the incident that changed my rules, and when this beats Claude Code vs Codex comparisons." />
+  <meta property="og:url" content="https://tayyabcheema.com/blog/three-ais-one-connector.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="Claude, Grok and Codex on one build: one plans, one writes, one reviews | Tayyab Ilyas" />
+  <meta name="twitter:description" content="A real build where Claude designed and planned, the Grok CLI wrote the code test-first, and the Codex CLI reviewed every task. What the reviewer caught, the incident that changed my rules, and when this beats Claude Code vs Codex comparisons." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Claude, Grok and Codex on one build: one plans, one writes, one reviews",
+  "description": "A real build where Claude designed and planned, the Grok CLI wrote the code test-first, and the Codex CLI reviewed every task. What the reviewer caught, the incident that changed my rules, and when this beats Claude Code vs Codex comparisons.",
+  "url": "https://tayyabcheema.com/blog/three-ais-one-connector.html",
+  "mainEntityOfPage": "https://tayyabcheema.com/blog/three-ais-one-connector.html",
+  "datePublished": "2026-10-01",
+  "dateModified": "2026-10-01",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "inLanguage": "en-GB",
+  "image": "https://tayyabcheema.com/assets/brand/og-image.png",
+  "keywords": "Claude Code vs Codex, Grok CLI, multi-agent code review, AI code review, Claude Grok Codex workflow, AI pair programming, cross-vendor AI agents",
+  "about": [
+    "Claude",
+    "Grok CLI",
+    "Codex CLI",
+    "AI code review"
+  ],
+  "wordCount": 526
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tayyabcheema.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tayyabcheema.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Claude, Grok and Codex on one build: one plans, one writes, one reviews",
+      "item": "https://tayyabcheema.com/blog/three-ais-one-connector.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Claude Code or Codex better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For production work the more useful question is how to combine them. Models from different vendors catch each other's mistakes, so using one to write and another to review finds defects a single tool misses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the Grok CLI run headless?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. grok -p with --output-format json runs a prompt non-interactively and returns the answer, session id and cost, and --resume continues a session, which makes it usable as an implementer in a pipeline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you stop an AI coding agent editing the wrong files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Give it an explicit write scope, make it use a temporary directory for experiments, run reviewers read-only, and check the files yourself after any auto-approved run."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does multi-agent code review find that tests miss?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Design-level problems: unsafe input reaching a command, checks that can be bypassed by timing, and outputs that can be spoofed. Tests prove the cases you thought of; a reviewer from another vendor brings different cases."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label"><a href="/blog/">Blog</a> &middot; Multi-agent engineering</p>
+        <h1 class="case-hero-title">Claude, Grok and Codex on one build: one plans, one writes, one reviews</h1>
+        <p class="post-meta">By <a href="/#about">Muhammad Tayyab Ilyas</a> &middot; <time datetime="2026-10-01">1 October 2026</time> &middot; 8 min read</p>
+        <div class="answer-box">
+          <div class="answer-box-label">The short answer</div>
+          <p>Splitting one build across three vendors worked better than asking which single tool is best. Claude wrote the design and a task-by-task plan, the Grok CLI implemented each task with tests first, and the Codex CLI reviewed every task and the whole branch. Codex caught real defects before anything shipped, including an option injection that could turn a directory listing into a delete. The price is supervision: an implementer running with auto-approve once edited files outside its task.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+
+          <h2>Why use three tools instead of picking one?</h2>
+          <p>&ldquo;Claude Code vs Codex&rdquo; is one of the most searched AI tooling questions this year, and the honest answer is that comparing them misses the point. Models from different vendors make different mistakes. A reviewer from another vendor does not share the writer's blind spots, which is the whole value of review. So for a recent production build, an MCP connector that lets Claude supervise a team of Grok Bots, I gave each tool one job.</p>
+
+          <h2>Who did what?</h2>
+          <table>
+            <tr><th>Role</th><th>Tool</th><th>Output</th></tr>
+            <tr><td>Design, plan, controller</td><td>Claude</td><td>A spec, a plan of small tasks with exact tests, a ledger of every decision</td></tr>
+            <tr><td>Implementer</td><td>Grok CLI, headless</td><td>Code and tests per task, test-first, one commit each</td></tr>
+            <tr><td>Reviewer</td><td>Codex CLI, read-only sandbox</td><td>Spec compliance and quality verdicts per task, a final branch review and security scan</td></tr>
+          </table>
+          <p>Each task went through a loop: implement, review, fix, scoped re-review, with at most five fix rounds and a fresh implementer from round four. Disagreements with the plan went to me, not to the agents.</p>
+
+          <h2>What did the reviewer actually catch?</h2>
+          <ul>
+            <li><strong>A delete hiding in a list.</strong> The directory listing tool passed a path straight to <code>find</code>. A folder named <code>-delete</code> would have been read as an action. Grok checked that GNU find on the server still parses expressions after <code>--</code>, so the fix prefixes such paths with <code>./</code>.</li>
+            <li><strong>A safety check with a race.</strong> The guard against talking to the wrong machine ran once per connection, and a reconnect could skip it. It now runs on every command, and fails closed if it cannot read the machine's identity.</li>
+            <li><strong>Output that could lie.</strong> End-of-command markers were matched anywhere in the output, so a command could print one and fake success. Markers now carry a random token and must be the last line.</li>
+            <li><strong>Silent truncation.</strong> Large listings and error output were cut without saying so; now they say so, and the important tail survives.</li>
+            <li><strong>Deploy scripts that trusted the happy path.</strong> Seven issues, from disabled host-key checks to an Nginx edit that could fail half-written. All now validate, swap atomically and roll back.</li>
+          </ul>
+          <p>One task, the SSH layer, needed four fix rounds. Every round fixed something real, and the final version is far better than my own plan for it was.</p>
+
+          <h2>What went wrong?</h2>
+          <p>While proving that a shell snippet worked on temporary copies of two shell configuration files, the implementer's path substitution missed, and it edited the real files on the server. Its clean-up then removed a line that had been there before. I caught it by checking the files myself, and it was a one-line restore. The rule I took from it: an implementer running with auto-approve gets an explicit list of directories it may write to, and scratch work goes in a temporary directory, every time.</p>
+
+          <h2>Was it worth it?</h2>
+          <p>Yes, for anything that will run unattended. The connector shipped with 126 automated tests, several against a private SSH server, and every review finding is either fixed or recorded with a reason. For a quick feature I now build inline and review afterwards; for infrastructure, the three-vendor loop pays for itself the first time it catches a delete in a list.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Questions people ask</h2>
+        <div class="case-body">
+          <h3>Is Claude Code or Codex better?</h3>
+          <p>For production work the more useful question is how to combine them. Models from different vendors catch each other's mistakes, so using one to write and another to review finds defects a single tool misses.</p>
+          <h3>Can the Grok CLI run headless?</h3>
+          <p>Yes. grok -p with --output-format json runs a prompt non-interactively and returns the answer, session id and cost, and --resume continues a session, which makes it usable as an implementer in a pipeline.</p>
+          <h3>How do you stop an AI coding agent editing the wrong files?</h3>
+          <p>Give it an explicit write scope, make it use a temporary directory for experiments, run reviewers read-only, and check the files yourself after any auto-approved run.</p>
+          <h3>What does multi-agent code review find that tests miss?</h3>
+          <p>Design-level problems: unsafe input reaching a command, checks that can be bypassed by timing, and outputs that can be spoofed. Tests prove the cases you thought of; a reviewer from another vendor brings different cases.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+          <p><strong>About the author.</strong> Muhammad Tayyab Ilyas is an Applied AI &amp; Solutions Engineer in Barcelona who builds and operates MCP servers, multi-agent systems and the infrastructure under them. He runs multi-agent delivery in production on LoopCodeLab.</p>
+        </div>
+        <div class="case-cta">
+          <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+          <a href="/blog/" class="btn btn-outline">More posts</a>
+        </div>
+      </div>
+    </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026100102" defer></script>
+</body>
+</html>

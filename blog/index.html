@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Blog: MCP servers, AI agents and the infrastructure under them | Tayyab Ilyas</title>
+  <meta name="description" content="Engineering notes on MCP connectors, Claude, Grok and Codex agents, sandboxes and self-hosted AI infrastructure, from systems running in production." />
+  <meta name="keywords" content="MCP blog, Claude connectors, AI agents, MCP server tutorial, multi-agent engineering" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/blog/" />
+  <link rel="alternate" type="application/rss+xml" title="Tayyab Ilyas: Engineering notes" href="https://tayyabcheema.com/feed.xml" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blog: MCP servers, AI agents and the infrastructure under them | Tayyab Ilyas" />
+  <meta property="og:description" content="Engineering notes on MCP connectors, Claude, Grok and Codex agents, sandboxes and self-hosted AI infrastructure, from systems running in production." />
+  <meta property="og:url" content="https://tayyabcheema.com/blog/" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="Blog: MCP servers, AI agents and the infrastructure under them | Tayyab Ilyas" />
+  <meta name="twitter:description" content="Engineering notes on MCP connectors, Claude, Grok and Codex agents, sandboxes and self-hosted AI infrastructure, from systems running in production." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Tayyab Ilyas: Engineering notes",
+  "url": "https://tayyabcheema.com/blog/",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "inLanguage": "en-GB",
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "MCP connectors are the App Store moment for AI",
+      "url": "https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html",
+      "datePublished": "2026-10-01"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "How to give a Grok Bot tasks when there is no API",
+      "url": "https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html",
+      "datePublished": "2026-10-01"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Claude custom connector with Google sign-in: fixing redirect_uri_mismatch",
+      "url": "https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html",
+      "datePublished": "2026-10-01"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Claude, Grok and Codex on one build: one plans, one writes, one reviews",
+      "url": "https://tayyabcheema.com/blog/three-ais-one-connector.html",
+      "datePublished": "2026-10-01"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini",
+      "url": "https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html",
+      "datePublished": "2026-10-01"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "An SSH MCP server for AI agents: reverse tunnels and the three ways they break",
+      "url": "https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html",
+      "datePublished": "2026-10-01"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label">Blog</p>
+        <h1 class="case-hero-title">Engineering notes</h1>
+        <p class="case-hero-lede">What I learn building MCP connectors, multi-agent systems and the infrastructure under them. Every post comes from a system that runs in production, with the real problems left in.</p>
+      </div>
+    </section>
+    <section class="case-section">
+      <div class="container fade-in">
+        <ul class="post-list">
+          <li>
+            <p class="post-meta">1 October 2026 &middot; Opinion</p>
+            <h2><a href="/blog/mcp-connectors-app-store-moment.html">MCP connectors are the App Store moment for AI</a></h2>
+            <p>Why MCP connectors for Claude and other assistants look like the 2008 App Store: a standard socket, a directory, and builders shipping capabilities into an AI that millions already use. Lessons from shipping six connectors.</p>
+          </li>
+          <li>
+            <p class="post-meta">1 October 2026 &middot; Grok Bot</p>
+            <h2><a href="/blog/grok-bot-tasks-without-api.html">How to give a Grok Bot tasks when there is no API</a></h2>
+            <p>xAI&#x27;s Grok Bot has no API for sending messages. Here is a working pattern that lets Claude or any automation delegate tasks to Grok Bots through an inbox and outbox on their shared computer, with the exact standing instruction to paste.</p>
+          </li>
+          <li>
+            <p class="post-meta">1 October 2026 &middot; MCP tutorial</p>
+            <h2><a href="/blog/claude-connector-google-oauth-redirect-uri-mismatch.html">Claude custom connector with Google sign-in: fixing redirect_uri_mismatch</a></h2>
+            <p>Building a remote MCP server for claude.ai with Google OAuth and FastMCP? The redirect_uri_mismatch error almost always means the wrong callback was registered, or on the wrong Google client. The two redirect URIs explained, with working code and checks.</p>
+          </li>
+          <li>
+            <p class="post-meta">1 October 2026 &middot; Multi-agent engineering</p>
+            <h2><a href="/blog/three-ais-one-connector.html">Claude, Grok and Codex on one build: one plans, one writes, one reviews</a></h2>
+            <p>A real build where Claude designed and planned, the Grok CLI wrote the code test-first, and the Codex CLI reviewed every task. What the reviewer caught, the incident that changed my rules, and when this beats Claude Code vs Codex comparisons.</p>
+          </li>
+          <li>
+            <p class="post-meta">1 October 2026 &middot; AI agent sandbox</p>
+            <h2><a href="/blog/claude-code-sandbox-proxmox-vms.html">Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini</a></h2>
+            <p>A sandbox for AI coding agents that is a whole virtual machine: cloned from a golden image in seconds, on a walled network behind an allow-list proxy, created by Claude through an MCP connector and destroyed automatically when its time runs out.</p>
+          </li>
+          <li>
+            <p class="post-meta">1 October 2026 &middot; SSH and MCP</p>
+            <h2><a href="/blog/ssh-mcp-server-reverse-tunnel.html">An SSH MCP server for AI agents: reverse tunnels and the three ways they break</a></h2>
+            <p>Giving Claude a shell on a remote machine through an SSH MCP server and a reverse tunnel. Three failure modes that cost me real time: a tunnel that loops back to itself, host keys that change on every restart, and an OpenSSH penalty that locks the connector out.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026100102" defer></script>
+</body>
+</html>

@@ -3,4 +3,17 @@ Allow: /
 Disallow: /docs/
 Disallow: /CLAUDE.md
 
+# AI search and assistant crawlers are welcome (answer engines cite this site)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: CCBot
+Allow: /
+Disallow: /docs/
+
 Sitemap: https://tayyabcheema.com/sitemap.xml

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>How to give a Grok Bot tasks when there is no API | Tayyab Ilyas</title>
+  <meta name="description" content="xAI&#x27;s Grok Bot has no API for sending messages. Here is a working pattern that lets Claude or any automation delegate tasks to Grok Bots through an inbox and outbox on their shared computer, with the exact standing instruction to paste." />
+  <meta name="keywords" content="Grok Bot, Grok Bot API, xAI Grok Bot automation, delegate tasks to Grok Bot, Claude and Grok, AI agent inbox, multi-agent delegation" />
+  <meta name="author" content="Muhammad Tayyab Ilyas" />
+  <link rel="canonical" href="https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html" />
+  <link rel="alternate" type="application/rss+xml" title="Tayyab Ilyas: Engineering notes" href="https://tayyabcheema.com/feed.xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to give a Grok Bot tasks when there is no API | Tayyab Ilyas" />
+  <meta property="og:description" content="xAI&#x27;s Grok Bot has no API for sending messages. Here is a working pattern that lets Claude or any automation delegate tasks to Grok Bots through an inbox and outbox on their shared computer, with the exact standing instruction to paste." />
+  <meta property="og:url" content="https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html" />
+  <meta property="og:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@TayyabCheema" />
+  <meta name="twitter:title" content="How to give a Grok Bot tasks when there is no API | Tayyab Ilyas" />
+  <meta name="twitter:description" content="xAI&#x27;s Grok Bot has no API for sending messages. Here is a working pattern that lets Claude or any automation delegate tasks to Grok Bots through an inbox and outbox on their shared computer, with the exact standing instruction to paste." />
+  <meta name="twitter:image" content="https://tayyabcheema.com/assets/brand/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=2026100102" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to give a Grok Bot tasks when there is no API",
+  "description": "xAI's Grok Bot has no API for sending messages. Here is a working pattern that lets Claude or any automation delegate tasks to Grok Bots through an inbox and outbox on their shared computer, with the exact standing instruction to paste.",
+  "url": "https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html",
+  "mainEntityOfPage": "https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html",
+  "datePublished": "2026-10-01",
+  "dateModified": "2026-10-01",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Muhammad Tayyab Ilyas",
+    "url": "https://tayyabcheema.com",
+    "jobTitle": "Applied AI & Solutions Engineer",
+    "sameAs": [
+      "https://github.com/MuhammadTayyabIlyas"
+    ]
+  },
+  "inLanguage": "en-GB",
+  "image": "https://tayyabcheema.com/assets/brand/og-image.png",
+  "keywords": "Grok Bot, Grok Bot API, xAI Grok Bot automation, delegate tasks to Grok Bot, Claude and Grok, AI agent inbox, multi-agent delegation",
+  "about": [
+    "Grok Bot",
+    "xAI",
+    "AI agent delegation"
+  ],
+  "wordCount": 524
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tayyabcheema.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tayyabcheema.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to give a Grok Bot tasks when there is no API",
+      "item": "https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Grok Bot have an API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. xAI documents no API for messaging a Grok Bot; you talk to Bots in the Grok desktop and mobile apps. The xAI API serves Grok models, not your Bots."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can another AI send work to a Grok Bot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Through the Bots' shared computer: write a task file to a per-Bot inbox that the Bot has been instructed to check, and read the result from its outbox. Claude does this through an MCP connector."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How fast does a Grok Bot pick up a task this way?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On its next inbox check, which you set in the standing instruction, typically every few minutes. It suits delegation rather than conversation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I see what a Grok Bot is doing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if you can read its computer: each Bot keeps an audit log of shell commands, browser pages and tool calls, plus a conversation transcript, which a connector can summarise."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">Tayyab Ilyas</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article>
+    <section class="case-hero">
+      <div class="container fade-in">
+        <p class="section-label"><a href="/blog/">Blog</a> &middot; Grok Bot</p>
+        <h1 class="case-hero-title">How to give a Grok Bot tasks when there is no API</h1>
+        <p class="post-meta">By <a href="/#about">Muhammad Tayyab Ilyas</a> &middot; <time datetime="2026-10-01">1 October 2026</time> &middot; 6 min read</p>
+        <div class="answer-box">
+          <div class="answer-box-label">The short answer</div>
+          <p>You cannot message a Grok Bot programmatically, because xAI documents no API for it; Bots are steered only from the Grok desktop and mobile apps. What you can do is use the computer the Bots share. Give each Bot an inbox, outbox and done folder, paste one standing instruction telling it to check the inbox every few minutes, and have your automation write task files there and read results from the outbox.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+
+          <h2>Why is there no Grok Bot API?</h2>
+          <p>Grok Bot is xAI's always-on agent product: named Bots with jobs and memory, working on a persistent cloud computer with a browser, a terminal and a file system. xAI's documentation describes talking to a Bot through the desktop and mobile apps only. The xAI API gives you the Grok models, not your Bots. If you build a Telegram bot on Grok you use the API; if you want your existing Grok Bot to do something, you message it in the app.</p>
+          <p>That is fine for a person. It is a dead end for another system, and it was a dead end for me: I run eleven Bots and wanted Claude, where most of my day happens, to hand them work.</p>
+
+          <h2>What do the Bots already share?</h2>
+          <p>Their computer. On mine, every Bot has a profile, an append-only audit log of its shell commands, browser pages and tool calls, and a full conversation transcript, all as files. Across the team that was about eleven hundred logged actions. Anything a Bot can read, a Bot can be told to watch.</p>
+
+          <h2>The inbox and outbox pattern</h2>
+          <p>Each Bot gets three folders on the shared computer:</p>
+<pre><code>/workspace/agent-mail/&lt;id8&gt;-&lt;name&gt;/inbox    tasks waiting
+/workspace/agent-mail/&lt;id8&gt;-&lt;name&gt;/outbox   results, same file name as the task
+/workspace/agent-mail/&lt;id8&gt;-&lt;name&gt;/done     tasks the Bot has finished</code></pre>
+          <p>A task is a small Markdown file named by time and a random suffix, for example <code>20261001T080000Z-a1b2c3.md</code>, with a header saying who sent it and where to reply. It is written to a temporary name first and then renamed, so a Bot can never read half a task.</p>
+
+          <h2>What do you tell the Bot?</h2>
+          <p>Once, in the Grok app, paste a standing instruction with the Bot's own paths. Mine reads:</p>
+<pre><code>Claude can send you tasks through files.
+Every few minutes, check &lt;inbox&gt; for task files (*.md). Handle them oldest first. For each task:
+1. Read it and do the work it asks for.
+2. Write your result to &lt;outbox&gt;/&lt;same file name&gt;.
+3. Move the task file into &lt;done&gt;.
+Never delete these files. If a task is unclear, write your question as the reply
+and still move the task to done. Keep doing this whenever you are running.</code></pre>
+
+          <h2>How does Claude use it?</h2>
+          <p>Through my MCP connector, Claude has three tools for this: <code>agent_mail_setup</code> returns the instruction above for a given Bot, <code>send_task</code> writes the task, and <code>agent_replies</code> reads results and lists what is still pending. Alongside them, <code>list_agents</code>, <code>agent_activity</code> and <code>agent_transcript</code> show what each Bot is doing, so Claude can check a task was picked up rather than guess. The <a href="/projects/grok-agent-bridge.html">full case study</a> covers the rest of the bridge.</p>
+
+          <h2>What are the limits?</h2>
+          <ul>
+            <li><strong>It is delegation, not chat.</strong> A task waits until the Bot's next check. Minutes, not milliseconds.</li>
+            <li><strong>It depends on the Bot following the instruction.</strong> Test with one Bot before rolling it out, and repeat the instruction if a Bot's memory drifts.</li>
+            <li><strong>Approvals inside the Grok app still need you.</strong> If a Bot asks permission in the app, no file can answer it.</li>
+          </ul>
+          <p>The same pattern works for any agent that can read files and keeps running: a folder is the most portable API there is.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-alt">
+      <div class="container fade-in">
+        <h2 class="section-title">Questions people ask</h2>
+        <div class="case-body">
+          <h3>Does Grok Bot have an API?</h3>
+          <p>No. xAI documents no API for messaging a Grok Bot; you talk to Bots in the Grok desktop and mobile apps. The xAI API serves Grok models, not your Bots.</p>
+          <h3>How can another AI send work to a Grok Bot?</h3>
+          <p>Through the Bots' shared computer: write a task file to a per-Bot inbox that the Bot has been instructed to check, and read the result from its outbox. Claude does this through an MCP connector.</p>
+          <h3>How fast does a Grok Bot pick up a task this way?</h3>
+          <p>On its next inbox check, which you set in the standing instruction, typically every few minutes. It suits delegation rather than conversation.</p>
+          <h3>Can I see what a Grok Bot is doing?</h3>
+          <p>Yes, if you can read its computer: each Bot keeps an audit log of shell commands, browser pages and tool calls, plus a conversation transcript, which a connector can summarise.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container fade-in">
+        <div class="case-body">
+          <p><strong>About the author.</strong> Muhammad Tayyab Ilyas is an Applied AI &amp; Solutions Engineer in Barcelona who builds and operates MCP servers, multi-agent systems and the infrastructure under them. He built the Claude to Grok Agent Bridge described here.</p>
+        </div>
+        <div class="case-cta">
+          <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+          <a href="/blog/" class="btn btn-outline">More posts</a>
+        </div>
+      </div>
+    </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Muhammad Tayyab Ilyas &middot; Barcelona, Spain<br />
+        Applied AI &amp; Solutions Engineer &middot; PhD Researcher at UAB &middot; Published MCP Server Developer
+      </p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2026100102" defer></script>
+</body>
+</html>

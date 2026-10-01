@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Tayyab Ilyas: Engineering notes</title>
+    <link>https://tayyabcheema.com/blog/</link>
+    <description>MCP connectors, multi-agent systems and self-hosted AI infrastructure, from systems in production.</description>
+    <language>en-gb</language>
+    <item>
+      <title>MCP connectors are the App Store moment for AI</title>
+      <link>https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html</link>
+      <guid>https://tayyabcheema.com/blog/mcp-connectors-app-store-moment.html</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Why MCP connectors for Claude and other assistants look like the 2008 App Store: a standard socket, a directory, and builders shipping capabilities into an AI that millions already use. Lessons from shipping six connectors.</description>
+    </item>
+    <item>
+      <title>How to give a Grok Bot tasks when there is no API</title>
+      <link>https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html</link>
+      <guid>https://tayyabcheema.com/blog/grok-bot-tasks-without-api.html</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>xAI&#x27;s Grok Bot has no API for sending messages. Here is a working pattern that lets Claude or any automation delegate tasks to Grok Bots through an inbox and outbox on their shared computer, with the exact standing instruction to paste.</description>
+    </item>
+    <item>
+      <title>Claude custom connector with Google sign-in: fixing redirect_uri_mismatch</title>
+      <link>https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html</link>
+      <guid>https://tayyabcheema.com/blog/claude-connector-google-oauth-redirect-uri-mismatch.html</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Building a remote MCP server for claude.ai with Google OAuth and FastMCP? The redirect_uri_mismatch error almost always means the wrong callback was registered, or on the wrong Google client. The two redirect URIs explained, with working code and checks.</description>
+    </item>
+    <item>
+      <title>Claude, Grok and Codex on one build: one plans, one writes, one reviews</title>
+      <link>https://tayyabcheema.com/blog/three-ais-one-connector.html</link>
+      <guid>https://tayyabcheema.com/blog/three-ais-one-connector.html</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>A real build where Claude designed and planned, the Grok CLI wrote the code test-first, and the Codex CLI reviewed every task. What the reviewer caught, the incident that changed my rules, and when this beats Claude Code vs Codex comparisons.</description>
+    </item>
+    <item>
+      <title>Disposable Proxmox VMs as a sandbox for Claude Code, Codex and Gemini</title>
+      <link>https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html</link>
+      <guid>https://tayyabcheema.com/blog/claude-code-sandbox-proxmox-vms.html</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>A sandbox for AI coding agents that is a whole virtual machine: cloned from a golden image in seconds, on a walled network behind an allow-list proxy, created by Claude through an MCP connector and destroyed automatically when its time runs out.</description>
+    </item>
+    <item>
+      <title>An SSH MCP server for AI agents: reverse tunnels and the three ways they break</title>
+      <link>https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html</link>
+      <guid>https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html</guid>
+      <pubDate>Thu, 01 Oct 2026 09:00:00 +0000</pubDate>
+      <description>Giving Claude a shell on a remote machine through an SSH MCP server and a reverse tunnel. Three failure modes that cost me real time: a tunnel that loops back to itself, host keys that change on every restart, and an OpenSSH penalty that locks the connector out.</description>
+    </item>
+  </channel>
+</rss>
