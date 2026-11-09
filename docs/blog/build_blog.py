@@ -247,12 +247,18 @@ def feed(posts):
 
 
 def llms_txt(posts):
+    pubs_file = ROOT / "docs/publications/llms-section.md"
+    pubs = pubs_file.read_text().strip() + "\n\n" if pubs_file.exists() else ""
     lines = "\n".join(f"- [{p['title']}]({SITE}/blog/{p['slug']}.html): {strip_tags(p['answer'])}" for p in posts)
     return f"""# Muhammad Tayyab Ilyas
 
 > Applied AI & Solutions Engineer in Barcelona. Builds and operates MCP servers (Model Context Protocol connectors for Claude), multi-agent software delivery systems and self-hosted AI infrastructure. PhD researcher at Universitat Autonoma de Barcelona. Contact: tayyabcheema777@gmail.com
 
-## Case studies
+## Book
+
+- [Teaching in the AI Era]({SITE}/teachingintheaiera): a free book for school teachers, university staff and school leaders on AI in schools and universities, by Muhammad Tayyab Ilyas (2026, ISBN 9798237344349, DOI https://doi.org/10.5281/zenodo.24085773). What the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Read online at {SITE}/teachingintheaiera/read; EPUB and PDF downloads; 482 references at {SITE}/teachingintheaiera/references.
+
+{pubs}## Case studies
 
 - [Claude to Grok Agent Bridge]({SITE}/projects/grok-agent-bridge.html): a remote MCP server that lets Claude watch, task and unblock a team of xAI Grok Bots on their shared cloud computer.
 - [LoopCodeLab]({SITE}/projects/loopcodelab.html): multi-agent software delivery; planner, worker and reviewer agents ship one idea to web, mobile and app stores.

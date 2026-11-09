@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="10.5281/zenodo.24085773" />
+    <meta name="dtb:depth" content="1" />
+    <meta name="dtb:totalPageCount" content="0" />
+    <meta name="dtb:maxPageNumber" content="0" />
+    <meta name="cover" content="TAIE_cover_1600x2400_jpg" />
+  </head>
+  <docTitle>
+    <text>Teaching in the AI Era</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="navPoint-0">
+      <navLabel>
+        <text>Teaching in the AI Era</text>
+      </navLabel>
+      <content src="text/title_page.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-1">
+      <navLabel>
+        <text>About this edition</text>
+      </navLabel>
+      <content src="text/ch001.xhtml#about-this-edition" />
+    </navPoint>
+    <navPoint id="navPoint-2">
+      <navLabel>
+        <text>Introduction. Why This Book, and How to Read It</text>
+      </navLabel>
+      <content src="text/ch002.xhtml#introduction.-why-this-book-and-how-to-read-it" />
+      <navPoint id="navPoint-3">
+        <navLabel>
+          <text>Who this book is for, and the three lenses behind it</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#who-this-book-is-for-and-the-three-lenses-behind-it" />
+      </navPoint>
+      <navPoint id="navPoint-4">
+        <navLabel>
+          <text>The argument in brief</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#the-argument-in-brief" />
+      </navPoint>
+      <navPoint id="navPoint-5">
+        <navLabel>
+          <text>How to read this book</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#how-to-read-this-book" />
+      </navPoint>
+      <navPoint id="navPoint-6">
+        <navLabel>
+          <text>A journey in four parts</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#a-journey-in-four-parts" />
+      </navPoint>
+      <navPoint id="navPoint-7">
+        <navLabel>
+          <text>Before you turn the page</text>
+        </navLabel>
+        <content src="text/ch002.xhtml#before-you-turn-the-page" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-8">
+      <navLabel>
+        <text>Chapter 1. The Day the Homework Changed</text>
+      </navLabel>
+      <content src="text/ch003.xhtml#chapter-1.-the-day-the-homework-changed" />
+      <navPoint id="navPoint-9">
+        <navLabel>
+          <text>A shock with a date on it</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#a-shock-with-a-date-on-it" />
+      </navPoint>
+      <navPoint id="navPoint-10">
+        <navLabel>
+          <text>What actually changed</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#what-actually-changed" />
+      </navPoint>
+      <navPoint id="navPoint-11">
+        <navLabel>
+          <text>We have been here before</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#we-have-been-here-before" />
+      </navPoint>
+      <navPoint id="navPoint-12">
+        <navLabel>
+          <text>What has stayed the same</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#what-has-stayed-the-same" />
+      </navPoint>
+      <navPoint id="navPoint-13">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#in-practice" />
+      </navPoint>
+      <navPoint id="navPoint-14">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#when-resources-are-thin" />
+      </navPoint>
+      <navPoint id="navPoint-15">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#questions-for-reflection" />
+      </navPoint>
+      <navPoint id="navPoint-16">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch003.xhtml#framework-connections" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-17">
+      <navLabel>
+        <text>Chapter 2. What AI Is, and What It Is Not</text>
+      </navLabel>
+      <content src="text/ch004.xhtml#chapter-2.-what-ai-is-and-what-it-is-not" />
+      <navPoint id="navPoint-18">
+        <navLabel>
+          <text>What happens when you press enter</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#what-happens-when-you-press-enter" />
+      </navPoint>
+      <navPoint id="navPoint-19">
+        <navLabel>
+          <text>Fluent is not the same as true</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#fluent-is-not-the-same-as-true" />
+      </navPoint>
+      <navPoint id="navPoint-20">
+        <navLabel>
+          <text>Why it makes things up</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#why-it-makes-things-up" />
+      </navPoint>
+      <navPoint id="navPoint-21">
+        <navLabel>
+          <text>Where bias comes from</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#where-bias-comes-from" />
+      </navPoint>
+      <navPoint id="navPoint-22">
+        <navLabel>
+          <text>Where teachers stand</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#where-teachers-stand" />
+      </navPoint>
+      <navPoint id="navPoint-23">
+        <navLabel>
+          <text>Ground rules for safe use</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#ground-rules-for-safe-use" />
+      </navPoint>
+      <navPoint id="navPoint-24">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#in-practice-1" />
+      </navPoint>
+      <navPoint id="navPoint-25">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#when-resources-are-thin-1" />
+      </navPoint>
+      <navPoint id="navPoint-26">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#questions-for-reflection-1" />
+      </navPoint>
+      <navPoint id="navPoint-27">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch004.xhtml#framework-connections-1" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-28">
+      <navLabel>
+        <text>Chapter 3. The Part of Teaching No Machine Can Do</text>
+      </navLabel>
+      <content src="text/ch005.xhtml#chapter-3.-the-part-of-teaching-no-machine-can-do" />
+      <navPoint id="navPoint-29">
+        <navLabel>
+          <text>What machines can already do</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#what-machines-can-already-do" />
+      </navPoint>
+      <navPoint id="navPoint-30">
+        <navLabel>
+          <text>Relationships</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#relationships" />
+      </navPoint>
+      <navPoint id="navPoint-31">
+        <navLabel>
+          <text>Judgement</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#judgement" />
+      </navPoint>
+      <navPoint id="navPoint-32">
+        <navLabel>
+          <text>Care</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#care" />
+      </navPoint>
+      <navPoint id="navPoint-33">
+        <navLabel>
+          <text>Modelling</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#modelling" />
+      </navPoint>
+      <navPoint id="navPoint-34">
+        <navLabel>
+          <text>Who teachers become</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#who-teachers-become" />
+      </navPoint>
+      <navPoint id="navPoint-35">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#in-practice-2" />
+      </navPoint>
+      <navPoint id="navPoint-36">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#when-resources-are-thin-2" />
+      </navPoint>
+      <navPoint id="navPoint-37">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#questions-for-reflection-2" />
+      </navPoint>
+      <navPoint id="navPoint-38">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch005.xhtml#framework-connections-2" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-39">
+      <navLabel>
+        <text>Chapter 4. Planning with a Tireless Assistant</text>
+      </navLabel>
+      <content src="text/ch006.xhtml#chapter-4.-planning-with-a-tireless-assistant" />
+      <navPoint id="navPoint-40">
+        <navLabel>
+          <text>What the trials measured</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#what-the-trials-measured" />
+      </navPoint>
+      <navPoint id="navPoint-41">
+        <navLabel>
+          <text>Hours or minutes</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#hours-or-minutes" />
+      </navPoint>
+      <navPoint id="navPoint-42">
+        <navLabel>
+          <text>Where the time goes</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#where-the-time-goes" />
+      </navPoint>
+      <navPoint id="navPoint-43">
+        <navLabel>
+          <text>Teacher-design burden</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#teacher-design-burden" />
+      </navPoint>
+      <navPoint id="navPoint-44">
+        <navLabel>
+          <text>The plan is not the lesson</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#the-plan-is-not-the-lesson" />
+      </navPoint>
+      <navPoint id="navPoint-45">
+        <navLabel>
+          <text>Differentiation, SEND and paperwork</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#differentiation-send-and-paperwork" />
+      </navPoint>
+      <navPoint id="navPoint-46">
+        <navLabel>
+          <text>Teacher-facing first</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#teacher-facing-first" />
+      </navPoint>
+      <navPoint id="navPoint-47">
+        <navLabel>
+          <text>Who gets the saving</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#who-gets-the-saving" />
+      </navPoint>
+      <navPoint id="navPoint-48">
+        <navLabel>
+          <text>What to hand over, and what to keep</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#what-to-hand-over-and-what-to-keep" />
+      </navPoint>
+      <navPoint id="navPoint-49">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#in-practice-3" />
+      </navPoint>
+      <navPoint id="navPoint-50">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#when-resources-are-thin-3" />
+      </navPoint>
+      <navPoint id="navPoint-51">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#questions-for-reflection-3" />
+      </navPoint>
+      <navPoint id="navPoint-52">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch006.xhtml#framework-connections-3" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-53">
+      <navLabel>
+        <text>Chapter 5. Learning When Answers Are Free</text>
+      </navLabel>
+      <content src="text/ch007.xhtml#chapter-5.-learning-when-answers-are-free" />
+      <navPoint id="navPoint-54">
+        <navLabel>
+          <text>Doing is not learning</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#doing-is-not-learning" />
+      </navPoint>
+      <navPoint id="navPoint-55">
+        <navLabel>
+          <text>What offloading costs</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#what-offloading-costs" />
+      </navPoint>
+      <navPoint id="navPoint-56">
+        <navLabel>
+          <text>What happens when students get the answer</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#what-happens-when-students-get-the-answer" />
+      </navPoint>
+      <navPoint id="navPoint-57">
+        <navLabel>
+          <text>When the tutor holds back</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#when-the-tutor-holds-back" />
+      </navPoint>
+      <navPoint id="navPoint-58">
+        <navLabel>
+          <text>The feeling of knowing</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#the-feeling-of-knowing" />
+      </navPoint>
+      <navPoint id="navPoint-59">
+        <navLabel>
+          <text>Access is not engagement</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#access-is-not-engagement" />
+      </navPoint>
+      <navPoint id="navPoint-60">
+        <navLabel>
+          <text>Settings that hold back answers</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#settings-that-hold-back-answers" />
+      </navPoint>
+      <navPoint id="navPoint-61">
+        <navLabel>
+          <text>Homework and the check of knowing</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#homework-and-the-check-of-knowing" />
+      </navPoint>
+      <navPoint id="navPoint-62">
+        <navLabel>
+          <text>What to protect</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#what-to-protect" />
+      </navPoint>
+      <navPoint id="navPoint-63">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#in-practice-4" />
+      </navPoint>
+      <navPoint id="navPoint-64">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#when-resources-are-thin-4" />
+      </navPoint>
+      <navPoint id="navPoint-65">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#questions-for-reflection-4" />
+      </navPoint>
+      <navPoint id="navPoint-66">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch007.xhtml#framework-connections-4" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-67">
+      <navLabel>
+        <text>Chapter 6. Fair Assessment in the AI Era</text>
+      </navLabel>
+      <content src="text/ch008.xhtml#chapter-6.-fair-assessment-in-the-ai-era" />
+      <navPoint id="navPoint-68">
+        <navLabel>
+          <text>What the mark allows us to claim</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#what-the-mark-allows-us-to-claim" />
+      </navPoint>
+      <navPoint id="navPoint-69">
+        <navLabel>
+          <text>Why a detector cannot settle it</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#why-a-detector-cannot-settle-it" />
+      </navPoint>
+      <navPoint id="navPoint-70">
+        <navLabel>
+          <text>Change the task and its conditions</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#change-the-task-and-its-conditions" />
+      </navPoint>
+      <navPoint id="navPoint-71">
+        <navLabel>
+          <text>Drafts, checkpoints and short oral checks</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#drafts-checkpoints-and-short-oral-checks" />
+      </navPoint>
+      <navPoint id="navPoint-72">
+        <navLabel>
+          <text>Help with marking, care with judgement</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#help-with-marking-care-with-judgement" />
+      </navPoint>
+      <navPoint id="navPoint-73">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#in-practice-5" />
+      </navPoint>
+      <navPoint id="navPoint-74">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#when-resources-are-thin-5" />
+      </navPoint>
+      <navPoint id="navPoint-75">
+        <navLabel>
+          <text>Where this chapter leaves us</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#where-this-chapter-leaves-us" />
+      </navPoint>
+      <navPoint id="navPoint-76">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#questions-for-reflection-5" />
+      </navPoint>
+      <navPoint id="navPoint-77">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch008.xhtml#framework-connections-5" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-78">
+      <navLabel>
+        <text>Chapter 7. Access, Equity and AI</text>
+      </navLabel>
+      <content src="text/ch009.xhtml#chapter-7.-access-equity-and-ai" />
+      <navPoint id="navPoint-79">
+        <navLabel>
+          <text>What must hold before a tool helps</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#what-must-hold-before-a-tool-helps" />
+      </navPoint>
+      <navPoint id="navPoint-80">
+        <navLabel>
+          <text>Personalisation for whom</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#personalisation-for-whom" />
+      </navPoint>
+      <navPoint id="navPoint-81">
+        <navLabel>
+          <text>Disability and the right kind of help</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#disability-and-the-right-kind-of-help" />
+      </navPoint>
+      <navPoint id="navPoint-82">
+        <navLabel>
+          <text>A language the learner understands</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#a-language-the-learner-understands" />
+      </navPoint>
+      <navPoint id="navPoint-83">
+        <navLabel>
+          <text>Access, use and unequal benefit</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#access-use-and-unequal-benefit" />
+      </navPoint>
+      <navPoint id="navPoint-84">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#in-practice-6" />
+      </navPoint>
+      <navPoint id="navPoint-85">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#when-resources-are-thin-6" />
+      </navPoint>
+      <navPoint id="navPoint-86">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#questions-for-reflection-6" />
+      </navPoint>
+      <navPoint id="navPoint-87">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch009.xhtml#framework-connections-6" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-88">
+      <navLabel>
+        <text>Chapter 8. Safe, Fair and Honest</text>
+      </navLabel>
+      <content src="text/ch010.xhtml#chapter-8.-safe-fair-and-honest" />
+      <navPoint id="navPoint-89">
+        <navLabel>
+          <text>Data, permission and monitoring</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#data-permission-and-monitoring" />
+      </navPoint>
+      <navPoint id="navPoint-90">
+        <navLabel>
+          <text>Fair judgement and honest explanations</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#fair-judgement-and-honest-explanations" />
+      </navPoint>
+      <navPoint id="navPoint-91">
+        <navLabel>
+          <text>Safeguarding beyond the lesson</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#safeguarding-beyond-the-lesson" />
+      </navPoint>
+      <navPoint id="navPoint-92">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#in-practice-7" />
+      </navPoint>
+      <navPoint id="navPoint-93">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#when-resources-are-thin-7" />
+      </navPoint>
+      <navPoint id="navPoint-94">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#questions-for-reflection-7" />
+      </navPoint>
+      <navPoint id="navPoint-95">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch010.xhtml#framework-connections-7" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-96">
+      <navLabel>
+        <text>Chapter 9. Raising AI-Literate Learners</text>
+      </navLabel>
+      <content src="text/ch011.xhtml#chapter-9.-raising-ai-literate-learners" />
+      <navPoint id="navPoint-97">
+        <navLabel>
+          <text>More than knowing the buttons</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#more-than-knowing-the-buttons" />
+      </navPoint>
+      <navPoint id="navPoint-98">
+        <navLabel>
+          <text>Growing through primary and secondary school</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#growing-through-primary-and-secondary-school" />
+      </navPoint>
+      <navPoint id="navPoint-99">
+        <navLabel>
+          <text>What teaching has actually changed</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#what-teaching-has-actually-changed" />
+      </navPoint>
+      <navPoint id="navPoint-100">
+        <navLabel>
+          <text>Trust that earns its place</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#trust-that-earns-its-place" />
+      </navPoint>
+      <navPoint id="navPoint-101">
+        <navLabel>
+          <text>Creating and showing understanding</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#creating-and-showing-understanding" />
+      </navPoint>
+      <navPoint id="navPoint-102">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#in-practice-8" />
+      </navPoint>
+      <navPoint id="navPoint-103">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#when-resources-are-thin-8" />
+      </navPoint>
+      <navPoint id="navPoint-104">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#questions-for-reflection-8" />
+      </navPoint>
+      <navPoint id="navPoint-105">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch011.xhtml#framework-connections-8" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-106">
+      <navLabel>
+        <text>Chapter 10. The Teacher as Learner</text>
+      </navLabel>
+      <content src="text/ch012.xhtml#chapter-10.-the-teacher-as-learner" />
+      <navPoint id="navPoint-107">
+        <navLabel>
+          <text>Learning alone</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#learning-alone" />
+      </navPoint>
+      <navPoint id="navPoint-108">
+        <navLabel>
+          <text>Feeling trained is not being competent</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#feeling-trained-is-not-being-competent" />
+      </navPoint>
+      <navPoint id="navPoint-109">
+        <navLabel>
+          <text>What we already knew about professional development</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#what-we-already-knew-about-professional-development" />
+      </navPoint>
+      <navPoint id="navPoint-110">
+        <navLabel>
+          <text>Short courses at national scale</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#short-courses-at-national-scale" />
+      </navPoint>
+      <navPoint id="navPoint-111">
+        <navLabel>
+          <text>The cost before the saving</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#the-cost-before-the-saving" />
+      </navPoint>
+      <navPoint id="navPoint-112">
+        <navLabel>
+          <text>Stress, and what buffers it</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#stress-and-what-buffers-it" />
+      </navPoint>
+      <navPoint id="navPoint-113">
+        <navLabel>
+          <text>When the machine gives the feedback</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#when-the-machine-gives-the-feedback" />
+      </navPoint>
+      <navPoint id="navPoint-114">
+        <navLabel>
+          <text>Keeping the skill you hand over</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#keeping-the-skill-you-hand-over" />
+      </navPoint>
+      <navPoint id="navPoint-115">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#in-practice-9" />
+      </navPoint>
+      <navPoint id="navPoint-116">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#when-resources-are-thin-9" />
+      </navPoint>
+      <navPoint id="navPoint-117">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#questions-for-reflection-9" />
+      </navPoint>
+      <navPoint id="navPoint-118">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch012.xhtml#framework-connections-9" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-119">
+      <navLabel>
+        <text>Chapter 11. The Whole School</text>
+      </navLabel>
+      <content src="text/ch013.xhtml#chapter-11.-the-whole-school" />
+      <navPoint id="navPoint-120">
+        <navLabel>
+          <text>Where schools are now, from Wales to Estonia</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#where-schools-are-now-from-wales-to-estonia" />
+      </navPoint>
+      <navPoint id="navPoint-121">
+        <navLabel>
+          <text>What readiness means</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#what-readiness-means" />
+      </navPoint>
+      <navPoint id="navPoint-122">
+        <navLabel>
+          <text>Leadership that works through teachers</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#leadership-that-works-through-teachers" />
+      </navPoint>
+      <navPoint id="navPoint-123">
+        <navLabel>
+          <text>A policy that lives</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#a-policy-that-lives" />
+      </navPoint>
+      <navPoint id="navPoint-124">
+        <navLabel>
+          <text>Who holds the school to account</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#who-holds-the-school-to-account" />
+      </navPoint>
+      <navPoint id="navPoint-125">
+        <navLabel>
+          <text>Professional learning as a school system</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#professional-learning-as-a-school-system" />
+      </navPoint>
+      <navPoint id="navPoint-126">
+        <navLabel>
+          <text>Buying AI tools, paid or free</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#buying-ai-tools-paid-or-free" />
+      </navPoint>
+      <navPoint id="navPoint-127">
+        <navLabel>
+          <text>Talking with parents</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#talking-with-parents" />
+      </navPoint>
+      <navPoint id="navPoint-128">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#in-practice-10" />
+      </navPoint>
+      <navPoint id="navPoint-129">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#when-resources-are-thin-10" />
+      </navPoint>
+      <navPoint id="navPoint-130">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#questions-for-reflection-10" />
+      </navPoint>
+      <navPoint id="navPoint-131">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch013.xhtml#framework-connections-10" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-132">
+      <navLabel>
+        <text>Chapter 12. Real Understanding in the AI Era</text>
+      </navLabel>
+      <content src="text/ch014.xhtml#chapter-12.-real-understanding-in-the-ai-era" />
+      <navPoint id="navPoint-133">
+        <navLabel>
+          <text>Fluent is not the same as known</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#fluent-is-not-the-same-as-known" />
+      </navPoint>
+      <navPoint id="navPoint-134">
+        <navLabel>
+          <text>Knowing has more than one account</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#knowing-has-more-than-one-account" />
+      </navPoint>
+      <navPoint id="navPoint-135">
+        <navLabel>
+          <text>Trusting a source we cannot see inside</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#trusting-a-source-we-cannot-see-inside" />
+      </navPoint>
+      <navPoint id="navPoint-136">
+        <navLabel>
+          <text>Expertise and the work of judging</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#expertise-and-the-work-of-judging" />
+      </navPoint>
+      <navPoint id="navPoint-137">
+        <navLabel>
+          <text>Authorship, originality and ownership</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#authorship-originality-and-ownership" />
+      </navPoint>
+      <navPoint id="navPoint-138">
+        <navLabel>
+          <text>Validity, beyond catching cheats</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#validity-beyond-catching-cheats" />
+      </navPoint>
+      <navPoint id="navPoint-139">
+        <navLabel>
+          <text>What a degree can still certify</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#what-a-degree-can-still-certify" />
+      </navPoint>
+      <navPoint id="navPoint-140">
+        <navLabel>
+          <text>Oral assessment on campus, and what it costs</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#oral-assessment-on-campus-and-what-it-costs" />
+      </navPoint>
+      <navPoint id="navPoint-141">
+        <navLabel>
+          <text>When the examiner is a machine</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#when-the-examiner-is-a-machine" />
+      </navPoint>
+      <navPoint id="navPoint-142">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#in-practice-11" />
+      </navPoint>
+      <navPoint id="navPoint-143">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#when-resources-are-thin-11" />
+      </navPoint>
+      <navPoint id="navPoint-144">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#questions-for-reflection-11" />
+      </navPoint>
+      <navPoint id="navPoint-145">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch014.xhtml#framework-connections-11" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-146">
+      <navLabel>
+        <text>Chapter 13. What Endures</text>
+      </navLabel>
+      <content src="text/ch015.xhtml#chapter-13.-what-endures" />
+      <navPoint id="navPoint-147">
+        <navLabel>
+          <text>Testing the claim from Chapter 3</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#testing-the-claim-from-chapter-3" />
+      </navPoint>
+      <navPoint id="navPoint-148">
+        <navLabel>
+          <text>Agency grows in conditions</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#agency-grows-in-conditions" />
+      </navPoint>
+      <navPoint id="navPoint-149">
+        <navLabel>
+          <text>Saying no, and saying it well</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#saying-no-and-saying-it-well" />
+      </navPoint>
+      <navPoint id="navPoint-150">
+        <navLabel>
+          <text>Identity under pressure</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#identity-under-pressure" />
+      </navPoint>
+      <navPoint id="navPoint-151">
+        <navLabel>
+          <text>Who remains answerable</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#who-remains-answerable" />
+      </navPoint>
+      <navPoint id="navPoint-152">
+        <navLabel>
+          <text>Principles for the next decade</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#principles-for-the-next-decade" />
+      </navPoint>
+      <navPoint id="navPoint-153">
+        <navLabel>
+          <text>In practice</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#in-practice-12" />
+      </navPoint>
+      <navPoint id="navPoint-154">
+        <navLabel>
+          <text>When resources are thin</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#when-resources-are-thin-12" />
+      </navPoint>
+      <navPoint id="navPoint-155">
+        <navLabel>
+          <text>Questions for reflection</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#questions-for-reflection-12" />
+      </navPoint>
+      <navPoint id="navPoint-156">
+        <navLabel>
+          <text>Framework connections</text>
+        </navLabel>
+        <content src="text/ch015.xhtml#framework-connections-12" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-157">
+      <navLabel>
+        <text>A Last Word</text>
+      </navLabel>
+      <content src="text/ch016.xhtml#a-last-word" />
+    </navPoint>
+    <navPoint id="navPoint-158">
+      <navLabel>
+        <text>References</text>
+      </navLabel>
+      <content src="text/ch017.xhtml#references" />
+    </navPoint>
+    <navPoint id="navPoint-159">
+      <navLabel>
+        <text>Appendix A. Glossary</text>
+      </navLabel>
+      <content src="text/ch018.xhtml#appendix-a.-glossary" />
+    </navPoint>
+    <navPoint id="navPoint-160">
+      <navLabel>
+        <text>Appendix B. Framework map</text>
+      </navLabel>
+      <content src="text/ch019.xhtml#appendix-b.-framework-map" />
+    </navPoint>
+    <navPoint id="navPoint-161">
+      <navLabel>
+        <text>Appendix C. Practical toolkit</text>
+      </navLabel>
+      <content src="text/ch020.xhtml#appendix-c.-practical-toolkit" />
+      <navPoint id="navPoint-162">
+        <navLabel>
+          <text>Classroom AI policy (adaptable draft)</text>
+        </navLabel>
+        <content src="text/ch020.xhtml#classroom-ai-policy-adaptable-draft" />
+      </navPoint>
+      <navPoint id="navPoint-163">
+        <navLabel>
+          <text>Letter to families (adaptable draft)</text>
+        </navLabel>
+        <content src="text/ch020.xhtml#letter-to-families-adaptable-draft" />
+      </navPoint>
+      <navPoint id="navPoint-164">
+        <navLabel>
+          <text>Assessment redesign checklist</text>
+        </navLabel>
+        <content src="text/ch020.xhtml#assessment-redesign-checklist" />
+      </navPoint>
+      <navPoint id="navPoint-165">
+        <navLabel>
+          <text>Planning prompts</text>
+        </navLabel>
+        <content src="text/ch020.xhtml#planning-prompts" />
+      </navPoint>
+      <navPoint id="navPoint-166">
+        <navLabel>
+          <text>Worksheets to copy</text>
+        </navLabel>
+        <content src="text/ch020.xhtml#worksheets-to-copy" />
+      </navPoint>
+      <navPoint id="navPoint-167">
+        <navLabel>
+          <text>Lesson cards from Chapters 7 and 9</text>
+        </navLabel>
+        <content src="text/ch020.xhtml#lesson-cards-from-chapters-7-and-9" />
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>

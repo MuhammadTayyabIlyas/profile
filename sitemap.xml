@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tayyabcheema.com/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://tayyabcheema.com/projects/tillbridge.html</loc>
@@ -55,5 +55,21 @@
   <url>
     <loc>https://tayyabcheema.com/blog/ssh-mcp-server-reverse-tunnel.html</loc>
     <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://tayyabcheema.com/teachingintheaiera</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://tayyabcheema.com/teachingintheaiera/read</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://tayyabcheema.com/teachingintheaiera/references</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://tayyabcheema.com/publications/</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
 </urlset>

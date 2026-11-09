@@ -1,0 +1,222 @@
+[
+  {
+    "id": "ilyas2026teaching",
+    "type": "book",
+    "title": "Teaching in the AI Era",
+    "author": [
+      {
+        "family": "Ilyas",
+        "given": "Muhammad Tayyab"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "publisher": "Muhammad Tayyab Ilyas",
+    "ISBN": "9798237344349",
+    "DOI": "10.5281/zenodo.24085773",
+    "URL": "https://tayyabcheema.com/teachingintheaiera"
+  },
+  {
+    "id": "ilyas2026scoping",
+    "type": "article-journal",
+    "title": "From technical literacy to AI-integrated pedagogy: A scoping review of digital competence frameworks for higher education (2000–2026)",
+    "author": [
+      {
+        "family": "Ilyas",
+        "given": "Muhammad Tayyab"
+      },
+      {
+        "family": "Mercader",
+        "given": "C."
+      },
+      {
+        "family": "Bosco",
+        "given": "A."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "container-title": "The Turkish Online Journal of Educational Technology",
+    "volume": "25",
+    "issue": "4",
+    "page": "56–78",
+    "URL": "https://www.tojet.net/articles/v25i4/2545.pdf"
+  },
+  {
+    "id": "ilyas2026infrastructure",
+    "type": "article-journal",
+    "title": "Infrastructure-first digital competence in resource-constrained higher education",
+    "author": [
+      {
+        "family": "Ilyas",
+        "given": "Muhammad Tayyab"
+      },
+      {
+        "family": "Mercader",
+        "given": "C."
+      },
+      {
+        "family": "Bosco",
+        "given": "A."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "container-title": "Jurnal Pendidikan dan Profesi Keguruan (Progresif)",
+    "volume": "6",
+    "issue": "1",
+    "page": "77–91",
+    "DOI": "10.59562/progresif.v6i1.12473"
+  },
+  {
+    "id": "ilyas2026whatsapp",
+    "type": "article-journal",
+    "title": "WhatsApp as shadow learning management system: How university teachers in Pakistan build parallel pedagogical infrastructure under institutional prohibition",
+    "author": [
+      {
+        "family": "Ilyas",
+        "given": "Muhammad Tayyab"
+      },
+      {
+        "family": "Mercader",
+        "given": "C."
+      },
+      {
+        "family": "Bosco",
+        "given": "A."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "container-title": "ACADEMIA International Journal for Social Sciences",
+    "volume": "5",
+    "issue": "3b",
+    "page": "343–354",
+    "DOI": "10.63056/academia.5.3(b).2026.1779"
+  },
+  {
+    "id": "ilyas2023beliefs",
+    "type": "article-journal",
+    "title": "An empirical enquiry into the teachers' philosophical beliefs and their actual classroom practices: A case of Pakistan",
+    "author": [
+      {
+        "family": "Ilyas",
+        "given": "Muhammad Tayyab"
+      },
+      {
+        "family": "Zaman",
+        "given": "S."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "container-title": "Journal of Positive School Psychology",
+    "volume": "7",
+    "issue": "4",
+    "page": "1843–1853",
+    "URL": "https://journalppw.com/index.php/jpsp/article/view/16914"
+  },
+  {
+    "id": "ilyas2026thesis",
+    "type": "thesis",
+    "title": "Exploring university teachers' pedagogical digital competence and its relationship with teaching practices",
+    "author": [
+      {
+        "family": "Ilyas",
+        "given": "Muhammad Tayyab"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "URL": "https://www.tdx.cat/handle/10803/698705",
+    "publisher": "Universitat Autònoma de Barcelona",
+    "genre": "Doctoral thesis"
+  },
+  {
+    "id": "ilyas2026drives",
+    "type": "paper-conference",
+    "title": "What drives successful technology integration? An examination of teacher digital competence through DigCompEdu in Pakistan",
+    "author": [
+      {
+        "family": "Ilyas",
+        "given": "Muhammad Tayyab"
+      },
+      {
+        "family": "Mercader Juan",
+        "given": "C."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "container-title": "Libro de actas del XIV Congreso Iberoamericano de Docencia Universitaria",
+    "page": "320–321",
+    "publisher": "Universidad de Santiago de Compostela",
+    "URL": "https://portalrecerca.uab.cat/en/publications/what-drives-successful-technology-integration-an-examination-of-t/",
+    "editor": [
+      {
+        "family": "Bolarín Martínez",
+        "given": "M. J."
+      },
+      {
+        "family": "Bernárdez Gómez",
+        "given": "A."
+      }
+    ]
+  },
+  {
+    "id": "ilyas2025caita",
+    "type": "software",
+    "title": "CAITA: Computer-Assisted Iterative Thematic Analysis",
+    "author": [
+      {
+        "family": "Ilyas",
+        "given": "Muhammad Tayyab"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "publisher": "Zenodo",
+    "DOI": "10.5281/zenodo.17474907",
+    "version": "1"
+  }
+]

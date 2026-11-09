@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="3.0" xmlns="http://www.idpf.org/2007/opf" xml:lang="en-GB" unique-identifier="epub-id-1" prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:identifier id="epub-id-1">10.5281/zenodo.24085773</dc:identifier>
+    <meta refines="#epub-id-1" property="identifier-type" scheme="onix:codelist5">06</meta>
+    <dc:identifier id="epub-id-2">9798237344349</dc:identifier>
+    <meta refines="#epub-id-2" property="identifier-type" scheme="onix:codelist5">01</meta>
+    <dc:title id="epub-title-1">Teaching in the AI Era</dc:title>
+    <dc:date id="epub-date">2026</dc:date>
+    <dc:language>en-GB</dc:language>
+    <dc:creator id="epub-creator-1">Muhammad Tayyab Ilyas</dc:creator>
+    <meta refines="#epub-creator-1" property="role" scheme="marc:relators">aut</meta>
+    <dc:subject id="subject-1">artificial intelligence in education</dc:subject>
+    <dc:subject id="subject-2">ChatGPT in the classroom</dc:subject>
+    <dc:subject id="subject-3">teachers and AI</dc:subject>
+    <dc:subject id="subject-4">assessment and academic integrity</dc:subject>
+    <dc:subject id="subject-5">digital competence</dc:subject>
+    <dc:subject id="subject-6">DigCompEdu</dc:subject>
+    <dc:subject id="subject-7">UNESCO AI competency framework</dc:subject>
+    <dc:subject id="subject-8">Pakistan education</dc:subject>
+    <dc:subject id="subject-9">teacher professional development</dc:subject>
+    <dc:subject id="subject-10">IFDC framework</dc:subject>
+    <dc:description>A teacher’s guide to AI in schools and universities: what the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Thirteen chapters on homework, planning, learning, assessment, equity, safeguarding, AI literacy, teacher learning, the whole school and higher education, with routines, worksheets and lesson cards.</dc:description>
+    <dc:publisher>Muhammad Tayyab Ilyas</dc:publisher>
+    <dc:rights>© 2026 Muhammad Tayyab Ilyas. All rights reserved. Open-access copy at https://doi.org/10.5281/zenodo.24085773</dc:rights>
+    <meta property="dcterms:modified">2026-11-09T14:52:35Z</meta>
+    <meta property="schema:accessMode">textual</meta>
+    <meta property="schema:accessModeSufficient">textual</meta>
+    <meta property="schema:accessibilityFeature">alternativeText</meta>
+    <meta property="schema:accessibilityFeature">readingOrder</meta>
+    <meta property="schema:accessibilityFeature">structuralNavigation</meta>
+    <meta property="schema:accessibilityFeature">tableOfContents</meta>
+    <meta property="schema:accessibilityHazard">none</meta>
+  </metadata>
+  <manifest>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav" />
+    <item id="stylesheet1" href="styles/stylesheet1.css" media-type="text/css" />
+    <item id="cover_xhtml" href="text/cover.xhtml" media-type="application/xhtml+xml" properties="svg" />
+    <item id="title_page_xhtml" href="text/title_page.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch001_xhtml" href="text/ch001.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch002_xhtml" href="text/ch002.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch003_xhtml" href="text/ch003.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch004_xhtml" href="text/ch004.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch005_xhtml" href="text/ch005.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch006_xhtml" href="text/ch006.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch007_xhtml" href="text/ch007.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch008_xhtml" href="text/ch008.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch009_xhtml" href="text/ch009.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch010_xhtml" href="text/ch010.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch011_xhtml" href="text/ch011.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch012_xhtml" href="text/ch012.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch013_xhtml" href="text/ch013.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch014_xhtml" href="text/ch014.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch015_xhtml" href="text/ch015.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch016_xhtml" href="text/ch016.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch017_xhtml" href="text/ch017.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch018_xhtml" href="text/ch018.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch019_xhtml" href="text/ch019.xhtml" media-type="application/xhtml+xml" />
+    <item id="ch020_xhtml" href="text/ch020.xhtml" media-type="application/xhtml+xml" />
+    <item properties="cover-image" id="file6_jpg" href="media/file6.jpg" media-type="image/jpeg" />
+    <item id="file5_jpg" href="media/file5.jpg" media-type="image/jpeg" />
+    <item id="file4_jpg" href="media/file4.jpg" media-type="image/jpeg" />
+    <item id="file3_jpg" href="media/file3.jpg" media-type="image/jpeg" />
+    <item id="file2_jpg" href="media/file2.jpg" media-type="image/jpeg" />
+    <item id="file1_jpg" href="media/file1.jpg" media-type="image/jpeg" />
+    <item id="file0_jpg" href="media/file0.jpg" media-type="image/jpeg" />
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="cover_xhtml" />
+    <itemref idref="title_page_xhtml" linear="yes" />
+    <itemref idref="nav" />
+    <itemref idref="ch001_xhtml" />
+    <itemref idref="ch002_xhtml" />
+    <itemref idref="ch003_xhtml" />
+    <itemref idref="ch004_xhtml" />
+    <itemref idref="ch005_xhtml" />
+    <itemref idref="ch006_xhtml" />
+    <itemref idref="ch007_xhtml" />
+    <itemref idref="ch008_xhtml" />
+    <itemref idref="ch009_xhtml" />
+    <itemref idref="ch010_xhtml" />
+    <itemref idref="ch011_xhtml" />
+    <itemref idref="ch012_xhtml" />
+    <itemref idref="ch013_xhtml" />
+    <itemref idref="ch014_xhtml" />
+    <itemref idref="ch015_xhtml" />
+    <itemref idref="ch016_xhtml" />
+    <itemref idref="ch017_xhtml" />
+    <itemref idref="ch018_xhtml" />
+    <itemref idref="ch019_xhtml" />
+    <itemref idref="ch020_xhtml" />
+  </spine>
+  <guide>
+    <reference type="toc" title="Teaching in the AI Era" href="nav.xhtml" />
+    <reference type="cover" title="Cover" href="text/cover.xhtml" />
+  </guide>
+</package>
