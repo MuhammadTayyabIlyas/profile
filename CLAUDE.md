@@ -25,6 +25,10 @@ Posts are data, not hand-written pages: edit `docs/blog/posts.py` (one dict per 
 
 *Teaching in the AI Era* (self-published, ISBN 9798237344349, DOI 10.5281/zenodo.24085773). Three clean URLs: `/teachingintheaiera`, `/read` (epub.js over the unpacked EPUB in `read/book/`, plus a PDF.js tab) and `/references`. It has its own look (navy/amber/Montserrat from the cover, `teachingintheaiera/book.css`), not the site design system. nginx has a dedicated block for these paths (exact-match locations, gzip for CSS/JS/XHTML, real 404s). Texts come verbatim from the author's files in `docs/teachingintheaiera-src/website/`; never reword them. To publish a new edition, replace the files and run `python3 docs/teachingintheaiera/build_book.py` (see `docs/teachingintheaiera/README.md`). The homepage Research section features the book above the verified publication list.
 
+## Publications (`/publications/`) and AI visibility
+
+Verified works live as data in `docs/publications/build_publications.py` (never add unconfirmed works). Run it, then `python3 docs/blog/build_blog.py`: it writes `/publications/index.html`, `publications.bib` (served as text/plain with CORS), CSL-JSON `publications.json`, and the Publications section that the blog builder pulls into `/llms.txt`. After publishing or changing pages, run `python3 docs/indexnow.py [URLs]` to notify Bing and other IndexNow engines (the key file sits in the web root).
+
 ## Structure
 
 - `index.html` — the homepage, a long single page. Section order (each an `id` used by the 8-item anchor nav): hero → value (What I do) → about → **case-studies** (4 flagship `.project-highlight` cards) → projects (`.project-card` grid) → capabilities (5 skill groups) → experience (AI track + Education track) → edtech → research (dissertation + publications) → certifications → credibility → writing → contact → footer. Carries JSON-LD (Person, ProfilePage, three SoftwareApplication, ScholarlyArticle), Open Graph and Twitter Card meta.
