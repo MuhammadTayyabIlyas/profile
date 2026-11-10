@@ -256,7 +256,7 @@ def llms_txt(posts):
 
 ## Book
 
-- [Teaching in the AI Era]({SITE}/teachingintheaiera): a free book for school teachers, university staff and school leaders on AI in schools and universities, by Muhammad Tayyab Ilyas (2026, ISBN 9798237344349, DOI https://doi.org/10.5281/zenodo.24085773). What the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Read online at {SITE}/teachingintheaiera/read; EPUB and PDF downloads; 482 references at {SITE}/teachingintheaiera/references.
+- [Teaching in the AI Era]({SITE}/teachingintheaiera): a free book for school teachers, university staff and school leaders on AI in schools and universities, by Muhammad Tayyab Ilyas (2026, ISBN 9798237344349, DOI https://doi.org/10.5281/zenodo.24085773). What the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Read online at {SITE}/teachingintheaiera/read; ebook at https://books2read.com/u/mdrgNO; 482 references at {SITE}/teachingintheaiera/references.
 
 {pubs}## Case studies
 

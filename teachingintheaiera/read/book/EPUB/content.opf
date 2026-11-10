@@ -23,7 +23,7 @@
     <dc:description>A teacher’s guide to AI in schools and universities: what the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Thirteen chapters on homework, planning, learning, assessment, equity, safeguarding, AI literacy, teacher learning, the whole school and higher education, with routines, worksheets and lesson cards.</dc:description>
     <dc:publisher>Muhammad Tayyab Ilyas</dc:publisher>
     <dc:rights>© 2026 Muhammad Tayyab Ilyas. All rights reserved. Open-access copy at https://doi.org/10.5281/zenodo.24085773</dc:rights>
-    <meta property="dcterms:modified">2026-11-09T14:52:35Z</meta>
+    <meta property="dcterms:modified">2026-11-10T11:13:03Z</meta>
     <meta property="schema:accessMode">textual</meta>
     <meta property="schema:accessModeSufficient">textual</meta>
     <meta property="schema:accessibilityFeature">alternativeText</meta>
@@ -58,7 +58,8 @@
     <item id="ch018_xhtml" href="text/ch018.xhtml" media-type="application/xhtml+xml" />
     <item id="ch019_xhtml" href="text/ch019.xhtml" media-type="application/xhtml+xml" />
     <item id="ch020_xhtml" href="text/ch020.xhtml" media-type="application/xhtml+xml" />
-    <item properties="cover-image" id="file6_jpg" href="media/file6.jpg" media-type="image/jpeg" />
+    <item properties="cover-image" id="file7_jpg" href="media/file7.jpg" media-type="image/jpeg" />
+    <item id="file6_jpg" href="media/file6.jpg" media-type="image/jpeg" />
     <item id="file5_jpg" href="media/file5.jpg" media-type="image/jpeg" />
     <item id="file4_jpg" href="media/file4.jpg" media-type="image/jpeg" />
     <item id="file3_jpg" href="media/file3.jpg" media-type="image/jpeg" />

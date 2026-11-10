@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Read online | Teaching in the AI Era, by Muhammad Tayyab Ilyas</title>
-  <meta name="description" content="Read Teaching in the AI Era by Muhammad Tayyab Ilyas free in your browser, as a reflowing EPUB or as fixed PDF pages. No account; your place is remembered on this device." />
+  <meta name="description" content="Read Teaching in the AI Era by Muhammad Tayyab Ilyas free in your browser. No account; your place is remembered on this device." />
   <link rel="canonical" href="https://tayyabcheema.com/teachingintheaiera/read" />
   <meta property="og:type" content="book" />
   <meta property="og:title" content="Read Teaching in the AI Era online" />
@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#0A1C45" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="preload" href="/teachingintheaiera/read/lib/epub.min.js" as="script" />
-  <link rel="preload" href="/teachingintheaiera/read/book/EPUB/content.opf" as="fetch" crossorigin />
+  <link rel="preload" href="/teachingintheaiera/read/book/EPUB/content.opf?v=20261110" as="fetch" crossorigin />
   <link rel="preload" href="/teachingintheaiera/read/book/EPUB/nav.xhtml" as="fetch" crossorigin />
   <link rel="preload" href="/teachingintheaiera/read/book/EPUB/META-INF/com.apple.ibooks.display-options.xml" as="fetch" crossorigin />
   <script>
@@ -76,9 +76,6 @@
 
     .top { position: relative; z-index: 6; flex: none; display: flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.5rem; padding-top: max(0.35rem, env(safe-area-inset-top)); background: var(--navy); color: #F3F4F8; }
     .top a.home { color: #F3F4F8; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 auto; }
-    .tabs { display: flex; border: 1px solid rgba(201,209,227,0.45); border-radius: 999px; overflow: hidden; flex: none; }
-    .tabs button { background: none; border: 0; color: var(--pale); padding: 0 0.85rem; min-height: 2.5rem; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
-    .tabs button[aria-selected="true"] { background: var(--amber); color: var(--navy); }
     .tool { background: none; border: 1px solid transparent; color: #F3F4F8; min-width: 2.75rem; min-height: 2.75rem; border-radius: 8px; cursor: pointer; font-weight: 700; flex: none; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
     .tool:hover { border-color: rgba(201,209,227,0.45); }
     .tool svg { width: 1.3rem; height: 1.3rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -94,7 +91,7 @@
     .pane { position: absolute; inset: 0; display: flex; flex-direction: column; }
     .pane[hidden] { display: none; }
     #viewer { flex: 1 1 auto; min-height: 0; }
-    #viewer, .pdf-pages { -webkit-overflow-scrolling: touch; }
+    #viewer { -webkit-overflow-scrolling: touch; }
     .status { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; text-align: center; padding: 1.5rem; color: var(--muted); background: var(--bg); z-index: 2; }
     .status[hidden] { display: none; }
     .bar { width: min(16rem, 70vw); height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; }
@@ -117,14 +114,6 @@
     .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.35); z-index: 4; }
     .scrim[hidden] { display: none; }
 
-    .pdf-tools { flex: none; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--rule); background: var(--panel); font-size: 0.9rem; }
-    .pdf-tools form { display: flex; align-items: center; gap: 0.4rem; }
-    .pdf-tools input { width: 4.2rem; min-height: 2.5rem; padding: 0 0.4rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); text-align: center; }
-    .pdf-tools button, .pdf-tools a { background: none; border: 1px solid var(--rule); border-radius: 6px; min-height: 2.5rem; min-width: 2.5rem; padding: 0 0.7rem; cursor: pointer; font-weight: 700; color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; }
-    .pdf-pages { flex: 1 1 auto; overflow-y: auto; background: var(--pdfbg); padding: 0.75rem 0.5rem 2rem; }
-    .pdf-page { position: relative; margin: 0 auto 0.75rem; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.18); aspect-ratio: 432 / 648; }
-    .pdf-page canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .pdf-page span { position: absolute; bottom: -1.3rem; right: 0; font-size: 0.72rem; color: var(--muted); }
     noscript p { padding: 1.5rem; max-width: 36rem; margin: 0 auto; }
     @media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
   </style>
@@ -134,12 +123,7 @@
   <header class="top">
     <a class="home" href="/teachingintheaiera" aria-label="Back to the book page">← <span class="long">Teaching in the AI Era</span></a>
     <button class="tool" id="btn-toc" type="button" aria-controls="toc" aria-expanded="false" title="Contents"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="sr">Contents</span></button>
-    <div class="tabs" role="tablist" aria-label="Format">
-      <button type="button" role="tab" id="tab-epub" aria-controls="pane-epub" aria-selected="true">EPUB</button>
-      <button type="button" role="tab" id="tab-pdf" aria-controls="pane-pdf" aria-selected="false" tabindex="-1">PDF</button>
-    </div>
     <button class="tool" id="btn-settings" type="button" aria-controls="settings" aria-expanded="false" title="Text size and theme"><span aria-hidden="true" style="font-size:1.05rem">Aa</span><span class="sr">Text size and theme</span></button>
-    <a class="tool" id="btn-dl" href="/teachingintheaiera/files/teaching-in-the-ai-era.epub" download title="Download this format"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg><span class="sr">Download</span></a>
     <div class="settings" id="settings" hidden>
       <button type="button" id="btn-smaller"><span aria-hidden="true" style="font-size:0.85rem">A−</span><span class="sr">Smaller text</span></button>
       <button type="button" id="btn-larger"><span aria-hidden="true" style="font-size:1.2rem">A+</span><span class="sr">Larger text</span></button>
@@ -148,7 +132,7 @@
   </header>
 
   <main>
-    <section class="pane" id="pane-epub" role="tabpanel" aria-labelledby="tab-epub">
+    <section class="pane" id="pane-epub" aria-label="Book">
       <div id="viewer" tabindex="-1" aria-label="Book text"></div>
       <div class="status" id="epub-status" role="status" aria-live="polite">
         <div class="bar" aria-hidden="true"><i></i></div>
@@ -166,30 +150,13 @@
       </aside>
     </section>
 
-    <section class="pane" id="pane-pdf" role="tabpanel" aria-labelledby="tab-pdf" hidden>
-      <div class="pdf-tools">
-        <form id="jump">
-          <label for="page-input">PDF page</label>
-          <input id="page-input" type="number" inputmode="numeric" min="1" max="238" value="1" />
-          <span>of <span id="page-count">238</span></span>
-          <button type="submit">Go</button>
-        </form>
-        <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
-        <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
-      </div>
-      <div class="pdf-pages" id="pdf-pages" tabindex="-1" aria-label="PDF pages"></div>
-      <div class="status" id="pdf-status" role="status" aria-live="polite" hidden>
-        <div class="bar" aria-hidden="true"><i></i></div>
-        <p id="pdf-msg">Opening the PDF…</p>
-      </div>
-    </section>
-    <noscript><p>The online reader needs JavaScript. You can still <a href="/teachingintheaiera/files/teaching-in-the-ai-era.pdf">open the PDF</a> or <a href="/teachingintheaiera/files/teaching-in-the-ai-era.epub">download the EPUB</a>.</p></noscript>
+    <noscript><p>The online reader needs JavaScript.</p></noscript>
   </main>
   <p class="sr">© 2026 Muhammad Tayyab Ilyas. All rights reserved. Last updated <!-- updated:start -->
-<time datetime="2026-11-09">9 November 2026</time>
+<time datetime="2026-11-10">10 November 2026</time>
 <!-- updated:end --></p>
 
   <script src="/teachingintheaiera/read/lib/epub.min.js"></script>
-  <script src="/teachingintheaiera/read/reader.js?v=2026110904"></script>
+  <script src="/teachingintheaiera/read/reader.js?v=2026111003"></script>
 </body>
 </html>

@@ -23,8 +23,6 @@ WORKS = [
         "url": f"{SITE}/teachingintheaiera",
         "summary": "A free book for school teachers, university staff and school leaders on AI in schools and universities: what the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Self-published, 2026.",
         "links": [("Read online", f"{SITE}/teachingintheaiera/read"),
-                  ("Download PDF", f"{SITE}/teachingintheaiera/files/teaching-in-the-ai-era.pdf"),
-                  ("Download EPUB", f"{SITE}/teachingintheaiera/files/teaching-in-the-ai-era.epub"),
                   ("Book page", f"{SITE}/teachingintheaiera"),
                   ("Buy", "https://books2read.com/u/mdrgNO")],
     },

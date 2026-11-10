@@ -3,3 +3,7 @@
 reflib/
 subdomains/
 __pycache__/
+
+# The book is sold; its full EPUB/PDF must never be published or committed
+teachingintheaiera/files/teaching-in-the-ai-era.epub
+teachingintheaiera/files/teaching-in-the-ai-era.pdf

@@ -1,11 +1,12 @@
 /* Reader for Teaching in the AI Era.
    EPUB: epub.js over the unpacked book in ./book/ (chapters load one at a time).
-   PDF:  PDF.js, loaded only when the PDF tab is opened; pages render as they scroll into view.
+   Online reading only: the book is sold, so there is no PDF tab and no download button.
    Everything the reader remembers lives in localStorage on this device only. */
 (function () {
   'use strict';
   var BASE = '/teachingintheaiera/';
-  var FILES = { epub: BASE + 'files/teaching-in-the-ai-era.epub', pdf: BASE + 'files/teaching-in-the-ai-era.pdf' };
+  // edition stamp: change it whenever the EPUB is replaced, so no browser reuses a cached copy
+  var ED = '?v=20261110';
   var KEY = 'tiae-reader-v1';
   var FIRST = 'text/title_page.xhtml';
   var $ = function (id) { return document.getElementById(id); };
@@ -37,7 +38,6 @@
   var SIZES = [85, 100, 115, 130, 150, 175];
   if (SIZES.indexOf(state.size) === -1) state.size = 100;
   function step(dir) {
-    if (tab === 'pdf') return zoom(dir);
     var i = Math.max(0, Math.min(SIZES.length - 1, SIZES.indexOf(state.size) + dir));
     state.size = SIZES[i]; save();
     if (rendition) rendition.themes.fontSize(state.size + '%');
@@ -60,30 +60,6 @@
   $('btn-smaller').addEventListener('click', function () { step(-1); });
   $('btn-larger').addEventListener('click', function () { step(1); });
 
-  /* ---------- tabs ---------- */
-  var tab = 'epub';
-  function showTab(name, focus) {
-    tab = name;
-    ['epub', 'pdf'].forEach(function (n) {
-      var on = n === name;
-      $('tab-' + n).setAttribute('aria-selected', String(on));
-      $('tab-' + n).tabIndex = on ? 0 : -1;
-      $('pane-' + n).hidden = !on;
-    });
-    $('btn-toc').hidden = name !== 'epub';
-    $('btn-dl').href = FILES[name];
-    $('btn-smaller').querySelector('.sr').textContent = name === 'pdf' ? 'Zoom out' : 'Smaller text';
-    $('btn-larger').querySelector('.sr').textContent = name === 'pdf' ? 'Zoom in' : 'Larger text';
-    state.tab = name; save();
-    if (name === 'pdf') openPdf(); else openEpub();
-    if (focus) $('tab-' + name).focus();
-  }
-  $('tab-epub').addEventListener('click', function () { showTab('epub'); history.replaceState(null, '', location.pathname); });
-  $('tab-pdf').addEventListener('click', function () { showTab('pdf'); });
-  document.querySelector('.tabs').addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') showTab(tab === 'epub' ? 'pdf' : 'epub', true);
-  });
-
   /* ---------- EPUB ---------- */
   var book, rendition, toc = [];
   function epubStatus(msg, pct, done) {
@@ -94,10 +70,10 @@
 
   function openEpub() {
     if (book) return;
-    if (!window.ePub) { epubStatus('The reader could not load. Please use the Download button above.', 0); return; }
+    if (!window.ePub) { epubStatus('The reader could not load. Please reload the page.', 0); return; }
     epubStatus('Opening the book…', 20);
     // open the package file directly: one round trip fewer than META-INF/container.xml
-    book = window.ePub(BASE + 'read/book/EPUB/content.opf', { openAs: 'opf' });
+    book = window.ePub(BASE + 'read/book/EPUB/content.opf' + ED, { openAs: 'opf' });
     rendition = book.renderTo('viewer', {
       width: '100%', height: '100%', flow: 'scrolled-doc', spread: 'none', allowScriptedContent: false
     });
@@ -126,14 +102,19 @@
     }).catch(function (err) {
       console.error(err);
       state.cfi = null; save();
-      epubStatus('The book could not open here. Please use the Download button above, or try the PDF tab.', 0);
+      epubStatus('The book could not open here. Please reload the page.', 0);
     });
 
     var t;
     rendition.on('relocated', function (loc) {
       updateWhere(loc);
       clearTimeout(t);
-      t = setTimeout(function () { state.cfi = loc.start.cfi; save(); }, 400);
+      t = setTimeout(function () {
+        // show the chapter in the address bar, so a copied link opens the same chapter
+        var m = /(ch\d{3})\.xhtml/.exec(loc.start.href || '');
+        state.cfi = loc.start.cfi; state.ch = m ? m[1] : null; save();
+        if (m && location.hash !== '#' + m[1]) history.replaceState(null, '', '#' + m[1]);
+      }, 400);
     });
     rendition.on('keyup', keys);
 
@@ -156,7 +137,12 @@
     var m = /^#(ch\d{3})$/.exec(location.hash);
     return m ? 'text/' + m[1] + '.xhtml' : null;
   }
-  function startTarget() { return hashChapter() || state.cfi || FIRST; }
+  function startTarget() {
+    var h = hashChapter();
+    // a reload of the reader's own chapter link resumes at the saved place, not the chapter start
+    if (h && state.cfi && state.ch && h === 'text/' + state.ch + '.xhtml') return state.cfi;
+    return h || state.cfi || FIRST;
+  }
 
   function label(href) {
     var file = href.split('#')[0];
@@ -246,144 +232,12 @@
   $('scrim').addEventListener('click', closeToc);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeToc(); });
 
-  /* ---------- PDF ---------- */
-  var pdf, pages = [], scale = state.zoom || 1, io, rendering = {};
-  function pdfStatus(msg, pct, done) {
-    $('pdf-msg').textContent = msg;
-    if (pct != null) document.querySelector('#pdf-status .bar i').style.width = pct + '%';
-    $('pdf-status').hidden = !!done;
-  }
-  function loadScript(src) {
-    return new Promise(function (ok, fail) {
-      var s = document.createElement('script');
-      s.src = src; s.onload = ok; s.onerror = fail;
-      document.head.appendChild(s);
-    });
-  }
-  function hashPage() {
-    var m = /^#pdf(?:-(\d+))?$/.exec(location.hash);
-    return m ? (parseInt(m[1], 10) || 1) : null;
-  }
-
-  function openPdf() {
-    if (pdf) return;
-    pdfStatus('Opening the PDF…', 10);
-    loadScript(BASE + 'read/lib/pdf.min.js').then(function () {
-      var lib = window.pdfjsLib;
-      lib.GlobalWorkerOptions.workerSrc = BASE + 'read/lib/pdf.worker.min.js';
-      var task = lib.getDocument({ url: FILES.pdf, rangeChunkSize: 131072, disableAutoFetch: true, disableStream: true });
-      // range requests keep reporting progress after the first pages show; ignore those
-      task.onProgress = function (p) { if (p.total && !pdf) pdfStatus('Opening the PDF…', 10 + Math.round(80 * p.loaded / p.total)); };
-      return task.promise;
-    }).then(function (doc) {
-      pdf = doc;
-      $('page-count').textContent = doc.numPages;
-      $('page-input').max = doc.numPages;
-      layoutPages();
-      pdfStatus('', 100, true);
-      jump(hashPage() || state.page || 1);
-    }).catch(function (err) {
-      console.error(err);
-      pdfStatus('The PDF viewer could not load here. You can open the PDF directly instead.', 0);
-      var p = $('pdf-msg');
-      var a = document.createElement('a');
-      a.href = FILES.pdf; a.textContent = ' Open the PDF';
-      p.appendChild(a);
-    });
-  }
-
-  function width() { return Math.min($('pdf-pages').clientWidth - 16, 820) * scale; }
-  function layoutPages() {
-    var box = $('pdf-pages');
-    box.textContent = '';
-    pages = [];
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        var n = +en.target.getAttribute('data-n');
-        if (en.isIntersecting) draw(n); else clear(n);
-      });
-    }, { root: box, rootMargin: '120% 0px' });
-    for (var n = 1; n <= pdf.numPages; n++) {
-      var d = document.createElement('div');
-      d.className = 'pdf-page';
-      d.style.width = width() + 'px';
-      d.setAttribute('data-n', n);
-      d.setAttribute('role', 'img');
-      d.setAttribute('aria-label', 'PDF page ' + n);
-      var s = document.createElement('span');
-      s.textContent = n;
-      d.appendChild(s);
-      box.appendChild(d);
-      pages.push(d);
-      io.observe(d);
-    }
-  }
-  function draw(n) {
-    var el = pages[n - 1];
-    if (!el || el.querySelector('canvas') || rendering[n]) return;
-    rendering[n] = true;
-    pdf.getPage(n).then(function (page) {
-      var cssW = el.clientWidth;
-      var ratio = Math.min(window.devicePixelRatio || 1, 2);
-      var vp = page.getViewport({ scale: cssW / page.getViewport({ scale: 1 }).width * ratio });
-      var c = document.createElement('canvas');
-      c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
-      el.insertBefore(c, el.firstChild);
-      return page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
-    }).catch(function () {}).then(function () { rendering[n] = false; });
-  }
-  function clear(n) {
-    var c = pages[n - 1] && pages[n - 1].querySelector('canvas');
-    if (c && !rendering[n]) { c.width = 0; c.height = 0; c.remove(); }
-  }
-  function current() {
-    var box = $('pdf-pages'), mid = box.scrollTop + box.clientHeight / 3;
-    var h = pages.length ? pages[0].offsetHeight + 12 : 1;
-    return Math.max(1, Math.min(pages.length, Math.floor(mid / h) + 1));
-  }
-  function jump(n) {
-    n = Math.max(1, Math.min(pdf.numPages, n | 0));
-    // scroll only the PDF column; scrollIntoView would also move the page frame on phones
-    $('pdf-pages').scrollTop = pages[n - 1].offsetTop - $('pdf-pages').offsetTop - 12;
-    $('page-input').value = n;
-  }
-  var st;
-  $('pdf-pages').addEventListener('scroll', function () {
-    clearTimeout(st);
-    st = setTimeout(function () {
-      if (!pages.length) return;
-      var n = current();
-      if (document.activeElement !== $('page-input')) $('page-input').value = n;
-      state.page = n; save();
-      history.replaceState(null, '', '#pdf-' + n);
-    }, 150);
-  });
-  $('jump').addEventListener('submit', function (e) { e.preventDefault(); if (pdf) jump(+$('page-input').value); });
-  function zoom(dir) {
-    if (!pdf) return;
-    var n = current();
-    scale = Math.max(0.6, Math.min(2.5, Math.round((scale + dir * 0.2) * 10) / 10));
-    state.zoom = scale; save();
-    pages.forEach(function (p, i) { clear(i + 1); p.style.width = width() + 'px'; });
-    jump(n);
-  }
-  $('zoom-in').addEventListener('click', function () { zoom(1); });
-  $('zoom-out').addEventListener('click', function () { zoom(-1); });
-  var rt;
-  window.addEventListener('resize', function () {
-    if (!pdf || tab !== 'pdf') return;
-    clearTimeout(rt);
-    rt = setTimeout(function () { var n = current(); pages.forEach(function (p, i) { clear(i + 1); p.style.width = width() + 'px'; }); jump(n); }, 200);
-  });
-
-  /* ---------- deep links: #ch003 opens a chapter, #pdf-112 opens a PDF page ---------- */
+  /* ---------- deep links: #ch003 opens a chapter ---------- */
   window.addEventListener('hashchange', function () {
-    var ch = hashChapter(), pg = hashPage();
-    if (ch) { showTab('epub'); if (rendition) rendition.display(ch); }
-    else if (pg) { showTab('pdf'); if (pdf) jump(pg); }
+    var ch = hashChapter();
+    if (ch && rendition) rendition.display(ch);
   });
 
   applyTheme();
-  showTab(hashPage() ? 'pdf' : hashChapter() ? 'epub' : (state.tab || 'epub'));
+  openEpub();
 })();
