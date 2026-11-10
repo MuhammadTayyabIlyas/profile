@@ -58,7 +58,8 @@ Visitors' saved reading positions point into the old EPUB. If the chapters chang
 ## Still to do (placeholders on the page)
 
 - **Contact email**: done 2026-11-10, `update@pakedx.com` in the footer only (author's choice).
-- **Paperback link**: done 2026-11-09, the hero button points at the Books2Read universal link https://books2read.com/u/mdrgNO (also a `Paperback` workExample in the JSON-LD). On that date Books2Read listed the ebook only; check that the paperback appears there.
+- **Buy link**: the hero button "Buy the ebook" (renamed from "Buy the paperback" on 2026-11-10 at the author's request) points at the Books2Read universal link https://books2read.com/u/mdrgNO, which sells the ebook at 7.99 (also on KDP). A `Paperback` workExample in the JSON-LD carries the ISBN.
+- **Zenodo**: record 24085773 restricted by the author on 2026-11-10 (DOI and metadata public, files login-only, no licence). The FAQ no longer mentions an open-access copy.
 
 ## Deep links
 
