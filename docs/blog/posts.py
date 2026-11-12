@@ -3,6 +3,142 @@
 POSTS = [
 # ---------------------------------------------------------------------------------------------------------
 {
+"slug": "how-to-use-ai-in-the-classroom",
+"order": 8,
+"date": "2026-11-12",
+"kicker": "Teaching",
+"minutes": 7,
+"title": "How to use AI in the classroom without losing the learning",
+"description": "How to use AI in the classroom so students still learn: attempt first, hints not answers, quizzes with devices closed, and fair assessment without detectors.",
+"keywords": "how to use AI in the classroom, AI in the classroom, AI for teachers, teachers and AI, AI in education book, Teaching in the AI Era, AI and homework, AI detectors, fair assessment AI",
+"about": ["Artificial intelligence in education", "Classroom teaching", "Educational assessment"],
+"answer": "Use AI so that students still do the thinking. Keep a simple order of work: the student tries first, help from AI, a teacher or a classmate comes next, and later the student shows without help what they can do. Set tools to give hints rather than answers, check learning with short quizzes and questions about students' own work with the machine closed, and do not treat an AI detector score as proof of cheating.",
+"body": """
+          <p>When I taught in an elementary school in Pakistan, the threat to homework was a printed guidebook sold near the school gate, with a ready answer for every exercise. Today the shortcut is a chatbot: free, private, instant and fluent. My book <a href="/teachingintheaiera"><em>Teaching in the AI Era</em></a> starts from that change and reaches a plain conclusion: "AI changed what students can hand in far more than it changed what learning requires." This post pulls together the practical answer the book gives to the question teachers ask most: how do you use AI in the classroom without losing the learning?</p>
+
+          <h2>What has AI actually changed in the classroom?</h2>
+          <p><a href="/teachingintheaiera/chapter-1">Chapter 1, "The Day the Homework Changed"</a>, names four changes. Help became cheap, detection became unreliable, the teacher's authority shifted, and a finished task stopped being good evidence of learning.</p>
+          <p>The last change matters most. In a large randomised trial in a Turkish high school, nearly 1,000 students practised mathematics with a standard GPT-4 chatbot, a tutor version with teacher-designed hints, or no AI (Bastani et al., 2025). With the standard chatbot, practice scores rose by 48%. When the chatbot was removed for the exam, those students scored 17% lower than classmates who never had it. The tutor version raised practice scores by 127% and largely removed the harm. Students who leaned on the chatbot did not notice any loss. They felt they had learned.</p>
+          <p>Students are not simply outsourcing everything, though. In one survey, 83% said AI should never write a whole assignment, and the most common use was to explain a concept (Chen et al., 2026). Yet more than 80% of American students said their teachers had never explicitly taught them how to use AI for schoolwork (Doss et al., 2025). That gap is where a teacher can start.</p>
+
+          <h2>Why is getting the answer not the same as learning?</h2>
+          <p><a href="/teachingintheaiera/chapter-5">Chapter 5, "Learning When Answers Are Free"</a>, draws on decades of research that came before chatbots. In a classic experiment, students who reread a passage looked better after five minutes, but a week later the students who had practised recalling it remembered 56% of the ideas against 42% (Roediger &amp; Karpicke, 2006). Effort spent retrieving and producing answers builds memory. An answer handed over before the student has tried skips that effort.</p>
+          <p>Even tools built to hold answers back depend on students wanting to think. In a trial in Tennessee middle schools, the median student messaged the Khanmigo tutor in only 17% of the practice sessions in which they had made a mistake (Oreopoulos &amp; Low, 2026). One student typed "just give me it". As the book puts it, "A tool can be built to hold back answers, but it cannot make a student want to think."</p>
+
+          <h2>What order of work protects thinking?</h2>
+          <p>The book's central routine is simple. <strong>The student tries first, even badly. Help comes next, as a hint from a tool, a teacher or a classmate. Later, the student shows without help what they can do.</strong> It works with any source of answers: a chatbot, a tutor, the back of a textbook or an older sibling. Chapter 5 turns it into classroom habits:</p>
+          <ul>
+            <li><strong>Attempt first, then ask.</strong> Before anyone opens an AI tool, students write down a first step, a guess or a plan, even a wrong one.</li>
+            <li><strong>Hints, not answers.</strong> Set the class tool to give one hint at a time. Try it as a student first, including a blunt request for the answer.</li>
+            <li><strong>A quiz with the machine closed.</strong> Once a week, five short questions from memory, with no devices and no marks recorded.</li>
+            <li><strong>Ask about their own work.</strong> Pick one sentence or step from each submission and ask the student to explain it at the desk.</li>
+            <li><strong>Drafts in view.</strong> Students show a draft before the final version, and you comment on the thinking as well as the text.</li>
+            <li><strong>Agree the line together.</strong> The class agrees which uses of AI help learning and which replace it, and the list goes on the wall.</li>
+            <li><strong>Name the feeling.</strong> Tell students that effortful learning often feels worse even while it works better.</li>
+          </ul>
+          <p>The book is honest that nobody has tested these routines as a package. They draw on the research, and each one is cheap to try.</p>
+
+          <h2>Should teachers use AI detectors?</h2>
+          <p>The book's advice is no, not as proof. A test of 14 detection tools found that none reached 80% accuracy (Weber-Wulff et al., 2023). In another study, seven detectors wrongly flagged essays by non-native English writers as machine-written in 61% of cases on average (Liang et al., 2023). Teachers do not do much better by eye: in one study, trainee teachers spotted 45.1% of AI texts and experienced teachers 37.8% (Fleckenstein et al., 2024). A lecturer in my doctoral research described a student who made AI text "AI-free" with concealing software in fifteen minutes.</p>
+          <p>Treat a suspicion as a reason to talk with the student. Ask them to explain a choice and how the work took shape. Keep two decisions apart: what you can say about the student's learning, and whether anyone broke a rule. Uncertain understanding does not prove misconduct.</p>
+
+          <h2>How can assessment stay fair when AI can write the work?</h2>
+          <p><a href="/teachingintheaiera/chapter-6">Chapter 6, "Fair Assessment in the AI Era"</a>, starts with validity: does the evidence support the claim you want to make about a learner? A polished essay written at home may show a good text. It cannot, on its own, show that its author can build that argument alone.</p>
+          <p>So pair open work with a protected check. Students can use approved tools on a project, and then explain a new source, graph or changed constraint in class without help. In a Toronto physical education course, students used AI to help plan a warm-up, then had to "lead and explain the routine in person". A zoologist in my study moved marks from assignments to quizzes and added a short viva on each assignment. Report the two claims separately, so a single total does not hide the gap between doing well with support and understanding alone.</p>
+
+          <h2>What if my school has one shared phone and a weak signal?</h2>
+          <p><a href="/teachingintheaiera/chapter-7">Chapter 7, "Access, Equity and AI"</a>, is written for these classrooms. With one teacher phone, prepare while the connection works: save a checked passage, diagram and questions before school, then copy them onto the board or use a printed master. Students work with the material together, and their learning does not depend on taking turns with your phone. If the connection fails mid-lesson, use a stopping rule: one brief attempt to reconnect, then move to the prepared paper alternative. The book is clear that no trial has yet tested one teacher phone supplying AI to a whole low-resource class, so treat this as careful practice, not proven method.</p>
+          <p>The good news is that the routines that protect thinking need very little equipment. In the book's words, they "need little more than paper and a teacher's attention." Attempting first, quizzing from memory, explaining one's own work and showing drafts all work with chalk.</p>
+
+          <h2>Where can I read the book?</h2>
+          <p><em>Teaching in the AI Era</em> is free to <a href="/teachingintheaiera/read">read online</a>, chapter by chapter, with reflection questions for a department meeting at the end of each one. If you would like your own copy, the ebook is at <a href="https://books2read.com/u/mdrgNO" rel="noopener">books2read.com/u/mdrgNO</a>, and the paperback is <a href="https://www.amazon.com/s?k=Teaching+in+the+AI+Era+Muhammad+Tayyab+Ilyas&amp;i=stripbooks" rel="noopener">on Amazon</a>.</p>""",
+"faq": [
+("How should teachers use AI in the classroom?", "Keep the student doing the thinking. Ask students to attempt a task first, let AI or a teacher give a hint next, and later check what each student can do without help, for example with a short quiz with devices closed."),
+("Does AI harm student learning?", "It can. In a randomised trial in a Turkish high school, students who practised with a plain GPT-4 chatbot scored 17% lower on the exam without it than classmates who never had it. A tutor version that gave hints and withheld answers largely removed that harm (Bastani et al., 2025)."),
+("Are AI detectors reliable enough to prove cheating?", "No. A test of 14 tools found none reaching 80% accuracy, and detectors have wrongly flagged non-native English writers. Treat a concern as a reason to talk with the student, not as proof."),
+("Can I use AI in a classroom with one phone and poor internet?", "Yes, with care. Prepare and check materials while the connection works, then use the board or paper in the lesson. The routines that protect thinking, such as attempting first and quizzing from memory, need no device at all."),
+],
+"cta_line": "He taught science and mathematics in a government elementary school in Gujranwala, worked as the district's assistant education officer and teacher trainer, and holds a PhD in Education from the Universitat Autònoma de Barcelona.",
+"author_bio": "Dr Muhammad Tayyab Ilyas is the author of <a href=\"/teachingintheaiera\"><i>Teaching in the AI Era</i></a>, a book for teachers on AI in schools and universities.",
+"cta_href": "/teachingintheaiera",
+"cta_label": "About the book",
+},
+# ---------------------------------------------------------------------------------------------------------
+{
+"slug": "ai-lesson-planning-for-teachers",
+"order": 7,
+"date": "2026-11-12",
+"kicker": "Teaching",
+"minutes": 7,
+"title": "AI lesson planning: what the trials show teachers",
+"description": "AI lesson planning saves teachers real minutes, not hours. What the trials found, where checking time goes, and seven routines from Teaching in the AI Era.",
+"keywords": "ai lesson planning, ai lesson plan, using ai for lesson planning, chatgpt lesson planning, teaching with ai book, Teaching in the AI Era, teacher workload, AI for teachers",
+"about": ["AI lesson planning", "Teacher workload", "Teaching in the AI Era"],
+"answer": "Use AI for the parts of planning that need hands, not judgement: question banks, quizzes, cover work, a reading passage at a different level. Decide first what students should learn, which mistake you expect and how you will check, then prompt with a class description that contains no names, and check every source the tool gives you. In the best trials this saved teachers roughly 25 to 49 minutes a week, so treat AI as a modest helper, not a rescue.",
+"body": """
+          <h2>Does AI lesson planning actually save time?</h2>
+          <p>Yes, but less than the headlines suggest. Chapter 4 of my book <a href="/teachingintheaiera">Teaching in the AI Era</a>, &ldquo;Planning with a Tireless Assistant&rdquo;, starts from the strongest evidence available: randomised trials in which teachers recorded their planning time every week against a comparison group.</p>
+          <ul>
+            <li><strong>ChatGPT in English secondary science (2024).</strong> Teachers in 68 schools planned Year 7 and 8 lessons with ChatGPT and an online guide, or without generative AI. The ChatGPT group spent 56.2 minutes a week planning against 81.5, a saving of 25.3 minutes, and a blind expert panel found no evidence of a difference in quality (Roy et al., 2024).</li>
+            <li><strong>Oak National Academy's Aila in primary schools (2025).</strong> 464 primary teachers in 108 schools took part. Teachers with Aila spent 2.5 hours a week planning against 3.3, a saving of 48.6 minutes, with resources no worse in quality (Roy et al., 2026).</li>
+            <li><strong>Microsoft Copilot in Lima, Peru.</strong> Teachers wrote better prompts and became better judges of weak AI answers, but the trial found &ldquo;precisely estimated null effects&rdquo; on time (Glave et al., 2026).</li>
+          </ul>
+          <p>The book's reading is plain: &ldquo;The minutes are real, and they are far smaller than many of the claims teachers hear.&rdquo; None of these trials measured what students learned from the lessons.</p>
+
+          <h2>Why do surveys promise hours when trials find minutes?</h2>
+          <p>In one US survey, teachers who used AI weekly estimated it saved them 5.9 hours a week (Gallup &amp; Walton Family Foundation, 2025). Surveys ask people to estimate; the English trials asked teachers to record. Estimates drift with hope and with marketing. Oak's own newsletter promised Aila could &ldquo;save five hours a week&rdquo;, yet the measured saving was under fifty minutes. The book's advice: when a colleague, a vendor or a headline promises hours, ask how anyone measured them.</p>
+
+          <h2>What did teachers actually use ChatGPT for?</h2>
+          <p>Mostly small, repeated jobs. In the 2024 trial, most teachers used ChatGPT for one or two activities in a lesson, usually questions, quizzes or ideas for activities. Teachers said it wrote comprehension and recall questions faster than they could, and that most were broadly accurate. Cover work suited it well too: one teacher estimated that planning three cover lessons this way saved him &ldquo;3 or 4 hours&rdquo;.</p>
+          <p>For a teacher new to these tools, that suggests a sensible first step. Try AI on one routine task, such as a quiz, before trusting it with a whole lesson.</p>
+
+          <h2>Why do some teachers save hours and others nothing?</h2>
+          <p>In the same trial, one experienced teacher used ChatGPT for about nine in ten of her lessons with a low-attaining class. Her prompts described the class and what the students already knew, and she asked for refinements. Another used it for one lesson in ten and saved no time overall. What each teacher brought to the tool made the difference.</p>
+          <p>The book calls this <strong>teacher-design burden</strong>: the effort a teacher must put in before a tool helps a particular class learn, as distinct from simply having access to it. One trial teacher described how their prompts grew to carry &ldquo;the year group, and their reading age level and what they should do&rdquo;. That knowledge does not live in the machine. Someone has to supply it, and good prompting is itself design work.</p>
+
+          <h2>What does an AI lesson plan get wrong?</h2>
+          <p>Enough that checking is part of the job. The chapter gathers smaller studies that show what checking has to catch:</p>
+          <ul>
+            <li>A sound first-grade science plan made with ChatGPT recommended a children's book that does not exist, &ldquo;a fake book by a real author&rdquo; (Powell &amp; Courchesne, 2024).</li>
+            <li>Of 2,230 activities in 310 civics plans from ChatGPT, Gemini and Copilot, only 10% called for higher-order thinking, and nearly half asked students simply to remember (Trust et al., 2025).</li>
+            <li>Running the same lesson-plan prompts again and again, &ldquo;simply by chance&rdquo;, some plans missed over a quarter of the criteria while others were more than 90% complete (Dornburg &amp; Davin, 2025).</li>
+          </ul>
+          <p>This checking takes time that weekly totals may hide. A few teachers in England told researchers they had spent as long editing AI outputs as making the material themselves. A teacher who saves twenty minutes on writing may spend fifteen of them checking.</p>
+
+          <h2>How should I use AI for lesson planning, step by step?</h2>
+          <p>The chapter ends with practical routines. They draw on the research, and the book is clear that nobody has yet tested them as programmes.</p>
+          <ul>
+            <li><strong>Think first, then prompt.</strong> Before opening a tool, write three lines: what students should be able to do by the end, the mistake you expect and how you will check. Then ask for practice questions, and drop any that do not test your three lines.</li>
+            <li><strong>Context cards with no names.</strong> Keep a short card for each class with the year group, typical reading age, prior learning and what worked last time. Paste it into your prompts and leave out names and anything else personal. If a name is needed, add it yourself after the AI has finished, and use tools your school has approved.</li>
+            <li><strong>Check every source and one claim.</strong> Before a generated resource reaches students, check every book, website and quotation it cites, and at least one claim, against a trusted source.</li>
+            <li><strong>Shared prompt banks.</strong> A department keeps the prompts that worked, each with a note on the class and topic, so one teacher's design work serves everyone.</li>
+            <li><strong>One lesson from scratch.</strong> A mentor asks a trainee to plan one lesson a week without AI and talk it through, so the thinking still happens.</li>
+            <li><strong>Two weeks of honest timing.</strong> Record every minute of planning, including prompting, checking and editing, and compare a week with the tool against a week without it.</li>
+          </ul>
+          <p>The <a href="/teachingintheaiera/chapter-4">Chapter 4 page</a> opens with the trial teachers' stories and lists the chapter's questions for reflection, ready to take to your next department or phase meeting. The full chapter gives a classroom example for each routine.</p>
+
+          <h2>What should a teacher never hand over?</h2>
+          <p>The decisions that make a lesson belong to a class. What should these students learn next, and which mistake will they make? Which example will reach them, and how will the teacher know? No tool in the studies the book reviews answered those questions on a teacher's behalf. The book puts the division of labour simply: &ldquo;AI can carry part of the load, and the judgement stays with the person who knows the class.&rdquo;</p>
+          <p>Differentiation and SEND paperwork need extra care. The book suggests using AI to produce versions of a text, while the teacher decides which student needs which version. For any formal plan, AI wording is a draft at most, written only after the people who know the child have gathered the observations and data.</p>
+
+          <h2>Is AI lesson planning only for well-resourced schools?</h2>
+          <p>No, but the saving does not reach everyone equally. Teacher-facing planning is the lighter route: one teacher with one phone can draft questions while the connection holds, and the students need no device at all. The design burden does not shrink, though. The chapter follows teachers in Pakistan, India and Sierra Leone who plan around power cuts, shared phones and unreliable signal, and argues that schools should budget protected time for this work rather than leave it to teachers' evenings.</p>
+
+          <h2>Where can I read the book?</h2>
+          <p><em>Teaching in the AI Era</em> is free to <a href="/teachingintheaiera/read">read online</a>, all thirteen chapters, with the full reference list. If you prefer your own copy, the ebook is available from <a href="https://books2read.com/u/mdrgNO" rel="noopener">your preferred store</a> and the paperback is <a href="https://www.amazon.com/s?k=Teaching+in+the+AI+Era+Muhammad+Tayyab+Ilyas&amp;i=stripbooks" rel="noopener">on Amazon</a>. Chapter 4 is the place to start if planning is where your week disappears.</p>""",
+"faq": [
+("How much time does AI lesson planning save?", "In two randomised trials in England, teachers saved 25.3 minutes a week with ChatGPT and 48.6 minutes a week with Oak National Academy's Aila, with no drop in resource quality. A trial in Lima, Peru, found no time saving. Surveys report hours, but they rely on estimates rather than recorded time."),
+("Can I use ChatGPT to write a whole lesson plan?", "You can, but the evidence favours smaller jobs. Most trial teachers used it for one or two activities in a lesson, such as questions or quizzes. Generated plans can cite books that do not exist, lean on simple recall and vary in completeness from run to run, so every plan needs checking against what you know about your class."),
+("What should I put in an AI lesson plan prompt?", "A short description of the class: year group, typical reading age, prior learning and what worked last time, plus what students should learn and the mistake you expect. Leave out names and other personal details, and add those yourself after the AI has finished."),
+("Is there a book on teaching with AI for school teachers?", "Teaching in the AI Era by Dr Muhammad Tayyab Ilyas is written first for primary and secondary teachers in any subject. Chapter 4 covers lesson planning with AI, and the whole book is free to read online at tayyabcheema.com/teachingintheaiera/read."),
+],
+"cta_line": "He wrote Teaching in the AI Era after more than a decade in Pakistan's education system, as an elementary school teacher and an assistant education officer in Gujranwala.",
+"author_bio": "Dr Muhammad Tayyab Ilyas is the author of <a href=\"/teachingintheaiera\"><i>Teaching in the AI Era</i></a>, a book for teachers on AI in schools and universities.",
+"cta_href": "/teachingintheaiera",
+"cta_label": "About the book",
+},
+# ---------------------------------------------------------------------------------------------------------
+{
 "slug": "mcp-connectors-app-store-moment",
 "order": 6,
 "date": "2026-10-01",

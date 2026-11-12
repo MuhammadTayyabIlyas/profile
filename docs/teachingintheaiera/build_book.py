@@ -107,6 +107,7 @@ def replace_block(path, name, content):
 # ---------- chapter landing pages ----------
 SITE = "https://tayyabcheema.com"
 BUY = "https://books2read.com/u/mdrgNO"
+BUY_PAPERBACK = "https://www.amazon.com/s?k=Teaching+in+the+AI+Era+Muhammad+Tayyab+Ilyas&amp;i=stripbooks"
 CHAPTERS = [("ch002", "introduction")] + [(f"ch{n + 2:03d}", f"chapter-{n}") for n in range(1, 14)]
 KEEP = re.compile(r"</?(?:em|strong|i|b)>")
 
@@ -271,6 +272,7 @@ def chapter_page(i, ch, slug, parts, prev, nxt, stamp, css):
         <div class="btns">
           <a class="btn btn-primary" href="{read}">Read this chapter online</a>
           <a class="btn" href="{BUY}" rel="noopener">Buy the ebook</a>
+          <a class="btn" href="{BUY_PAPERBACK}" rel="noopener">Buy the paperback</a>
         </div>{summary_html}
         <h2 id="sections-h">What the chapter covers</h2>
         <ul class="sections">

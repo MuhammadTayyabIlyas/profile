@@ -24,7 +24,8 @@ WORKS = [
         "summary": "A free book for school teachers, university staff and school leaders on AI in schools and universities: what the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Self-published, 2026.",
         "links": [("Read online", f"{SITE}/teachingintheaiera/read"),
                   ("Book page", f"{SITE}/teachingintheaiera"),
-                  ("Buy", "https://books2read.com/u/mdrgNO")],
+                  ("Buy the ebook", "https://books2read.com/u/mdrgNO"),
+                  ("Buy the paperback", "https://www.amazon.com/s?k=Teaching+in+the+AI+Era+Muhammad+Tayyab+Ilyas&i=stripbooks")],
     },
     {
         "key": "ilyas2026scoping", "group": "Journal articles", "type": "article", "year": "2026",

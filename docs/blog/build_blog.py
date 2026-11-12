@@ -168,10 +168,10 @@ def post_page(p):
     <section class="case-section">
       <div class="container fade-in">
         <div class="case-body">
-          <p><strong>About the author.</strong> Muhammad Tayyab Ilyas is an Applied AI &amp; Solutions Engineer in Barcelona who builds and operates MCP servers, multi-agent systems and the infrastructure under them. {p.get('cta_line', '')}</p>
+          <p><strong>About the author.</strong> {p.get('author_bio', 'Muhammad Tayyab Ilyas is an Applied AI &amp; Solutions Engineer in Barcelona who builds and operates MCP servers, multi-agent systems and the infrastructure under them.')} {p.get('cta_line', '')}</p>
         </div>
         <div class="case-cta">
-          <a href="/#contact" class="btn btn-primary">Talk about a project</a>
+          <a href="{p.get('cta_href', '/#contact')}" class="btn btn-primary">{p.get('cta_label', 'Talk about a project')}</a>
           <a href="/blog/" class="btn btn-outline">More posts</a>
         </div>
       </div>
@@ -256,7 +256,7 @@ def llms_txt(posts):
 
 ## Book
 
-- [Teaching in the AI Era]({SITE}/teachingintheaiera): a free book for school teachers, university staff and school leaders on AI in schools and universities, by Muhammad Tayyab Ilyas (2026, ISBN 9798237344349, DOI https://doi.org/10.5281/zenodo.24085773). What the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Read online at {SITE}/teachingintheaiera/read; ebook at https://books2read.com/u/mdrgNO; 482 references at {SITE}/teachingintheaiera/references.
+- [Teaching in the AI Era]({SITE}/teachingintheaiera): a free book for school teachers, university staff and school leaders on AI in schools and universities, by Muhammad Tayyab Ilyas (2026, ISBN 9798237344349, DOI https://doi.org/10.5281/zenodo.24085773). What the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Read online at {SITE}/teachingintheaiera/read; ebook at https://books2read.com/u/mdrgNO; paperback on Amazon at https://www.amazon.com/s?k=Teaching+in+the+AI+Era+Muhammad+Tayyab+Ilyas&i=stripbooks; 482 references at {SITE}/teachingintheaiera/references.
 
 {pubs}## Case studies
 
