@@ -21,7 +21,7 @@ WORKS = [
         "apa": "Ilyas, M. T. (2026). <em>Teaching in the AI era</em>. https://doi.org/10.5281/zenodo.24085773",
         "publisher": "Muhammad Tayyab Ilyas", "isbn": "9798237344349", "doi": "10.5281/zenodo.24085773",
         "url": f"{SITE}/teachingintheaiera",
-        "summary": "A free book for school teachers, university staff and school leaders on AI in schools and universities: what the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection. Self-published, 2026.",
+        "summary": "A free book for school teachers, university staff and school leaders on AI in schools and universities: what the evidence shows, what it does not yet show, and what to do in a classroom with thirty students, one timetable and a weak connection.",
         "links": [("Read online", f"{SITE}/teachingintheaiera/read"),
                   ("Book page", f"{SITE}/teachingintheaiera"),
                   ("Buy the ebook", "https://books2read.com/u/mdrgNO"),
